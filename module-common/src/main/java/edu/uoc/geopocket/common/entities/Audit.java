@@ -2,6 +2,7 @@ package edu.uoc.geopocket.common.entities;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.security.core.context.SecurityContextHolder;
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
@@ -29,11 +30,13 @@ public class Audit {
     @PrePersist
     public void prePersist() {
         this.createdOn = LocalDateTime.now();
+        this.createdBy = SecurityContextHolder.getContext().getAuthentication().getName();
     }
 
     @PreUpdate
     public void preUpdate() {
         this.updatedOn = LocalDateTime.now();
+        this.updatedBy = SecurityContextHolder.getContext().getAuthentication().getName();
     }
 
 }

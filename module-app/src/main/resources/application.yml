@@ -2,7 +2,7 @@ edu:
   uoc:
     geopocket:
       security:
-        enabled: false
+        enabled: true
       swagger:
         enabled: true
 

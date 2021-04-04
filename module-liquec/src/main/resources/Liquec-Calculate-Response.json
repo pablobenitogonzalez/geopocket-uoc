@@ -1,0 +1,360 @@
+{
+  "code": "EUROCODE",
+  "peakGroundAcceleration": 0.11,
+  "earthquakeMagnitude": 7.0,
+  "coefficientOfContribution": 1.0,
+  "groundWaterTableDepth": 1.0,
+  "id": 1,
+  "project": {
+    "name": "Liquec-1.0.0",
+    "location": "Alicante (Spain)",
+    "organization": "University of Alicante",
+    "id": 1,
+    "user": "user",
+    "audit": {
+      "createdOn": "2020-01-24T14:50:42.958",
+      "updatedOn": null,
+      "createdBy": "user",
+      "updatedBy": null
+    }
+  },
+  "status": "CALCULATED",
+  "soilLayers": [
+    {
+      "id": 1,
+      "startDepth": 0.0,
+      "finalDepth": 3.0,
+      "soilType": "limos",
+      "aboveGwt": 16.0,
+      "belowGwt": 19.0,
+      "finesContent": 15.0,
+      "checkLiquefaction": true,
+      "audit": {
+        "createdOn": "2020-01-24T14:50:49.087",
+        "updatedOn": null,
+        "createdBy": "user",
+        "updatedBy": null
+      }
+    },
+    {
+      "id": 2,
+      "startDepth": 3.0,
+      "finalDepth": 8.0,
+      "soilType": "arenas",
+      "aboveGwt": 17.0,
+      "belowGwt": 20.0,
+      "finesContent": 5.0,
+      "checkLiquefaction": true,
+      "audit": {
+        "createdOn": "2020-01-24T14:50:49.09",
+        "updatedOn": null,
+        "createdBy": "user",
+        "updatedBy": null
+      }
+    },
+    {
+      "id": 3,
+      "startDepth": 8.0,
+      "finalDepth": 12.0,
+      "soilType": "limos",
+      "aboveGwt": 17.0,
+      "belowGwt": 18.0,
+      "finesContent": 25.0,
+      "checkLiquefaction": true,
+      "audit": {
+        "createdOn": "2020-01-24T14:50:49.091",
+        "updatedOn": null,
+        "createdBy": "user",
+        "updatedBy": null
+      }
+    }
+  ],
+  "spts": [
+    {
+      "id": 1,
+      "depth": 0.3,
+      "sptBlowCounts": 6,
+      "energyRatio": 60.0,
+      "sptResult": {
+        "id": 1,
+        "result": "ERROR",
+        "message": "above GWT",
+        "totalStress": null,
+        "interstitialStress": null,
+        "effectiveStress": null,
+        "effectiveStressFactor": null,
+        "earthquakeMagnitudeCorrection": null,
+        "coefficientContributionCorrection": null,
+        "sptCorrected": null,
+        "cycleStressRatio": null,
+        "depthFactor": null,
+        "cycleResistanceRatio": null,
+        "cycleResistanceRatioCorrected": null,
+        "safetyFactor": null,
+        "audit": {
+          "createdOn": "2020-01-24T14:50:49.205",
+          "updatedOn": null,
+          "createdBy": "user",
+          "updatedBy": null
+        }
+      },
+      "audit": {
+        "createdOn": "2020-01-24T14:50:49.092",
+        "updatedOn": "2020-01-24T14:50:49.22",
+        "createdBy": "user",
+        "updatedBy": "user"
+      }
+    },
+    {
+      "id": 2,
+      "depth": 1.0,
+      "sptBlowCounts": 10,
+      "energyRatio": 60.0,
+      "sptResult": {
+        "id": 2,
+        "result": "OK",
+        "message": null,
+        "totalStress": 16.0,
+        "interstitialStress": 0.0,
+        "effectiveStress": 16.0,
+        "effectiveStressFactor": 2.0,
+        "earthquakeMagnitudeCorrection": 1.299999999999443,
+        "coefficientContributionCorrection": null,
+        "sptCorrected": 15.0,
+        "cycleStressRatio": 0.07149999961256981,
+        "depthFactor": null,
+        "cycleResistanceRatio": 0.22255200439999942,
+        "cycleResistanceRatioCorrected": 0.28931760571987525,
+        "safetyFactor": 4.046400101924095,
+        "audit": {
+          "createdOn": "2020-01-24T14:50:49.209",
+          "updatedOn": null,
+          "createdBy": "user",
+          "updatedBy": null
+        }
+      },
+      "audit": {
+        "createdOn": "2020-01-24T14:50:49.094",
+        "updatedOn": "2020-01-24T14:50:49.22",
+        "createdBy": "user",
+        "updatedBy": "user"
+      }
+    },
+    {
+      "id": 3,
+      "depth": 2.0,
+      "sptBlowCounts": 5,
+      "energyRatio": 60.0,
+      "sptResult": {
+        "id": 3,
+        "result": "OK",
+        "message": null,
+        "totalStress": 35.0,
+        "interstitialStress": 10.0,
+        "effectiveStress": 25.0,
+        "effectiveStressFactor": 2.0,
+        "earthquakeMagnitudeCorrection": 1.299999999999443,
+        "coefficientContributionCorrection": null,
+        "sptCorrected": 7.5,
+        "cycleStressRatio": 0.10009999945759772,
+        "depthFactor": null,
+        "cycleResistanceRatio": 0.12713295772812497,
+        "cycleResistanceRatioCorrected": 0.16527284504649165,
+        "safetyFactor": 1.6510773820383595,
+        "audit": {
+          "createdOn": "2020-01-24T14:50:49.211",
+          "updatedOn": null,
+          "createdBy": "user",
+          "updatedBy": null
+        }
+      },
+      "audit": {
+        "createdOn": "2020-01-24T14:50:49.095",
+        "updatedOn": "2020-01-24T14:50:49.22",
+        "createdBy": "user",
+        "updatedBy": "user"
+      }
+    },
+    {
+      "id": 4,
+      "depth": 3.0,
+      "sptBlowCounts": 8,
+      "energyRatio": 60.0,
+      "sptResult": {
+        "id": 4,
+        "result": "OK",
+        "message": null,
+        "totalStress": 54.0,
+        "interstitialStress": 20.0,
+        "effectiveStress": 34.0,
+        "effectiveStressFactor": 1.7149858514250884,
+        "earthquakeMagnitudeCorrection": 1.299999999999443,
+        "coefficientContributionCorrection": null,
+        "sptCorrected": 13.719886811400707,
+        "cycleStressRatio": 0.11355882291408145,
+        "depthFactor": null,
+        "cycleResistanceRatio": 0.20541559718019844,
+        "cycleResistanceRatioCorrected": 0.26704027633414357,
+        "safetyFactor": 2.3515590376996607,
+        "audit": {
+          "createdOn": "2020-01-24T14:50:49.212",
+          "updatedOn": null,
+          "createdBy": "user",
+          "updatedBy": null
+        }
+      },
+      "audit": {
+        "createdOn": "2020-01-24T14:50:49.096",
+        "updatedOn": "2020-01-24T14:50:49.22",
+        "createdBy": "user",
+        "updatedBy": "user"
+      }
+    },
+    {
+      "id": 5,
+      "depth": 6.0,
+      "sptBlowCounts": 15,
+      "energyRatio": 60.0,
+      "sptResult": {
+        "id": 5,
+        "result": "OK",
+        "message": null,
+        "totalStress": 114.0,
+        "interstitialStress": 50.0,
+        "effectiveStress": 64.0,
+        "effectiveStressFactor": 1.25,
+        "earthquakeMagnitudeCorrection": 1.299999999999443,
+        "coefficientContributionCorrection": null,
+        "sptCorrected": 18.75,
+        "cycleStressRatio": 0.12735937430989,
+        "depthFactor": null,
+        "cycleResistanceRatio": 0.21591713821982428,
+        "cycleResistanceRatioCorrected": 0.2806922796856513,
+        "safetyFactor": 2.203938902861384,
+        "audit": {
+          "createdOn": "2020-01-24T14:50:49.213",
+          "updatedOn": null,
+          "createdBy": "user",
+          "updatedBy": null
+        }
+      },
+      "audit": {
+        "createdOn": "2020-01-24T14:50:49.097",
+        "updatedOn": "2020-01-24T14:50:49.22",
+        "createdBy": "user",
+        "updatedBy": "user"
+      }
+    },
+    {
+      "id": 6,
+      "depth": 8.0,
+      "sptBlowCounts": 7,
+      "energyRatio": 60.0,
+      "sptResult": {
+        "id": 6,
+        "result": "OK",
+        "message": null,
+        "totalStress": 154.0,
+        "interstitialStress": 70.0,
+        "effectiveStress": 84.0,
+        "effectiveStressFactor": 1.0910894511799618,
+        "earthquakeMagnitudeCorrection": 1.299999999999443,
+        "coefficientContributionCorrection": null,
+        "sptCorrected": 7.6376261582597325,
+        "cycleStressRatio": 0.13108333262304464,
+        "depthFactor": null,
+        "cycleResistanceRatio": 0.08410804163427073,
+        "cycleResistanceRatioCorrected": 0.10934045412450509,
+        "safetyFactor": 0.8341293430411524,
+        "audit": {
+          "createdOn": "2020-01-24T14:50:49.214",
+          "updatedOn": null,
+          "createdBy": "user",
+          "updatedBy": null
+        }
+      },
+      "audit": {
+        "createdOn": "2020-01-24T14:50:49.099",
+        "updatedOn": "2020-01-24T14:50:49.22",
+        "createdBy": "user",
+        "updatedBy": "user"
+      }
+    },
+    {
+      "id": 7,
+      "depth": 10.0,
+      "sptBlowCounts": 10,
+      "energyRatio": 60.0,
+      "sptResult": {
+        "id": 7,
+        "result": "OK",
+        "message": null,
+        "totalStress": 190.0,
+        "interstitialStress": 90.0,
+        "effectiveStress": 100.0,
+        "effectiveStressFactor": 1.0,
+        "earthquakeMagnitudeCorrection": 1.299999999999443,
+        "coefficientContributionCorrection": null,
+        "sptCorrected": 10.0,
+        "cycleStressRatio": 0.13584999926388264,
+        "depthFactor": null,
+        "cycleResistanceRatio": 0.17472864714999997,
+        "cycleResistanceRatioCorrected": 0.22714724129490263,
+        "safetyFactor": 1.6720444793943585,
+        "audit": {
+          "createdOn": "2020-01-24T14:50:49.214",
+          "updatedOn": null,
+          "createdBy": "user",
+          "updatedBy": null
+        }
+      },
+      "audit": {
+        "createdOn": "2020-01-24T14:50:49.101",
+        "updatedOn": "2020-01-24T14:50:49.221",
+        "createdBy": "user",
+        "updatedBy": "user"
+      }
+    },
+    {
+      "id": 8,
+      "depth": 12.0,
+      "sptBlowCounts": 20,
+      "energyRatio": 60.0,
+      "sptResult": {
+        "id": 8,
+        "result": "OK",
+        "message": null,
+        "totalStress": 226.0,
+        "interstitialStress": 110.0,
+        "effectiveStress": 116.0,
+        "effectiveStressFactor": 0.9284766908852593,
+        "earthquakeMagnitudeCorrection": 1.299999999999443,
+        "coefficientContributionCorrection": null,
+        "sptCorrected": 18.569533817705185,
+        "cycleStressRatio": 0.13930172338311014,
+        "depthFactor": null,
+        "cycleResistanceRatio": 0.3125996120389869,
+        "cycleResistanceRatioCorrected": 0.40637949565050885,
+        "safetyFactor": 2.917261077473367,
+        "audit": {
+          "createdOn": "2020-01-24T14:50:49.215",
+          "updatedOn": null,
+          "createdBy": "user",
+          "updatedBy": null
+        }
+      },
+      "audit": {
+        "createdOn": "2020-01-24T14:50:49.102",
+        "updatedOn": "2020-01-24T14:50:49.221",
+        "createdBy": "user",
+        "updatedBy": "user"
+      }
+    }
+  ],
+  "audit": {
+    "createdOn": "2020-01-24T14:50:49.066",
+    "updatedOn": "2020-01-24T14:50:49.219",
+    "createdBy": "user",
+    "updatedBy": "user"
+  }
+}

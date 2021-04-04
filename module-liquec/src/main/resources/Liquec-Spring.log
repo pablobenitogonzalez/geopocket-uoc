@@ -1,0 +1,469 @@
+2020-01-24 08:50:14.430  INFO 56528 --- [nio-8080-exec-5] e.u.g.liquec.calculation.Executor        : START LIQUEC CALCULATION
+2020-01-24 08:50:14.430  INFO 56528 --- [nio-8080-exec-5] e.u.g.liquec.calculation.Executor        : ================================================================
+2020-01-24 08:50:14.430  INFO 56528 --- [nio-8080-exec-5] e.u.g.liquec.calculation.Executor        : START - Depth: 0.3 (m) - SPT Blow Counts: 6 (N)
+2020-01-24 08:50:14.432  INFO 56528 --- [nio-8080-exec-5] e.u.g.liquec.calculation.Executor        : EUROCODE - Start task - Check Depth Above GWT
+2020-01-24 08:50:14.434  INFO 56528 --- [nio-8080-exec-5] e.u.g.liquec.calculation.Executor        : EUROCODE - End task - Check Depth Above GWT with result ERROR and reason <above GWT>
+2020-01-24 08:50:14.434  INFO 56528 --- [nio-8080-exec-5] e.u.g.liquec.calculation.Executor        : START - Depth: 0.3 (m) - SPT Blow Counts: 6 (N)
+2020-01-24 08:50:14.434  INFO 56528 --- [nio-8080-exec-5] e.u.g.liquec.calculation.Executor        : ================================================================
+2020-01-24 08:50:14.434  INFO 56528 --- [nio-8080-exec-5] e.u.g.liquec.calculation.Executor        : ================================================================
+2020-01-24 08:50:14.434  INFO 56528 --- [nio-8080-exec-5] e.u.g.liquec.calculation.Executor        : START - Depth: 1.0 (m) - SPT Blow Counts: 10 (N)
+2020-01-24 08:50:14.435  INFO 56528 --- [nio-8080-exec-5] e.u.g.liquec.calculation.Executor        : EUROCODE - Start task - Check Depth Above GWT
+2020-01-24 08:50:14.435  INFO 56528 --- [nio-8080-exec-5] e.u.g.liquec.calculation.Executor        : EUROCODE - End task - Check Depth Above GWT with result OK
+2020-01-24 08:50:14.435  INFO 56528 --- [nio-8080-exec-5] e.u.g.liquec.calculation.Executor        : EUROCODE - Start task - Check Max Depth
+2020-01-24 08:50:14.436  INFO 56528 --- [nio-8080-exec-5] e.u.g.liquec.calculation.Executor        : EUROCODE - End task - Check Max Depth with result OK
+2020-01-24 08:50:14.437  INFO 56528 --- [nio-8080-exec-5] e.u.g.liquec.calculation.Executor        : EUROCODE - Start task - Check Liquefaction Option
+2020-01-24 08:50:14.439  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.t.CheckLiquefactionOptionTask  : Layer index with SPT inside: 0
+2020-01-24 08:50:14.439  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.t.CheckLiquefactionOptionTask  : Check liquefaction: true
+2020-01-24 08:50:14.440  INFO 56528 --- [nio-8080-exec-5] e.u.g.liquec.calculation.Executor        : EUROCODE - End task - Check Liquefaction Option with result OK
+2020-01-24 08:50:14.440  INFO 56528 --- [nio-8080-exec-5] e.u.g.liquec.calculation.Executor        : EUROCODE - Start task - Total Stress
+2020-01-24 08:50:14.441  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.tasks.TotalStressTask          : Layer index with GWT inside: 0
+2020-01-24 08:50:14.441  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.tasks.TotalStressTask          : Layer index with SPT inside: 0
+2020-01-24 08:50:14.441  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.tasks.TotalStressTask          : Layer indexes above GWT: []
+2020-01-24 08:50:14.441  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.tasks.TotalStressTask          : Layer indexes below GWT: []
+2020-01-24 08:50:14.441  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.tasks.TotalStressTask          : Stress from layers above GWT: 0.0 KN/m2
+2020-01-24 08:50:14.441  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.tasks.TotalStressTask          : Above stress from layer with GWT inside: 16.0 KN/m2
+2020-01-24 08:50:14.442  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.tasks.TotalStressTask          : Below stress from layer with GWT and SPT inside: 0.0 KN/m2
+2020-01-24 08:50:14.442  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.tasks.TotalStressTask          : Total stress:16.0 KN/m2
+2020-01-24 08:50:14.442  INFO 56528 --- [nio-8080-exec-5] e.u.g.liquec.calculation.Executor        : EUROCODE - End task - Total Stress with result OK
+2020-01-24 08:50:14.443  INFO 56528 --- [nio-8080-exec-5] e.u.g.liquec.calculation.Executor        : EUROCODE - Start task - Interstitial Stress
+2020-01-24 08:50:14.443  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.tasks.InterstitialStressTask   : Interstitial stress: 0.0 KN/m2
+2020-01-24 08:50:14.443  INFO 56528 --- [nio-8080-exec-5] e.u.g.liquec.calculation.Executor        : EUROCODE - End task - Interstitial Stress with result OK
+2020-01-24 08:50:14.443  INFO 56528 --- [nio-8080-exec-5] e.u.g.liquec.calculation.Executor        : EUROCODE - Start task - Effective Stress
+2020-01-24 08:50:14.443  INFO 56528 --- [nio-8080-exec-5] e.u.g.liquec.calculation.Executor        : EUROCODE - End task - Effective Stress with result OK
+2020-01-24 08:50:14.444  INFO 56528 --- [nio-8080-exec-5] e.u.g.liquec.calculation.Executor        : EUROCODE - Start task - Effective Stress Factor
+2020-01-24 08:50:14.444  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.t.EffectiveStressFactorTask    : Effective stress factor: 2.0
+2020-01-24 08:50:14.444  INFO 56528 --- [nio-8080-exec-5] e.u.g.liquec.calculation.Executor        : EUROCODE - End task - Effective Stress Factor with result OK
+2020-01-24 08:50:14.444  INFO 56528 --- [nio-8080-exec-5] e.u.g.liquec.calculation.Executor        : EUROCODE - Start task - SPT Correction
+2020-01-24 08:50:14.445  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.tasks.SptCorrectionTask        : SPT Corrected: 15.0 (N60)
+2020-01-24 08:50:14.445  INFO 56528 --- [nio-8080-exec-5] e.u.g.liquec.calculation.Executor        : EUROCODE - End task - SPT Correction with result OK
+2020-01-24 08:50:14.445  INFO 56528 --- [nio-8080-exec-5] e.u.g.liquec.calculation.Executor        : EUROCODE - Start task - Cycle Resistance Ratio (CRR)
+2020-01-24 08:50:14.445  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.t.CycleResistanceRatioTask     : Layer index with SPT inside: 0
+2020-01-24 08:50:14.445  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.t.CycleResistanceRatioTask     : Layer fines content: 15.0 (%)
+2020-01-24 08:50:14.446  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.ranges.crr.LessOrEqual         : Range less or equals [5.0]: false
+2020-01-24 08:50:14.446  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.t.CycleResistanceRatioTask     : EvaluableFines contains: false
+2020-01-24 08:50:14.447  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.r.crr.BetweenFirstSection      : Range between first section [5.0-15.0]: false
+2020-01-24 08:50:14.447  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.t.CycleResistanceRatioTask     : EvaluableFines contains: false
+2020-01-24 08:50:14.447  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.r.crr.BetweenSecondSection     : Range between second section [15.0-35.0]: true
+2020-01-24 08:50:14.447  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.t.CycleResistanceRatioTask     : EvaluableFines contains: true
+2020-01-24 08:50:14.447  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.t.CycleResistanceRatioTask     : SPT Corrected: 15.0 (N60)
+2020-01-24 08:50:14.449  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.r.e.f.EurocodeLessOrEqual35    : Range less or equals: false
+2020-01-24 08:50:14.449  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.t.CycleResistanceRatioTask     : SPT corrected contains: false
+2020-01-24 08:50:14.450  INFO 56528 --- [nio-8080-exec-5] .l.c.r.e.f.EurocodeBetweenFirstSection35 : Range between first section: true
+2020-01-24 08:50:14.450  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.t.CycleResistanceRatioTask     : SPT corrected contains: true
+2020-01-24 08:50:14.450  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.t.CycleResistanceRatioTask     : CRR: 0.26388050740000013
+2020-01-24 08:50:14.450  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.t.CycleResistanceRatioTask     : CRR first: 0.26388050740000013
+2020-01-24 08:50:14.450  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.t.CycleResistanceRatioTask     : SPT Corrected: 15.0 (N60)
+2020-01-24 08:50:14.450  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.r.e.f.EurocodeLessOrEqual15    : Range less or equals: false
+2020-01-24 08:50:14.450  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.t.CycleResistanceRatioTask     : SPT corrected contains: false
+2020-01-24 08:50:14.450  INFO 56528 --- [nio-8080-exec-5] .l.c.r.e.f.EurocodeBetweenFirstSection15 : Range between first section: true
+2020-01-24 08:50:14.450  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.t.CycleResistanceRatioTask     : SPT corrected contains: true
+2020-01-24 08:50:14.451  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.t.CycleResistanceRatioTask     : CRR: 0.22255200439999945
+2020-01-24 08:50:14.451  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.t.CycleResistanceRatioTask     : CRR second: 0.22255200439999945
+2020-01-24 08:50:14.451  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.t.CycleResistanceRatioTask     : Final CRR: 0.22255200439999942
+2020-01-24 08:50:14.451  INFO 56528 --- [nio-8080-exec-5] e.u.g.liquec.calculation.Executor        : EUROCODE - End task - Cycle Resistance Ratio (CRR) with result OK
+2020-01-24 08:50:14.451  INFO 56528 --- [nio-8080-exec-5] e.u.g.liquec.calculation.Executor        : EUROCODE - Start task - Earthquake Magnitude Correction (CM)
+2020-01-24 08:50:14.451  INFO 56528 --- [nio-8080-exec-5] e.u.g.liquec.calculation.Executor        : EUROCODE - End task - Earthquake Magnitude Correction (CM) with result OK
+2020-01-24 08:50:14.452  INFO 56528 --- [nio-8080-exec-5] e.u.g.liquec.calculation.Executor        : EUROCODE - Start task - Cycle Resistance Ratio (CRR) Correction
+2020-01-24 08:50:14.452  INFO 56528 --- [nio-8080-exec-5] l.c.t.CycleResistanceRatioCorrectionTask : Cycle resistance ratio correction: 0.28931760571987525
+2020-01-24 08:50:14.452  INFO 56528 --- [nio-8080-exec-5] e.u.g.liquec.calculation.Executor        : EUROCODE - End task - Cycle Resistance Ratio (CRR) Correction with result OK
+2020-01-24 08:50:14.452  INFO 56528 --- [nio-8080-exec-5] e.u.g.liquec.calculation.Executor        : EUROCODE - Start task - Cycle Stress Ratio (CSR)
+2020-01-24 08:50:14.452  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.tasks.CycleStressRatioTask     : Cycle stress ratio (CSR): 0.07149999961256981
+2020-01-24 08:50:14.452  INFO 56528 --- [nio-8080-exec-5] e.u.g.liquec.calculation.Executor        : EUROCODE - End task - Cycle Stress Ratio (CSR) with result OK
+2020-01-24 08:50:14.453  INFO 56528 --- [nio-8080-exec-5] e.u.g.liquec.calculation.Executor        : EUROCODE - Start task - Safety Factor
+2020-01-24 08:50:14.453  INFO 56528 --- [nio-8080-exec-5] e.u.g.liquec.calculation.Executor        : EUROCODE - End task - Safety Factor with result OK
+2020-01-24 08:50:14.453  INFO 56528 --- [nio-8080-exec-5] e.u.g.liquec.calculation.Executor        : START - Depth: 1.0 (m) - SPT Blow Counts: 10 (N)
+2020-01-24 08:50:14.453  INFO 56528 --- [nio-8080-exec-5] e.u.g.liquec.calculation.Executor        : ================================================================
+2020-01-24 08:50:14.453  INFO 56528 --- [nio-8080-exec-5] e.u.g.liquec.calculation.Executor        : ================================================================
+2020-01-24 08:50:14.453  INFO 56528 --- [nio-8080-exec-5] e.u.g.liquec.calculation.Executor        : START - Depth: 2.0 (m) - SPT Blow Counts: 5 (N)
+2020-01-24 08:50:14.453  INFO 56528 --- [nio-8080-exec-5] e.u.g.liquec.calculation.Executor        : EUROCODE - Start task - Check Depth Above GWT
+2020-01-24 08:50:14.453  INFO 56528 --- [nio-8080-exec-5] e.u.g.liquec.calculation.Executor        : EUROCODE - End task - Check Depth Above GWT with result OK
+2020-01-24 08:50:14.453  INFO 56528 --- [nio-8080-exec-5] e.u.g.liquec.calculation.Executor        : EUROCODE - Start task - Check Max Depth
+2020-01-24 08:50:14.453  INFO 56528 --- [nio-8080-exec-5] e.u.g.liquec.calculation.Executor        : EUROCODE - End task - Check Max Depth with result OK
+2020-01-24 08:50:14.453  INFO 56528 --- [nio-8080-exec-5] e.u.g.liquec.calculation.Executor        : EUROCODE - Start task - Check Liquefaction Option
+2020-01-24 08:50:14.453  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.t.CheckLiquefactionOptionTask  : Layer index with SPT inside: 0
+2020-01-24 08:50:14.454  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.t.CheckLiquefactionOptionTask  : Check liquefaction: true
+2020-01-24 08:50:14.454  INFO 56528 --- [nio-8080-exec-5] e.u.g.liquec.calculation.Executor        : EUROCODE - End task - Check Liquefaction Option with result OK
+2020-01-24 08:50:14.454  INFO 56528 --- [nio-8080-exec-5] e.u.g.liquec.calculation.Executor        : EUROCODE - Start task - Total Stress
+2020-01-24 08:50:14.454  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.tasks.TotalStressTask          : Layer index with GWT inside: 0
+2020-01-24 08:50:14.454  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.tasks.TotalStressTask          : Layer index with SPT inside: 0
+2020-01-24 08:50:14.454  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.tasks.TotalStressTask          : Layer indexes above GWT: []
+2020-01-24 08:50:14.454  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.tasks.TotalStressTask          : Layer indexes below GWT: []
+2020-01-24 08:50:14.454  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.tasks.TotalStressTask          : Stress from layers above GWT: 0.0 KN/m2
+2020-01-24 08:50:14.454  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.tasks.TotalStressTask          : Above stress from layer with GWT inside: 16.0 KN/m2
+2020-01-24 08:50:14.454  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.tasks.TotalStressTask          : Below stress from layer with GWT and SPT inside: 19.0 KN/m2
+2020-01-24 08:50:14.454  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.tasks.TotalStressTask          : Total stress:35.0 KN/m2
+2020-01-24 08:50:14.454  INFO 56528 --- [nio-8080-exec-5] e.u.g.liquec.calculation.Executor        : EUROCODE - End task - Total Stress with result OK
+2020-01-24 08:50:14.455  INFO 56528 --- [nio-8080-exec-5] e.u.g.liquec.calculation.Executor        : EUROCODE - Start task - Interstitial Stress
+2020-01-24 08:50:14.455  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.tasks.InterstitialStressTask   : Interstitial stress: 10.0 KN/m2
+2020-01-24 08:50:14.455  INFO 56528 --- [nio-8080-exec-5] e.u.g.liquec.calculation.Executor        : EUROCODE - End task - Interstitial Stress with result OK
+2020-01-24 08:50:14.456  INFO 56528 --- [nio-8080-exec-5] e.u.g.liquec.calculation.Executor        : EUROCODE - Start task - Effective Stress
+2020-01-24 08:50:14.456  INFO 56528 --- [nio-8080-exec-5] e.u.g.liquec.calculation.Executor        : EUROCODE - End task - Effective Stress with result OK
+2020-01-24 08:50:14.456  INFO 56528 --- [nio-8080-exec-5] e.u.g.liquec.calculation.Executor        : EUROCODE - Start task - Effective Stress Factor
+2020-01-24 08:50:14.457  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.t.EffectiveStressFactorTask    : Effective stress factor: 2.0
+2020-01-24 08:50:14.457  INFO 56528 --- [nio-8080-exec-5] e.u.g.liquec.calculation.Executor        : EUROCODE - End task - Effective Stress Factor with result OK
+2020-01-24 08:50:14.457  INFO 56528 --- [nio-8080-exec-5] e.u.g.liquec.calculation.Executor        : EUROCODE - Start task - SPT Correction
+2020-01-24 08:50:14.457  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.tasks.SptCorrectionTask        : SPT Corrected: 7.5 (N60)
+2020-01-24 08:50:14.457  INFO 56528 --- [nio-8080-exec-5] e.u.g.liquec.calculation.Executor        : EUROCODE - End task - SPT Correction with result OK
+2020-01-24 08:50:14.457  INFO 56528 --- [nio-8080-exec-5] e.u.g.liquec.calculation.Executor        : EUROCODE - Start task - Cycle Resistance Ratio (CRR)
+2020-01-24 08:50:14.457  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.t.CycleResistanceRatioTask     : Layer index with SPT inside: 0
+2020-01-24 08:50:14.457  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.t.CycleResistanceRatioTask     : Layer fines content: 15.0 (%)
+2020-01-24 08:50:14.457  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.ranges.crr.LessOrEqual         : Range less or equals [5.0]: false
+2020-01-24 08:50:14.457  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.t.CycleResistanceRatioTask     : EvaluableFines contains: false
+2020-01-24 08:50:14.457  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.r.crr.BetweenFirstSection      : Range between first section [5.0-15.0]: false
+2020-01-24 08:50:14.457  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.t.CycleResistanceRatioTask     : EvaluableFines contains: false
+2020-01-24 08:50:14.457  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.r.crr.BetweenSecondSection     : Range between second section [15.0-35.0]: true
+2020-01-24 08:50:14.457  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.t.CycleResistanceRatioTask     : EvaluableFines contains: true
+2020-01-24 08:50:14.458  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.t.CycleResistanceRatioTask     : SPT Corrected: 7.5 (N60)
+2020-01-24 08:50:14.458  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.r.e.f.EurocodeLessOrEqual35    : Range less or equals: false
+2020-01-24 08:50:14.458  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.t.CycleResistanceRatioTask     : SPT corrected contains: false
+2020-01-24 08:50:14.458  INFO 56528 --- [nio-8080-exec-5] .l.c.r.e.f.EurocodeBetweenFirstSection35 : Range between first section: true
+2020-01-24 08:50:14.458  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.t.CycleResistanceRatioTask     : SPT corrected contains: true
+2020-01-24 08:50:14.458  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.t.CycleResistanceRatioTask     : CRR: 0.16111170098593752
+2020-01-24 08:50:14.458  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.t.CycleResistanceRatioTask     : CRR first: 0.16111170098593752
+2020-01-24 08:50:14.458  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.t.CycleResistanceRatioTask     : SPT Corrected: 7.5 (N60)
+2020-01-24 08:50:14.458  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.r.e.f.EurocodeLessOrEqual15    : Range less or equals: false
+2020-01-24 08:50:14.458  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.t.CycleResistanceRatioTask     : SPT corrected contains: false
+2020-01-24 08:50:14.458  INFO 56528 --- [nio-8080-exec-5] .l.c.r.e.f.EurocodeBetweenFirstSection15 : Range between first section: true
+2020-01-24 08:50:14.458  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.t.CycleResistanceRatioTask     : SPT corrected contains: true
+2020-01-24 08:50:14.458  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.t.CycleResistanceRatioTask     : CRR: 0.12713295772812497
+2020-01-24 08:50:14.458  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.t.CycleResistanceRatioTask     : CRR second: 0.12713295772812497
+2020-01-24 08:50:14.458  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.t.CycleResistanceRatioTask     : Final CRR: 0.12713295772812497
+2020-01-24 08:50:14.459  INFO 56528 --- [nio-8080-exec-5] e.u.g.liquec.calculation.Executor        : EUROCODE - End task - Cycle Resistance Ratio (CRR) with result OK
+2020-01-24 08:50:14.459  INFO 56528 --- [nio-8080-exec-5] e.u.g.liquec.calculation.Executor        : EUROCODE - Start task - Earthquake Magnitude Correction (CM)
+2020-01-24 08:50:14.459  INFO 56528 --- [nio-8080-exec-5] e.u.g.liquec.calculation.Executor        : EUROCODE - End task - Earthquake Magnitude Correction (CM) with result OK
+2020-01-24 08:50:14.459  INFO 56528 --- [nio-8080-exec-5] e.u.g.liquec.calculation.Executor        : EUROCODE - Start task - Cycle Resistance Ratio (CRR) Correction
+2020-01-24 08:50:14.459  INFO 56528 --- [nio-8080-exec-5] l.c.t.CycleResistanceRatioCorrectionTask : Cycle resistance ratio correction: 0.16527284504649165
+2020-01-24 08:50:14.459  INFO 56528 --- [nio-8080-exec-5] e.u.g.liquec.calculation.Executor        : EUROCODE - End task - Cycle Resistance Ratio (CRR) Correction with result OK
+2020-01-24 08:50:14.459  INFO 56528 --- [nio-8080-exec-5] e.u.g.liquec.calculation.Executor        : EUROCODE - Start task - Cycle Stress Ratio (CSR)
+2020-01-24 08:50:14.459  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.tasks.CycleStressRatioTask     : Cycle stress ratio (CSR): 0.10009999945759772
+2020-01-24 08:50:14.459  INFO 56528 --- [nio-8080-exec-5] e.u.g.liquec.calculation.Executor        : EUROCODE - End task - Cycle Stress Ratio (CSR) with result OK
+2020-01-24 08:50:14.460  INFO 56528 --- [nio-8080-exec-5] e.u.g.liquec.calculation.Executor        : EUROCODE - Start task - Safety Factor
+2020-01-24 08:50:14.460  INFO 56528 --- [nio-8080-exec-5] e.u.g.liquec.calculation.Executor        : EUROCODE - End task - Safety Factor with result OK
+2020-01-24 08:50:14.460  INFO 56528 --- [nio-8080-exec-5] e.u.g.liquec.calculation.Executor        : START - Depth: 2.0 (m) - SPT Blow Counts: 5 (N)
+2020-01-24 08:50:14.460  INFO 56528 --- [nio-8080-exec-5] e.u.g.liquec.calculation.Executor        : ================================================================
+2020-01-24 08:50:14.460  INFO 56528 --- [nio-8080-exec-5] e.u.g.liquec.calculation.Executor        : ================================================================
+2020-01-24 08:50:14.460  INFO 56528 --- [nio-8080-exec-5] e.u.g.liquec.calculation.Executor        : START - Depth: 3.0 (m) - SPT Blow Counts: 8 (N)
+2020-01-24 08:50:14.460  INFO 56528 --- [nio-8080-exec-5] e.u.g.liquec.calculation.Executor        : EUROCODE - Start task - Check Depth Above GWT
+2020-01-24 08:50:14.460  INFO 56528 --- [nio-8080-exec-5] e.u.g.liquec.calculation.Executor        : EUROCODE - End task - Check Depth Above GWT with result OK
+2020-01-24 08:50:14.460  INFO 56528 --- [nio-8080-exec-5] e.u.g.liquec.calculation.Executor        : EUROCODE - Start task - Check Max Depth
+2020-01-24 08:50:14.461  INFO 56528 --- [nio-8080-exec-5] e.u.g.liquec.calculation.Executor        : EUROCODE - End task - Check Max Depth with result OK
+2020-01-24 08:50:14.461  INFO 56528 --- [nio-8080-exec-5] e.u.g.liquec.calculation.Executor        : EUROCODE - Start task - Check Liquefaction Option
+2020-01-24 08:50:14.461  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.t.CheckLiquefactionOptionTask  : Layer index with SPT inside: 0
+2020-01-24 08:50:14.461  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.t.CheckLiquefactionOptionTask  : Check liquefaction: true
+2020-01-24 08:50:14.461  INFO 56528 --- [nio-8080-exec-5] e.u.g.liquec.calculation.Executor        : EUROCODE - End task - Check Liquefaction Option with result OK
+2020-01-24 08:50:14.461  INFO 56528 --- [nio-8080-exec-5] e.u.g.liquec.calculation.Executor        : EUROCODE - Start task - Total Stress
+2020-01-24 08:50:14.461  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.tasks.TotalStressTask          : Layer index with GWT inside: 0
+2020-01-24 08:50:14.461  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.tasks.TotalStressTask          : Layer index with SPT inside: 0
+2020-01-24 08:50:14.461  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.tasks.TotalStressTask          : Layer indexes above GWT: []
+2020-01-24 08:50:14.461  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.tasks.TotalStressTask          : Layer indexes below GWT: []
+2020-01-24 08:50:14.461  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.tasks.TotalStressTask          : Stress from layers above GWT: 0.0 KN/m2
+2020-01-24 08:50:14.461  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.tasks.TotalStressTask          : Above stress from layer with GWT inside: 16.0 KN/m2
+2020-01-24 08:50:14.461  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.tasks.TotalStressTask          : Below stress from layer with GWT and SPT inside: 38.0 KN/m2
+2020-01-24 08:50:14.461  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.tasks.TotalStressTask          : Total stress:54.0 KN/m2
+2020-01-24 08:50:14.461  INFO 56528 --- [nio-8080-exec-5] e.u.g.liquec.calculation.Executor        : EUROCODE - End task - Total Stress with result OK
+2020-01-24 08:50:14.461  INFO 56528 --- [nio-8080-exec-5] e.u.g.liquec.calculation.Executor        : EUROCODE - Start task - Interstitial Stress
+2020-01-24 08:50:14.462  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.tasks.InterstitialStressTask   : Interstitial stress: 20.0 KN/m2
+2020-01-24 08:50:14.462  INFO 56528 --- [nio-8080-exec-5] e.u.g.liquec.calculation.Executor        : EUROCODE - End task - Interstitial Stress with result OK
+2020-01-24 08:50:14.462  INFO 56528 --- [nio-8080-exec-5] e.u.g.liquec.calculation.Executor        : EUROCODE - Start task - Effective Stress
+2020-01-24 08:50:14.462  INFO 56528 --- [nio-8080-exec-5] e.u.g.liquec.calculation.Executor        : EUROCODE - End task - Effective Stress with result OK
+2020-01-24 08:50:14.462  INFO 56528 --- [nio-8080-exec-5] e.u.g.liquec.calculation.Executor        : EUROCODE - Start task - Effective Stress Factor
+2020-01-24 08:50:14.462  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.t.EffectiveStressFactorTask    : Effective stress factor: 1.7149858514250884
+2020-01-24 08:50:14.462  INFO 56528 --- [nio-8080-exec-5] e.u.g.liquec.calculation.Executor        : EUROCODE - End task - Effective Stress Factor with result OK
+2020-01-24 08:50:14.462  INFO 56528 --- [nio-8080-exec-5] e.u.g.liquec.calculation.Executor        : EUROCODE - Start task - SPT Correction
+2020-01-24 08:50:14.462  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.tasks.SptCorrectionTask        : SPT Corrected: 13.719886811400707 (N60)
+2020-01-24 08:50:14.462  INFO 56528 --- [nio-8080-exec-5] e.u.g.liquec.calculation.Executor        : EUROCODE - End task - SPT Correction with result OK
+2020-01-24 08:50:14.462  INFO 56528 --- [nio-8080-exec-5] e.u.g.liquec.calculation.Executor        : EUROCODE - Start task - Cycle Resistance Ratio (CRR)
+2020-01-24 08:50:14.462  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.t.CycleResistanceRatioTask     : Layer index with SPT inside: 0
+2020-01-24 08:50:14.462  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.t.CycleResistanceRatioTask     : Layer fines content: 15.0 (%)
+2020-01-24 08:50:14.462  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.ranges.crr.LessOrEqual         : Range less or equals [5.0]: false
+2020-01-24 08:50:14.462  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.t.CycleResistanceRatioTask     : EvaluableFines contains: false
+2020-01-24 08:50:14.462  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.r.crr.BetweenFirstSection      : Range between first section [5.0-15.0]: false
+2020-01-24 08:50:14.462  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.t.CycleResistanceRatioTask     : EvaluableFines contains: false
+2020-01-24 08:50:14.462  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.r.crr.BetweenSecondSection     : Range between second section [15.0-35.0]: true
+2020-01-24 08:50:14.462  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.t.CycleResistanceRatioTask     : EvaluableFines contains: true
+2020-01-24 08:50:14.462  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.t.CycleResistanceRatioTask     : SPT Corrected: 13.719886811400707 (N60)
+2020-01-24 08:50:14.462  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.r.e.f.EurocodeLessOrEqual35    : Range less or equals: false
+2020-01-24 08:50:14.462  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.t.CycleResistanceRatioTask     : SPT corrected contains: false
+2020-01-24 08:50:14.462  INFO 56528 --- [nio-8080-exec-5] .l.c.r.e.f.EurocodeBetweenFirstSection35 : Range between first section: true
+2020-01-24 08:50:14.462  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.t.CycleResistanceRatioTask     : SPT corrected contains: true
+2020-01-24 08:50:14.462  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.t.CycleResistanceRatioTask     : CRR: 0.24412860883657445
+2020-01-24 08:50:14.462  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.t.CycleResistanceRatioTask     : CRR first: 0.24412860883657445
+2020-01-24 08:50:14.462  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.t.CycleResistanceRatioTask     : SPT Corrected: 13.719886811400707 (N60)
+2020-01-24 08:50:14.462  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.r.e.f.EurocodeLessOrEqual15    : Range less or equals: false
+2020-01-24 08:50:14.462  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.t.CycleResistanceRatioTask     : SPT corrected contains: false
+2020-01-24 08:50:14.462  INFO 56528 --- [nio-8080-exec-5] .l.c.r.e.f.EurocodeBetweenFirstSection15 : Range between first section: true
+2020-01-24 08:50:14.462  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.t.CycleResistanceRatioTask     : SPT corrected contains: true
+2020-01-24 08:50:14.463  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.t.CycleResistanceRatioTask     : CRR: 0.20541559718019842
+2020-01-24 08:50:14.463  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.t.CycleResistanceRatioTask     : CRR second: 0.20541559718019842
+2020-01-24 08:50:14.463  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.t.CycleResistanceRatioTask     : Final CRR: 0.20541559718019844
+2020-01-24 08:50:14.463  INFO 56528 --- [nio-8080-exec-5] e.u.g.liquec.calculation.Executor        : EUROCODE - End task - Cycle Resistance Ratio (CRR) with result OK
+2020-01-24 08:50:14.463  INFO 56528 --- [nio-8080-exec-5] e.u.g.liquec.calculation.Executor        : EUROCODE - Start task - Earthquake Magnitude Correction (CM)
+2020-01-24 08:50:14.463  INFO 56528 --- [nio-8080-exec-5] e.u.g.liquec.calculation.Executor        : EUROCODE - End task - Earthquake Magnitude Correction (CM) with result OK
+2020-01-24 08:50:14.463  INFO 56528 --- [nio-8080-exec-5] e.u.g.liquec.calculation.Executor        : EUROCODE - Start task - Cycle Resistance Ratio (CRR) Correction
+2020-01-24 08:50:14.463  INFO 56528 --- [nio-8080-exec-5] l.c.t.CycleResistanceRatioCorrectionTask : Cycle resistance ratio correction: 0.26704027633414357
+2020-01-24 08:50:14.463  INFO 56528 --- [nio-8080-exec-5] e.u.g.liquec.calculation.Executor        : EUROCODE - End task - Cycle Resistance Ratio (CRR) Correction with result OK
+2020-01-24 08:50:14.463  INFO 56528 --- [nio-8080-exec-5] e.u.g.liquec.calculation.Executor        : EUROCODE - Start task - Cycle Stress Ratio (CSR)
+2020-01-24 08:50:14.463  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.tasks.CycleStressRatioTask     : Cycle stress ratio (CSR): 0.11355882291408145
+2020-01-24 08:50:14.463  INFO 56528 --- [nio-8080-exec-5] e.u.g.liquec.calculation.Executor        : EUROCODE - End task - Cycle Stress Ratio (CSR) with result OK
+2020-01-24 08:50:14.463  INFO 56528 --- [nio-8080-exec-5] e.u.g.liquec.calculation.Executor        : EUROCODE - Start task - Safety Factor
+2020-01-24 08:50:14.463  INFO 56528 --- [nio-8080-exec-5] e.u.g.liquec.calculation.Executor        : EUROCODE - End task - Safety Factor with result OK
+2020-01-24 08:50:14.463  INFO 56528 --- [nio-8080-exec-5] e.u.g.liquec.calculation.Executor        : START - Depth: 3.0 (m) - SPT Blow Counts: 8 (N)
+2020-01-24 08:50:14.463  INFO 56528 --- [nio-8080-exec-5] e.u.g.liquec.calculation.Executor        : ================================================================
+2020-01-24 08:50:14.463  INFO 56528 --- [nio-8080-exec-5] e.u.g.liquec.calculation.Executor        : ================================================================
+2020-01-24 08:50:14.463  INFO 56528 --- [nio-8080-exec-5] e.u.g.liquec.calculation.Executor        : START - Depth: 6.0 (m) - SPT Blow Counts: 15 (N)
+2020-01-24 08:50:14.463  INFO 56528 --- [nio-8080-exec-5] e.u.g.liquec.calculation.Executor        : EUROCODE - Start task - Check Depth Above GWT
+2020-01-24 08:50:14.464  INFO 56528 --- [nio-8080-exec-5] e.u.g.liquec.calculation.Executor        : EUROCODE - End task - Check Depth Above GWT with result OK
+2020-01-24 08:50:14.464  INFO 56528 --- [nio-8080-exec-5] e.u.g.liquec.calculation.Executor        : EUROCODE - Start task - Check Max Depth
+2020-01-24 08:50:14.464  INFO 56528 --- [nio-8080-exec-5] e.u.g.liquec.calculation.Executor        : EUROCODE - End task - Check Max Depth with result OK
+2020-01-24 08:50:14.464  INFO 56528 --- [nio-8080-exec-5] e.u.g.liquec.calculation.Executor        : EUROCODE - Start task - Check Liquefaction Option
+2020-01-24 08:50:14.464  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.t.CheckLiquefactionOptionTask  : Layer index with SPT inside: 1
+2020-01-24 08:50:14.464  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.t.CheckLiquefactionOptionTask  : Check liquefaction: true
+2020-01-24 08:50:14.464  INFO 56528 --- [nio-8080-exec-5] e.u.g.liquec.calculation.Executor        : EUROCODE - End task - Check Liquefaction Option with result OK
+2020-01-24 08:50:14.464  INFO 56528 --- [nio-8080-exec-5] e.u.g.liquec.calculation.Executor        : EUROCODE - Start task - Total Stress
+2020-01-24 08:50:14.464  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.tasks.TotalStressTask          : Layer index with GWT inside: 0
+2020-01-24 08:50:14.464  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.tasks.TotalStressTask          : Layer index with SPT inside: 1
+2020-01-24 08:50:14.464  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.tasks.TotalStressTask          : Layer indexes above GWT: []
+2020-01-24 08:50:14.464  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.tasks.TotalStressTask          : Layer indexes below GWT: []
+2020-01-24 08:50:14.464  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.tasks.TotalStressTask          : Stress from layers above GWT: 0.0 KN/m2
+2020-01-24 08:50:14.464  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.tasks.TotalStressTask          : Above stress from layer with GWT inside: 16.0 KN/m2
+2020-01-24 08:50:14.464  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.tasks.TotalStressTask          : Below stress from layer with GWT inside: 38.0 KN/m2
+2020-01-24 08:50:14.464  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.tasks.TotalStressTask          : Stress from layers below GWT: 0.0 KN/m2
+2020-01-24 08:50:14.464  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.tasks.TotalStressTask          : Below stress from layer with SPT inside: 60.0 KN/m2
+2020-01-24 08:50:14.464  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.tasks.TotalStressTask          : Total stress:114.0 KN/m2
+2020-01-24 08:50:14.464  INFO 56528 --- [nio-8080-exec-5] e.u.g.liquec.calculation.Executor        : EUROCODE - End task - Total Stress with result OK
+2020-01-24 08:50:14.464  INFO 56528 --- [nio-8080-exec-5] e.u.g.liquec.calculation.Executor        : EUROCODE - Start task - Interstitial Stress
+2020-01-24 08:50:14.464  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.tasks.InterstitialStressTask   : Interstitial stress: 50.0 KN/m2
+2020-01-24 08:50:14.464  INFO 56528 --- [nio-8080-exec-5] e.u.g.liquec.calculation.Executor        : EUROCODE - End task - Interstitial Stress with result OK
+2020-01-24 08:50:14.465  INFO 56528 --- [nio-8080-exec-5] e.u.g.liquec.calculation.Executor        : EUROCODE - Start task - Effective Stress
+2020-01-24 08:50:14.465  INFO 56528 --- [nio-8080-exec-5] e.u.g.liquec.calculation.Executor        : EUROCODE - End task - Effective Stress with result OK
+2020-01-24 08:50:14.465  INFO 56528 --- [nio-8080-exec-5] e.u.g.liquec.calculation.Executor        : EUROCODE - Start task - Effective Stress Factor
+2020-01-24 08:50:14.465  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.t.EffectiveStressFactorTask    : Effective stress factor: 1.25
+2020-01-24 08:50:14.465  INFO 56528 --- [nio-8080-exec-5] e.u.g.liquec.calculation.Executor        : EUROCODE - End task - Effective Stress Factor with result OK
+2020-01-24 08:50:14.465  INFO 56528 --- [nio-8080-exec-5] e.u.g.liquec.calculation.Executor        : EUROCODE - Start task - SPT Correction
+2020-01-24 08:50:14.465  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.tasks.SptCorrectionTask        : SPT Corrected: 18.75 (N60)
+2020-01-24 08:50:14.465  INFO 56528 --- [nio-8080-exec-5] e.u.g.liquec.calculation.Executor        : EUROCODE - End task - SPT Correction with result OK
+2020-01-24 08:50:14.465  INFO 56528 --- [nio-8080-exec-5] e.u.g.liquec.calculation.Executor        : EUROCODE - Start task - Cycle Resistance Ratio (CRR)
+2020-01-24 08:50:14.465  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.t.CycleResistanceRatioTask     : Layer index with SPT inside: 1
+2020-01-24 08:50:14.465  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.t.CycleResistanceRatioTask     : Layer fines content: 5.0 (%)
+2020-01-24 08:50:14.465  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.ranges.crr.LessOrEqual         : Range less or equals [5.0]: true
+2020-01-24 08:50:14.465  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.t.CycleResistanceRatioTask     : EvaluableFines contains: true
+2020-01-24 08:50:14.465  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.t.CycleResistanceRatioTask     : SPT Corrected: 18.75 (N60)
+2020-01-24 08:50:14.466  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.r.e.f.EurocodeLessOrEqual05    : Range less or equals: false
+2020-01-24 08:50:14.466  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.t.CycleResistanceRatioTask     : SPT corrected contains: false
+2020-01-24 08:50:14.466  INFO 56528 --- [nio-8080-exec-5] .l.c.r.e.f.EurocodeBetweenFirstSection05 : :Range between first section: true
+2020-01-24 08:50:14.466  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.t.CycleResistanceRatioTask     : SPT corrected contains: true
+2020-01-24 08:50:14.466  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.t.CycleResistanceRatioTask     : CRR: 0.21591713821982428
+2020-01-24 08:50:14.466  INFO 56528 --- [nio-8080-exec-5] e.u.g.liquec.calculation.Executor        : EUROCODE - End task - Cycle Resistance Ratio (CRR) with result OK
+2020-01-24 08:50:14.466  INFO 56528 --- [nio-8080-exec-5] e.u.g.liquec.calculation.Executor        : EUROCODE - Start task - Earthquake Magnitude Correction (CM)
+2020-01-24 08:50:14.467  INFO 56528 --- [nio-8080-exec-5] e.u.g.liquec.calculation.Executor        : EUROCODE - End task - Earthquake Magnitude Correction (CM) with result OK
+2020-01-24 08:50:14.467  INFO 56528 --- [nio-8080-exec-5] e.u.g.liquec.calculation.Executor        : EUROCODE - Start task - Cycle Resistance Ratio (CRR) Correction
+2020-01-24 08:50:14.467  INFO 56528 --- [nio-8080-exec-5] l.c.t.CycleResistanceRatioCorrectionTask : Cycle resistance ratio correction: 0.2806922796856513
+2020-01-24 08:50:14.467  INFO 56528 --- [nio-8080-exec-5] e.u.g.liquec.calculation.Executor        : EUROCODE - End task - Cycle Resistance Ratio (CRR) Correction with result OK
+2020-01-24 08:50:14.467  INFO 56528 --- [nio-8080-exec-5] e.u.g.liquec.calculation.Executor        : EUROCODE - Start task - Cycle Stress Ratio (CSR)
+2020-01-24 08:50:14.467  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.tasks.CycleStressRatioTask     : Cycle stress ratio (CSR): 0.12735937430989
+2020-01-24 08:50:14.467  INFO 56528 --- [nio-8080-exec-5] e.u.g.liquec.calculation.Executor        : EUROCODE - End task - Cycle Stress Ratio (CSR) with result OK
+2020-01-24 08:50:14.467  INFO 56528 --- [nio-8080-exec-5] e.u.g.liquec.calculation.Executor        : EUROCODE - Start task - Safety Factor
+2020-01-24 08:50:14.467  INFO 56528 --- [nio-8080-exec-5] e.u.g.liquec.calculation.Executor        : EUROCODE - End task - Safety Factor with result OK
+2020-01-24 08:50:14.467  INFO 56528 --- [nio-8080-exec-5] e.u.g.liquec.calculation.Executor        : START - Depth: 6.0 (m) - SPT Blow Counts: 15 (N)
+2020-01-24 08:50:14.467  INFO 56528 --- [nio-8080-exec-5] e.u.g.liquec.calculation.Executor        : ================================================================
+2020-01-24 08:50:14.467  INFO 56528 --- [nio-8080-exec-5] e.u.g.liquec.calculation.Executor        : ================================================================
+2020-01-24 08:50:14.467  INFO 56528 --- [nio-8080-exec-5] e.u.g.liquec.calculation.Executor        : START - Depth: 8.0 (m) - SPT Blow Counts: 7 (N)
+2020-01-24 08:50:14.467  INFO 56528 --- [nio-8080-exec-5] e.u.g.liquec.calculation.Executor        : EUROCODE - Start task - Check Depth Above GWT
+2020-01-24 08:50:14.467  INFO 56528 --- [nio-8080-exec-5] e.u.g.liquec.calculation.Executor        : EUROCODE - End task - Check Depth Above GWT with result OK
+2020-01-24 08:50:14.467  INFO 56528 --- [nio-8080-exec-5] e.u.g.liquec.calculation.Executor        : EUROCODE - Start task - Check Max Depth
+2020-01-24 08:50:14.468  INFO 56528 --- [nio-8080-exec-5] e.u.g.liquec.calculation.Executor        : EUROCODE - End task - Check Max Depth with result OK
+2020-01-24 08:50:14.468  INFO 56528 --- [nio-8080-exec-5] e.u.g.liquec.calculation.Executor        : EUROCODE - Start task - Check Liquefaction Option
+2020-01-24 08:50:14.468  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.t.CheckLiquefactionOptionTask  : Layer index with SPT inside: 1
+2020-01-24 08:50:14.468  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.t.CheckLiquefactionOptionTask  : Check liquefaction: true
+2020-01-24 08:50:14.468  INFO 56528 --- [nio-8080-exec-5] e.u.g.liquec.calculation.Executor        : EUROCODE - End task - Check Liquefaction Option with result OK
+2020-01-24 08:50:14.468  INFO 56528 --- [nio-8080-exec-5] e.u.g.liquec.calculation.Executor        : EUROCODE - Start task - Total Stress
+2020-01-24 08:50:14.468  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.tasks.TotalStressTask          : Layer index with GWT inside: 0
+2020-01-24 08:50:14.468  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.tasks.TotalStressTask          : Layer index with SPT inside: 1
+2020-01-24 08:50:14.468  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.tasks.TotalStressTask          : Layer indexes above GWT: []
+2020-01-24 08:50:14.468  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.tasks.TotalStressTask          : Layer indexes below GWT: []
+2020-01-24 08:50:14.468  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.tasks.TotalStressTask          : Stress from layers above GWT: 0.0 KN/m2
+2020-01-24 08:50:14.468  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.tasks.TotalStressTask          : Above stress from layer with GWT inside: 16.0 KN/m2
+2020-01-24 08:50:14.468  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.tasks.TotalStressTask          : Below stress from layer with GWT inside: 38.0 KN/m2
+2020-01-24 08:50:14.468  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.tasks.TotalStressTask          : Stress from layers below GWT: 0.0 KN/m2
+2020-01-24 08:50:14.468  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.tasks.TotalStressTask          : Below stress from layer with SPT inside: 100.0 KN/m2
+2020-01-24 08:50:14.468  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.tasks.TotalStressTask          : Total stress:154.0 KN/m2
+2020-01-24 08:50:14.468  INFO 56528 --- [nio-8080-exec-5] e.u.g.liquec.calculation.Executor        : EUROCODE - End task - Total Stress with result OK
+2020-01-24 08:50:14.468  INFO 56528 --- [nio-8080-exec-5] e.u.g.liquec.calculation.Executor        : EUROCODE - Start task - Interstitial Stress
+2020-01-24 08:50:14.469  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.tasks.InterstitialStressTask   : Interstitial stress: 70.0 KN/m2
+2020-01-24 08:50:14.469  INFO 56528 --- [nio-8080-exec-5] e.u.g.liquec.calculation.Executor        : EUROCODE - End task - Interstitial Stress with result OK
+2020-01-24 08:50:14.469  INFO 56528 --- [nio-8080-exec-5] e.u.g.liquec.calculation.Executor        : EUROCODE - Start task - Effective Stress
+2020-01-24 08:50:14.469  INFO 56528 --- [nio-8080-exec-5] e.u.g.liquec.calculation.Executor        : EUROCODE - End task - Effective Stress with result OK
+2020-01-24 08:50:14.469  INFO 56528 --- [nio-8080-exec-5] e.u.g.liquec.calculation.Executor        : EUROCODE - Start task - Effective Stress Factor
+2020-01-24 08:50:14.469  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.t.EffectiveStressFactorTask    : Effective stress factor: 1.0910894511799618
+2020-01-24 08:50:14.469  INFO 56528 --- [nio-8080-exec-5] e.u.g.liquec.calculation.Executor        : EUROCODE - End task - Effective Stress Factor with result OK
+2020-01-24 08:50:14.469  INFO 56528 --- [nio-8080-exec-5] e.u.g.liquec.calculation.Executor        : EUROCODE - Start task - SPT Correction
+2020-01-24 08:50:14.469  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.tasks.SptCorrectionTask        : SPT Corrected: 7.6376261582597325 (N60)
+2020-01-24 08:50:14.469  INFO 56528 --- [nio-8080-exec-5] e.u.g.liquec.calculation.Executor        : EUROCODE - End task - SPT Correction with result OK
+2020-01-24 08:50:14.469  INFO 56528 --- [nio-8080-exec-5] e.u.g.liquec.calculation.Executor        : EUROCODE - Start task - Cycle Resistance Ratio (CRR)
+2020-01-24 08:50:14.469  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.t.CycleResistanceRatioTask     : Layer index with SPT inside: 1
+2020-01-24 08:50:14.469  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.t.CycleResistanceRatioTask     : Layer fines content: 5.0 (%)
+2020-01-24 08:50:14.470  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.ranges.crr.LessOrEqual         : Range less or equals [5.0]: true
+2020-01-24 08:50:14.470  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.t.CycleResistanceRatioTask     : EvaluableFines contains: true
+2020-01-24 08:50:14.470  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.t.CycleResistanceRatioTask     : SPT Corrected: 7.6376261582597325 (N60)
+2020-01-24 08:50:14.470  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.r.e.f.EurocodeLessOrEqual05    : Range less or equals: false
+2020-01-24 08:50:14.470  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.t.CycleResistanceRatioTask     : SPT corrected contains: false
+2020-01-24 08:50:14.470  INFO 56528 --- [nio-8080-exec-5] .l.c.r.e.f.EurocodeBetweenFirstSection05 : :Range between first section: true
+2020-01-24 08:50:14.470  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.t.CycleResistanceRatioTask     : SPT corrected contains: true
+2020-01-24 08:50:14.470  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.t.CycleResistanceRatioTask     : CRR: 0.08410804163427073
+2020-01-24 08:50:14.470  INFO 56528 --- [nio-8080-exec-5] e.u.g.liquec.calculation.Executor        : EUROCODE - End task - Cycle Resistance Ratio (CRR) with result OK
+2020-01-24 08:50:14.470  INFO 56528 --- [nio-8080-exec-5] e.u.g.liquec.calculation.Executor        : EUROCODE - Start task - Earthquake Magnitude Correction (CM)
+2020-01-24 08:50:14.470  INFO 56528 --- [nio-8080-exec-5] e.u.g.liquec.calculation.Executor        : EUROCODE - End task - Earthquake Magnitude Correction (CM) with result OK
+2020-01-24 08:50:14.471  INFO 56528 --- [nio-8080-exec-5] e.u.g.liquec.calculation.Executor        : EUROCODE - Start task - Cycle Resistance Ratio (CRR) Correction
+2020-01-24 08:50:14.471  INFO 56528 --- [nio-8080-exec-5] l.c.t.CycleResistanceRatioCorrectionTask : Cycle resistance ratio correction: 0.10934045412450509
+2020-01-24 08:50:14.471  INFO 56528 --- [nio-8080-exec-5] e.u.g.liquec.calculation.Executor        : EUROCODE - End task - Cycle Resistance Ratio (CRR) Correction with result OK
+2020-01-24 08:50:14.471  INFO 56528 --- [nio-8080-exec-5] e.u.g.liquec.calculation.Executor        : EUROCODE - Start task - Cycle Stress Ratio (CSR)
+2020-01-24 08:50:14.472  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.tasks.CycleStressRatioTask     : Cycle stress ratio (CSR): 0.13108333262304464
+2020-01-24 08:50:14.472  INFO 56528 --- [nio-8080-exec-5] e.u.g.liquec.calculation.Executor        : EUROCODE - End task - Cycle Stress Ratio (CSR) with result OK
+2020-01-24 08:50:14.472  INFO 56528 --- [nio-8080-exec-5] e.u.g.liquec.calculation.Executor        : EUROCODE - Start task - Safety Factor
+2020-01-24 08:50:14.472  INFO 56528 --- [nio-8080-exec-5] e.u.g.liquec.calculation.Executor        : EUROCODE - End task - Safety Factor with result OK
+2020-01-24 08:50:14.472  INFO 56528 --- [nio-8080-exec-5] e.u.g.liquec.calculation.Executor        : START - Depth: 8.0 (m) - SPT Blow Counts: 7 (N)
+2020-01-24 08:50:14.472  INFO 56528 --- [nio-8080-exec-5] e.u.g.liquec.calculation.Executor        : ================================================================
+2020-01-24 08:50:14.472  INFO 56528 --- [nio-8080-exec-5] e.u.g.liquec.calculation.Executor        : ================================================================
+2020-01-24 08:50:14.472  INFO 56528 --- [nio-8080-exec-5] e.u.g.liquec.calculation.Executor        : START - Depth: 10.0 (m) - SPT Blow Counts: 10 (N)
+2020-01-24 08:50:14.472  INFO 56528 --- [nio-8080-exec-5] e.u.g.liquec.calculation.Executor        : EUROCODE - Start task - Check Depth Above GWT
+2020-01-24 08:50:14.472  INFO 56528 --- [nio-8080-exec-5] e.u.g.liquec.calculation.Executor        : EUROCODE - End task - Check Depth Above GWT with result OK
+2020-01-24 08:50:14.472  INFO 56528 --- [nio-8080-exec-5] e.u.g.liquec.calculation.Executor        : EUROCODE - Start task - Check Max Depth
+2020-01-24 08:50:14.472  INFO 56528 --- [nio-8080-exec-5] e.u.g.liquec.calculation.Executor        : EUROCODE - End task - Check Max Depth with result OK
+2020-01-24 08:50:14.472  INFO 56528 --- [nio-8080-exec-5] e.u.g.liquec.calculation.Executor        : EUROCODE - Start task - Check Liquefaction Option
+2020-01-24 08:50:14.472  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.t.CheckLiquefactionOptionTask  : Layer index with SPT inside: 2
+2020-01-24 08:50:14.472  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.t.CheckLiquefactionOptionTask  : Check liquefaction: true
+2020-01-24 08:50:14.472  INFO 56528 --- [nio-8080-exec-5] e.u.g.liquec.calculation.Executor        : EUROCODE - End task - Check Liquefaction Option with result OK
+2020-01-24 08:50:14.473  INFO 56528 --- [nio-8080-exec-5] e.u.g.liquec.calculation.Executor        : EUROCODE - Start task - Total Stress
+2020-01-24 08:50:14.473  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.tasks.TotalStressTask          : Layer index with GWT inside: 0
+2020-01-24 08:50:14.473  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.tasks.TotalStressTask          : Layer index with SPT inside: 2
+2020-01-24 08:50:14.473  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.tasks.TotalStressTask          : Layer indexes above GWT: []
+2020-01-24 08:50:14.473  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.tasks.TotalStressTask          : Layer indexes below GWT: [1]
+2020-01-24 08:50:14.473  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.tasks.TotalStressTask          : Stress from layers above GWT: 0.0 KN/m2
+2020-01-24 08:50:14.473  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.tasks.TotalStressTask          : Above stress from layer with GWT inside: 16.0 KN/m2
+2020-01-24 08:50:14.473  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.tasks.TotalStressTask          : Below stress from layer with GWT inside: 38.0 KN/m2
+2020-01-24 08:50:14.473  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.tasks.TotalStressTask          : Stress from layers below GWT: 100.0 KN/m2
+2020-01-24 08:50:14.473  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.tasks.TotalStressTask          : Below stress from layer with SPT inside: 36.0 KN/m2
+2020-01-24 08:50:14.473  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.tasks.TotalStressTask          : Total stress:190.0 KN/m2
+2020-01-24 08:50:14.473  INFO 56528 --- [nio-8080-exec-5] e.u.g.liquec.calculation.Executor        : EUROCODE - End task - Total Stress with result OK
+2020-01-24 08:50:14.473  INFO 56528 --- [nio-8080-exec-5] e.u.g.liquec.calculation.Executor        : EUROCODE - Start task - Interstitial Stress
+2020-01-24 08:50:14.473  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.tasks.InterstitialStressTask   : Interstitial stress: 90.0 KN/m2
+2020-01-24 08:50:14.473  INFO 56528 --- [nio-8080-exec-5] e.u.g.liquec.calculation.Executor        : EUROCODE - End task - Interstitial Stress with result OK
+2020-01-24 08:50:14.473  INFO 56528 --- [nio-8080-exec-5] e.u.g.liquec.calculation.Executor        : EUROCODE - Start task - Effective Stress
+2020-01-24 08:50:14.474  INFO 56528 --- [nio-8080-exec-5] e.u.g.liquec.calculation.Executor        : EUROCODE - End task - Effective Stress with result OK
+2020-01-24 08:50:14.474  INFO 56528 --- [nio-8080-exec-5] e.u.g.liquec.calculation.Executor        : EUROCODE - Start task - Effective Stress Factor
+2020-01-24 08:50:14.474  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.t.EffectiveStressFactorTask    : Effective stress factor: 1.0
+2020-01-24 08:50:14.474  INFO 56528 --- [nio-8080-exec-5] e.u.g.liquec.calculation.Executor        : EUROCODE - End task - Effective Stress Factor with result OK
+2020-01-24 08:50:14.474  INFO 56528 --- [nio-8080-exec-5] e.u.g.liquec.calculation.Executor        : EUROCODE - Start task - SPT Correction
+2020-01-24 08:50:14.474  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.tasks.SptCorrectionTask        : SPT Corrected: 10.0 (N60)
+2020-01-24 08:50:14.474  INFO 56528 --- [nio-8080-exec-5] e.u.g.liquec.calculation.Executor        : EUROCODE - End task - SPT Correction with result OK
+2020-01-24 08:50:14.474  INFO 56528 --- [nio-8080-exec-5] e.u.g.liquec.calculation.Executor        : EUROCODE - Start task - Cycle Resistance Ratio (CRR)
+2020-01-24 08:50:14.474  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.t.CycleResistanceRatioTask     : Layer index with SPT inside: 2
+2020-01-24 08:50:14.474  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.t.CycleResistanceRatioTask     : Layer fines content: 25.0 (%)
+2020-01-24 08:50:14.474  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.ranges.crr.LessOrEqual         : Range less or equals [5.0]: false
+2020-01-24 08:50:14.475  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.t.CycleResistanceRatioTask     : EvaluableFines contains: false
+2020-01-24 08:50:14.475  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.r.crr.BetweenFirstSection      : Range between first section [5.0-15.0]: false
+2020-01-24 08:50:14.475  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.t.CycleResistanceRatioTask     : EvaluableFines contains: false
+2020-01-24 08:50:14.475  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.r.crr.BetweenSecondSection     : Range between second section [15.0-35.0]: true
+2020-01-24 08:50:14.475  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.t.CycleResistanceRatioTask     : EvaluableFines contains: true
+2020-01-24 08:50:14.475  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.t.CycleResistanceRatioTask     : SPT Corrected: 10.0 (N60)
+2020-01-24 08:50:14.475  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.r.e.f.EurocodeLessOrEqual35    : Range less or equals: false
+2020-01-24 08:50:14.475  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.t.CycleResistanceRatioTask     : SPT corrected contains: false
+2020-01-24 08:50:14.475  INFO 56528 --- [nio-8080-exec-5] .l.c.r.e.f.EurocodeBetweenFirstSection35 : Range between first section: true
+2020-01-24 08:50:14.475  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.t.CycleResistanceRatioTask     : SPT corrected contains: true
+2020-01-24 08:50:14.475  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.t.CycleResistanceRatioTask     : CRR: 0.1930348844
+2020-01-24 08:50:14.475  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.t.CycleResistanceRatioTask     : CRR first: 0.1930348844
+2020-01-24 08:50:14.475  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.t.CycleResistanceRatioTask     : SPT Corrected: 10.0 (N60)
+2020-01-24 08:50:14.475  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.r.e.f.EurocodeLessOrEqual15    : Range less or equals: false
+2020-01-24 08:50:14.475  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.t.CycleResistanceRatioTask     : SPT corrected contains: false
+2020-01-24 08:50:14.475  INFO 56528 --- [nio-8080-exec-5] .l.c.r.e.f.EurocodeBetweenFirstSection15 : Range between first section: true
+2020-01-24 08:50:14.475  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.t.CycleResistanceRatioTask     : SPT corrected contains: true
+2020-01-24 08:50:14.475  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.t.CycleResistanceRatioTask     : CRR: 0.15642240989999995
+2020-01-24 08:50:14.475  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.t.CycleResistanceRatioTask     : CRR second: 0.15642240989999995
+2020-01-24 08:50:14.475  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.t.CycleResistanceRatioTask     : Final CRR: 0.17472864714999997
+2020-01-24 08:50:14.476  INFO 56528 --- [nio-8080-exec-5] e.u.g.liquec.calculation.Executor        : EUROCODE - End task - Cycle Resistance Ratio (CRR) with result OK
+2020-01-24 08:50:14.476  INFO 56528 --- [nio-8080-exec-5] e.u.g.liquec.calculation.Executor        : EUROCODE - Start task - Earthquake Magnitude Correction (CM)
+2020-01-24 08:50:14.476  INFO 56528 --- [nio-8080-exec-5] e.u.g.liquec.calculation.Executor        : EUROCODE - End task - Earthquake Magnitude Correction (CM) with result OK
+2020-01-24 08:50:14.476  INFO 56528 --- [nio-8080-exec-5] e.u.g.liquec.calculation.Executor        : EUROCODE - Start task - Cycle Resistance Ratio (CRR) Correction
+2020-01-24 08:50:14.476  INFO 56528 --- [nio-8080-exec-5] l.c.t.CycleResistanceRatioCorrectionTask : Cycle resistance ratio correction: 0.22714724129490263
+2020-01-24 08:50:14.476  INFO 56528 --- [nio-8080-exec-5] e.u.g.liquec.calculation.Executor        : EUROCODE - End task - Cycle Resistance Ratio (CRR) Correction with result OK
+2020-01-24 08:50:14.476  INFO 56528 --- [nio-8080-exec-5] e.u.g.liquec.calculation.Executor        : EUROCODE - Start task - Cycle Stress Ratio (CSR)
+2020-01-24 08:50:14.476  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.tasks.CycleStressRatioTask     : Cycle stress ratio (CSR): 0.13584999926388264
+2020-01-24 08:50:14.476  INFO 56528 --- [nio-8080-exec-5] e.u.g.liquec.calculation.Executor        : EUROCODE - End task - Cycle Stress Ratio (CSR) with result OK
+2020-01-24 08:50:14.476  INFO 56528 --- [nio-8080-exec-5] e.u.g.liquec.calculation.Executor        : EUROCODE - Start task - Safety Factor
+2020-01-24 08:50:14.476  INFO 56528 --- [nio-8080-exec-5] e.u.g.liquec.calculation.Executor        : EUROCODE - End task - Safety Factor with result OK
+2020-01-24 08:50:14.476  INFO 56528 --- [nio-8080-exec-5] e.u.g.liquec.calculation.Executor        : START - Depth: 10.0 (m) - SPT Blow Counts: 10 (N)
+2020-01-24 08:50:14.476  INFO 56528 --- [nio-8080-exec-5] e.u.g.liquec.calculation.Executor        : ================================================================
+2020-01-24 08:50:14.476  INFO 56528 --- [nio-8080-exec-5] e.u.g.liquec.calculation.Executor        : ================================================================
+2020-01-24 08:50:14.477  INFO 56528 --- [nio-8080-exec-5] e.u.g.liquec.calculation.Executor        : START - Depth: 12.0 (m) - SPT Blow Counts: 20 (N)
+2020-01-24 08:50:14.477  INFO 56528 --- [nio-8080-exec-5] e.u.g.liquec.calculation.Executor        : EUROCODE - Start task - Check Depth Above GWT
+2020-01-24 08:50:14.477  INFO 56528 --- [nio-8080-exec-5] e.u.g.liquec.calculation.Executor        : EUROCODE - End task - Check Depth Above GWT with result OK
+2020-01-24 08:50:14.477  INFO 56528 --- [nio-8080-exec-5] e.u.g.liquec.calculation.Executor        : EUROCODE - Start task - Check Max Depth
+2020-01-24 08:50:14.477  INFO 56528 --- [nio-8080-exec-5] e.u.g.liquec.calculation.Executor        : EUROCODE - End task - Check Max Depth with result OK
+2020-01-24 08:50:14.477  INFO 56528 --- [nio-8080-exec-5] e.u.g.liquec.calculation.Executor        : EUROCODE - Start task - Check Liquefaction Option
+2020-01-24 08:50:14.477  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.t.CheckLiquefactionOptionTask  : Layer index with SPT inside: 2
+2020-01-24 08:50:14.477  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.t.CheckLiquefactionOptionTask  : Check liquefaction: true
+2020-01-24 08:50:14.477  INFO 56528 --- [nio-8080-exec-5] e.u.g.liquec.calculation.Executor        : EUROCODE - End task - Check Liquefaction Option with result OK
+2020-01-24 08:50:14.477  INFO 56528 --- [nio-8080-exec-5] e.u.g.liquec.calculation.Executor        : EUROCODE - Start task - Total Stress
+2020-01-24 08:50:14.477  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.tasks.TotalStressTask          : Layer index with GWT inside: 0
+2020-01-24 08:50:14.477  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.tasks.TotalStressTask          : Layer index with SPT inside: 2
+2020-01-24 08:50:14.477  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.tasks.TotalStressTask          : Layer indexes above GWT: []
+2020-01-24 08:50:14.477  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.tasks.TotalStressTask          : Layer indexes below GWT: [1]
+2020-01-24 08:50:14.477  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.tasks.TotalStressTask          : Stress from layers above GWT: 0.0 KN/m2
+2020-01-24 08:50:14.477  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.tasks.TotalStressTask          : Above stress from layer with GWT inside: 16.0 KN/m2
+2020-01-24 08:50:14.477  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.tasks.TotalStressTask          : Below stress from layer with GWT inside: 38.0 KN/m2
+2020-01-24 08:50:14.477  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.tasks.TotalStressTask          : Stress from layers below GWT: 100.0 KN/m2
+2020-01-24 08:50:14.477  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.tasks.TotalStressTask          : Below stress from layer with SPT inside: 72.0 KN/m2
+2020-01-24 08:50:14.478  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.tasks.TotalStressTask          : Total stress:226.0 KN/m2
+2020-01-24 08:50:14.478  INFO 56528 --- [nio-8080-exec-5] e.u.g.liquec.calculation.Executor        : EUROCODE - End task - Total Stress with result OK
+2020-01-24 08:50:14.478  INFO 56528 --- [nio-8080-exec-5] e.u.g.liquec.calculation.Executor        : EUROCODE - Start task - Interstitial Stress
+2020-01-24 08:50:14.478  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.tasks.InterstitialStressTask   : Interstitial stress: 110.0 KN/m2
+2020-01-24 08:50:14.478  INFO 56528 --- [nio-8080-exec-5] e.u.g.liquec.calculation.Executor        : EUROCODE - End task - Interstitial Stress with result OK
+2020-01-24 08:50:14.478  INFO 56528 --- [nio-8080-exec-5] e.u.g.liquec.calculation.Executor        : EUROCODE - Start task - Effective Stress
+2020-01-24 08:50:14.478  INFO 56528 --- [nio-8080-exec-5] e.u.g.liquec.calculation.Executor        : EUROCODE - End task - Effective Stress with result OK
+2020-01-24 08:50:14.478  INFO 56528 --- [nio-8080-exec-5] e.u.g.liquec.calculation.Executor        : EUROCODE - Start task - Effective Stress Factor
+2020-01-24 08:50:14.478  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.t.EffectiveStressFactorTask    : Effective stress factor: 0.9284766908852593
+2020-01-24 08:50:14.478  INFO 56528 --- [nio-8080-exec-5] e.u.g.liquec.calculation.Executor        : EUROCODE - End task - Effective Stress Factor with result OK
+2020-01-24 08:50:14.478  INFO 56528 --- [nio-8080-exec-5] e.u.g.liquec.calculation.Executor        : EUROCODE - Start task - SPT Correction
+2020-01-24 08:50:14.478  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.tasks.SptCorrectionTask        : SPT Corrected: 18.569533817705185 (N60)
+2020-01-24 08:50:14.478  INFO 56528 --- [nio-8080-exec-5] e.u.g.liquec.calculation.Executor        : EUROCODE - End task - SPT Correction with result OK
+2020-01-24 08:50:14.478  INFO 56528 --- [nio-8080-exec-5] e.u.g.liquec.calculation.Executor        : EUROCODE - Start task - Cycle Resistance Ratio (CRR)
+2020-01-24 08:50:14.478  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.t.CycleResistanceRatioTask     : Layer index with SPT inside: 2
+2020-01-24 08:50:14.478  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.t.CycleResistanceRatioTask     : Layer fines content: 25.0 (%)
+2020-01-24 08:50:14.478  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.ranges.crr.LessOrEqual         : Range less or equals [5.0]: false
+2020-01-24 08:50:14.478  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.t.CycleResistanceRatioTask     : EvaluableFines contains: false
+2020-01-24 08:50:14.478  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.r.crr.BetweenFirstSection      : Range between first section [5.0-15.0]: false
+2020-01-24 08:50:14.478  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.t.CycleResistanceRatioTask     : EvaluableFines contains: false
+2020-01-24 08:50:14.478  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.r.crr.BetweenSecondSection     : Range between second section [15.0-35.0]: true
+2020-01-24 08:50:14.478  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.t.CycleResistanceRatioTask     : EvaluableFines contains: true
+2020-01-24 08:50:14.478  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.t.CycleResistanceRatioTask     : SPT Corrected: 18.569533817705185 (N60)
+2020-01-24 08:50:14.479  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.r.e.f.EurocodeLessOrEqual35    : Range less or equals: false
+2020-01-24 08:50:14.479  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.t.CycleResistanceRatioTask     : SPT corrected contains: false
+2020-01-24 08:50:14.479  INFO 56528 --- [nio-8080-exec-5] .l.c.r.e.f.EurocodeBetweenFirstSection35 : Range between first section: false
+2020-01-24 08:50:14.479  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.t.CycleResistanceRatioTask     : SPT corrected contains: false
+2020-01-24 08:50:14.479  INFO 56528 --- [nio-8080-exec-5] l.c.r.e.f.EurocodeBetweenSecondSection35 : Range between second section: true
+2020-01-24 08:50:14.479  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.t.CycleResistanceRatioTask     : SPT corrected contains: true
+2020-01-24 08:50:14.479  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.t.CycleResistanceRatioTask     : CRR: 0.34773526129060883
+2020-01-24 08:50:14.479  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.t.CycleResistanceRatioTask     : CRR first: 0.34773526129060883
+2020-01-24 08:50:14.479  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.t.CycleResistanceRatioTask     : SPT Corrected: 18.569533817705185 (N60)
+2020-01-24 08:50:14.479  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.r.e.f.EurocodeLessOrEqual15    : Range less or equals: false
+2020-01-24 08:50:14.479  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.t.CycleResistanceRatioTask     : SPT corrected contains: false
+2020-01-24 08:50:14.479  INFO 56528 --- [nio-8080-exec-5] .l.c.r.e.f.EurocodeBetweenFirstSection15 : Range between first section: true
+2020-01-24 08:50:14.479  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.t.CycleResistanceRatioTask     : SPT corrected contains: true
+2020-01-24 08:50:14.479  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.t.CycleResistanceRatioTask     : CRR: 0.27746396278736496
+2020-01-24 08:50:14.479  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.t.CycleResistanceRatioTask     : CRR second: 0.27746396278736496
+2020-01-24 08:50:14.479  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.t.CycleResistanceRatioTask     : Final CRR: 0.3125996120389869
+2020-01-24 08:50:14.479  INFO 56528 --- [nio-8080-exec-5] e.u.g.liquec.calculation.Executor        : EUROCODE - End task - Cycle Resistance Ratio (CRR) with result OK
+2020-01-24 08:50:14.480  INFO 56528 --- [nio-8080-exec-5] e.u.g.liquec.calculation.Executor        : EUROCODE - Start task - Earthquake Magnitude Correction (CM)
+2020-01-24 08:50:14.480  INFO 56528 --- [nio-8080-exec-5] e.u.g.liquec.calculation.Executor        : EUROCODE - End task - Earthquake Magnitude Correction (CM) with result OK
+2020-01-24 08:50:14.480  INFO 56528 --- [nio-8080-exec-5] e.u.g.liquec.calculation.Executor        : EUROCODE - Start task - Cycle Resistance Ratio (CRR) Correction
+2020-01-24 08:50:14.480  INFO 56528 --- [nio-8080-exec-5] l.c.t.CycleResistanceRatioCorrectionTask : Cycle resistance ratio correction: 0.40637949565050885
+2020-01-24 08:50:14.480  INFO 56528 --- [nio-8080-exec-5] e.u.g.liquec.calculation.Executor        : EUROCODE - End task - Cycle Resistance Ratio (CRR) Correction with result OK
+2020-01-24 08:50:14.480  INFO 56528 --- [nio-8080-exec-5] e.u.g.liquec.calculation.Executor        : EUROCODE - Start task - Cycle Stress Ratio (CSR)
+2020-01-24 08:50:14.480  INFO 56528 --- [nio-8080-exec-5] e.u.g.l.c.tasks.CycleStressRatioTask     : Cycle stress ratio (CSR): 0.13930172338311014
+2020-01-24 08:50:14.480  INFO 56528 --- [nio-8080-exec-5] e.u.g.liquec.calculation.Executor        : EUROCODE - End task - Cycle Stress Ratio (CSR) with result OK
+2020-01-24 08:50:14.480  INFO 56528 --- [nio-8080-exec-5] e.u.g.liquec.calculation.Executor        : EUROCODE - Start task - Safety Factor
+2020-01-24 08:50:14.480  INFO 56528 --- [nio-8080-exec-5] e.u.g.liquec.calculation.Executor        : EUROCODE - End task - Safety Factor with result OK
+2020-01-24 08:50:14.480  INFO 56528 --- [nio-8080-exec-5] e.u.g.liquec.calculation.Executor        : START - Depth: 12.0 (m) - SPT Blow Counts: 20 (N)
+2020-01-24 08:50:14.480  INFO 56528 --- [nio-8080-exec-5] e.u.g.liquec.calculation.Executor        : ================================================================
+2020-01-24 08:50:14.480  INFO 56528 --- [nio-8080-exec-5] e.u.g.liquec.calculation.Executor        : END LIQUEC CALCULATION
+2020-01-24 08:50:14.480  INFO 56528 --- [nio-8080-exec-5] e.u.g.liquec.calculation.Executor        : Calculation took 49

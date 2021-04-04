@@ -1,0 +1,77 @@
+{
+	"projectName": "Liquec-1.0.0",
+	"projectLocation": "Alicante (Spain)",
+	"organization": "University of Alicante",
+	"siteConditions": {
+		"peakGroundAcceleration": 0.11,
+		"earthquakeMagnitude": 7.0,
+		"coefficientOfContribution": 1.0
+	},
+	"geotechnicalProperties": {
+		"groundWaterTableDepth": 1.0,
+		"soilLayers": [{
+			"startDepth": 0.0,
+			"finalDepth": 3.0,
+			"soilType": "limos",
+			"soilUnitWeight": {
+				"aboveGwt": 16.0,
+				"belowGwt": 19.0
+			},
+			"finesContent": 15.0,
+			"checkLiquefaction": true
+		}, {
+			"startDepth": 3.0,
+			"finalDepth": 8.0,
+			"soilType": "arenas",
+			"soilUnitWeight": {
+				"aboveGwt": 17.0,
+				"belowGwt": 20.0
+			},
+			"finesContent": 5.0,
+			"checkLiquefaction": true
+		}, {
+			"startDepth": 8.0,
+			"finalDepth": 12.0,
+			"soilType": "limos",
+			"soilUnitWeight": {
+				"aboveGwt": 17.0,
+				"belowGwt": 18.0
+			},
+			"finesContent": 25.0,
+			"checkLiquefaction": true
+		}]
+	},
+	"standardPenetrationTestList": [{
+		"depth": 0.3,
+		"sptBlowCounts": 6,
+		"energyRatio": 60.0
+	}, {
+		"depth": 1.0,
+		"sptBlowCounts": 10,
+		"energyRatio": 60.0
+	}, {
+		"depth": 2.0,
+		"sptBlowCounts": 5,
+		"energyRatio": 60.0
+	}, {
+		"depth": 3.0,
+		"sptBlowCounts": 8,
+		"energyRatio": 60.0
+	}, {
+		"depth": 6.0,
+		"sptBlowCounts": 15,
+		"energyRatio": 60.0
+	}, {
+		"depth": 8.0,
+		"sptBlowCounts": 7,
+		"energyRatio": 60.0
+	}, {
+		"depth": 10.0,
+		"sptBlowCounts": 10,
+		"energyRatio": 60.0
+	}, {
+		"depth": 12.0,
+		"sptBlowCounts": 20,
+		"energyRatio": 60.0
+	}]
+}

@@ -28,6 +28,7 @@
         <modelmapper.version>2.3.6</modelmapper.version>
         <h2database.version>1.4.200</h2database.version>
         <mysql.version>8.0.18</mysql.version>
+        <hibernate-validator.version>6.1.1.Final</hibernate-validator.version>
     </properties>
 
     <dependencyManagement>
@@ -75,6 +76,13 @@
                 <groupId>mysql</groupId>
                 <artifactId>mysql-connector-java</artifactId>
                 <version>${mysql.version}</version>
+            </dependency>
+
+            <!-- Hibernate validator -->
+            <dependency>
+                <groupId>org.hibernate</groupId>
+                <artifactId>hibernate-validator</artifactId>
+                <version>${hibernate-validator.version}</version>
             </dependency>
 
             <!-- Modules -->
