@@ -71,6 +71,10 @@
         <!-- Modules -->
         <dependency>
             <groupId>edu.uoc.geopocket</groupId>
+            <artifactId>module-security</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>edu.uoc.geopocket</groupId>
             <artifactId>module-common</artifactId>
         </dependency>
         <dependency>

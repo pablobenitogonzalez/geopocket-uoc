@@ -21,7 +21,7 @@ public class Project implements GeoPocketEntity {
     @Column(name = "ID", updatable = false)
     private Long id;
 
-    @Column(name = "USER", columnDefinition = ColumnDefinitions.VARCHAR2_300)
+    @Column(name = "ROLE_USER", columnDefinition = ColumnDefinitions.VARCHAR2_300)
     private String user;
 
     @Column(name = "NAME", columnDefinition = ColumnDefinitions.VARCHAR2_255)

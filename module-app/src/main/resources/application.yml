@@ -2,13 +2,11 @@ edu:
   uoc:
     geopocket:
       security:
-        enabled: true
+        enabled: false
       swagger:
         enabled: true
 
----
 spring:
-  profiles: h2
   datasource:
     url: jdbc:h2:mem:geopocket;MODE=MySQL
     username: a
@@ -21,7 +19,7 @@ spring:
 
 ---
 spring:
-  profiles: local_container
+  profiles: mysql
   datasource:
     url: jdbc:mysql://localhost:3306/geopocket
     driver-class-name: com.mysql.jdbc.Driver

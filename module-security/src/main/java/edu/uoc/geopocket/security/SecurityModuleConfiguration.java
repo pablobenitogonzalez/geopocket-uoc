@@ -1,5 +1,6 @@
 package edu.uoc.geopocket.security;
 
+import edu.uoc.geopocket.security.common.GeoPocketRole;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
@@ -32,7 +33,11 @@ public class SecurityModuleConfiguration extends WebSecurityConfigurerAdapter {
     auth.inMemoryAuthentication()
         .withUser("user")
         .password(passwordEncoder().encode("123456"))
-        .authorities("ROLE_USER");
+        .roles(GeoPocketRole.ROLE_USER.getRoleName());
+    auth.inMemoryAuthentication()
+        .withUser("admin")
+        .password(passwordEncoder().encode("123456"))
+        .roles(GeoPocketRole.ROLE_USER.getRoleName(), GeoPocketRole.ROLE_ADMIN.getRoleName());
   }
 
   @Override

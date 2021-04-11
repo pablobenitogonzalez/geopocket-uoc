@@ -8,7 +8,9 @@ import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
+import java.security.Principal;
 import java.time.LocalDateTime;
+import java.util.Optional;
 
 @Getter
 @Setter
@@ -30,13 +32,17 @@ public class Audit {
     @PrePersist
     public void prePersist() {
         this.createdOn = LocalDateTime.now();
-        this.createdBy = SecurityContextHolder.getContext().getAuthentication().getName();
+        this.createdBy = getLogin();
     }
 
     @PreUpdate
     public void preUpdate() {
         this.updatedOn = LocalDateTime.now();
-        this.updatedBy = SecurityContextHolder.getContext().getAuthentication().getName();
+        this.updatedBy = getLogin();
+    }
+
+    private String getLogin() {
+        return Optional.ofNullable(SecurityContextHolder.getContext().getAuthentication()).map(Principal::getName).orElse(null);
     }
 
 }

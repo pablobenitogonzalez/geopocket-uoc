@@ -3,6 +3,7 @@ package edu.uoc.geopocket.project.services;
 import edu.uoc.geopocket.common.exceptions.GeoPocketException;
 import edu.uoc.geopocket.project.entities.Project;
 import edu.uoc.geopocket.project.repositories.ProjectRepository;
+import edu.uoc.geopocket.security.helper.SecurityContextHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -16,9 +17,12 @@ public class ProjectServiceImpl implements ProjectService {
 
     private ProjectRepository repository;
 
+    private SecurityContextHelper securityContextHelper;
+
     @Autowired
-    public ProjectServiceImpl(final ProjectRepository repository) {
+    public ProjectServiceImpl(final ProjectRepository repository, final SecurityContextHelper securityContextHelper) {
         this.repository = repository;
+        this.securityContextHelper = securityContextHelper;
     }
 
     @Override
@@ -39,7 +43,7 @@ public class ProjectServiceImpl implements ProjectService {
     @Override
     public Project save(final Project project) {
         if (Objects.isNull(project.getId())) {
-            project.setUser(SecurityContextHolder.getContext().getAuthentication().getName());
+            project.setUser(securityContextHelper.getUserName());
             return repository.save(project);
         }
         final Project projectDBO = get(project.getId());

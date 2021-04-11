@@ -19,6 +19,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/project")
+@CrossOrigin(origins = "*")
 public class ProjectController {
 
     private ProjectService service;
