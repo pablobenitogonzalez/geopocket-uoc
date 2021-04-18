@@ -29,4 +29,8 @@ public class SecurityContextHelper {
     return Optional.ofNullable(getUserDetails().getName()).orElse(null);
   }
 
+  public boolean hasRole(final GeoPocketRole role) {
+    return getUserDetails().getRoles().contains(role);
+  }
+
 }

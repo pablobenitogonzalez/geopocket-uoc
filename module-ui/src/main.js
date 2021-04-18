@@ -5,8 +5,8 @@ import CoreuiVue from '@coreui/vue'
 import { iconsSet as icons } from './assets/icons/icons.js'
 import 'regenerator-runtime'
 
-Vue.config.performance = true
-Vue.use(CoreuiVue)
+Vue.config.performance = true;
+Vue.use(CoreuiVue);
 
 new Vue({
   el: '#app',

@@ -10,9 +10,7 @@ public abstract class AbstractToolService<T extends GeoPocketEntity> {
 
     public abstract JpaRepository<T, Long> getRepository();
 
-    public Page<T> findAll(final Pageable pageable) {
-        return this.getRepository().findAll(pageable);
-    }
+    public abstract Page<T> findAll(final Pageable pageable);
 
     public abstract Page<T> findAllByProject(final Long projectId, final Pageable pageable);
 

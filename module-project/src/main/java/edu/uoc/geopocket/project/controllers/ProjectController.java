@@ -19,7 +19,6 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/project")
-@CrossOrigin(origins = "*")
 public class ProjectController {
 
     private ProjectService service;
@@ -36,16 +35,6 @@ public class ProjectController {
     @ResponseStatus(HttpStatus.OK)
     public Page<ProjectDTO> findAll(final Pageable pageable) {
         final Page<Project> pageProject = service.findAll(pageable);
-        return new PageImpl<>(Optional.of(pageProject.getContent())
-            .orElse(Collections.emptyList()).stream().map(e -> modelMapper.map(e, ProjectDTO.class))
-            .collect(Collectors.toList()), pageProject.getPageable(),
-            pageProject.getTotalElements());
-    }
-
-    @GetMapping("/me")
-    @ResponseStatus(HttpStatus.OK)
-    public Page<ProjectDTO> findAllByUser(final Pageable pageable) {
-        final Page<Project> pageProject = service.findAllByUser(pageable);
         return new PageImpl<>(Optional.of(pageProject.getContent())
             .orElse(Collections.emptyList()).stream().map(e -> modelMapper.map(e, ProjectDTO.class))
             .collect(Collectors.toList()), pageProject.getPageable(),

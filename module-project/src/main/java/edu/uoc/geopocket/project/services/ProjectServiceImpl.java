@@ -3,6 +3,7 @@ package edu.uoc.geopocket.project.services;
 import edu.uoc.geopocket.common.exceptions.GeoPocketException;
 import edu.uoc.geopocket.project.entities.Project;
 import edu.uoc.geopocket.project.repositories.ProjectRepository;
+import edu.uoc.geopocket.security.common.GeoPocketRole;
 import edu.uoc.geopocket.security.helper.SecurityContextHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -27,12 +28,10 @@ public class ProjectServiceImpl implements ProjectService {
 
     @Override
     public Page<Project> findAll(final Pageable pageable) {
-        return repository.findAll(pageable);
-    }
-
-    @Override
-    public Page<Project> findAllByUser(final Pageable pageable) {
-        return repository.findAllByUser(SecurityContextHolder.getContext().getAuthentication().getName(), pageable);
+        if (securityContextHelper.hasRole(GeoPocketRole.ROLE_ADMIN)) {
+            return repository.findAll(pageable);
+        }
+        return repository.findAllByUser(securityContextHelper.getUserName(), pageable);
     }
 
     @Override

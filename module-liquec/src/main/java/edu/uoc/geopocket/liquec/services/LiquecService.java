@@ -8,6 +8,8 @@ import edu.uoc.geopocket.liquec.entities.Liquec;
 import edu.uoc.geopocket.liquec.repositories.LiquecRepository;
 import edu.uoc.geopocket.project.entities.Project;
 import edu.uoc.geopocket.project.services.ProjectService;
+import edu.uoc.geopocket.security.common.GeoPocketRole;
+import edu.uoc.geopocket.security.helper.SecurityContextHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -25,16 +27,28 @@ public class LiquecService extends AbstractToolService<Liquec> {
 
     private LiquecExecutor executor;
 
+    protected SecurityContextHelper securityContextHelper;
+
     @Autowired
-    public LiquecService(final LiquecRepository repository, final ProjectService projectService, final LiquecExecutor executor) {
+    public LiquecService(final LiquecRepository repository, final ProjectService projectService,
+                         final LiquecExecutor executor, final SecurityContextHelper securityContextHelper) {
         this.repository = repository;
         this.projectService = projectService;
         this.executor = executor;
+        this.securityContextHelper = securityContextHelper;
     }
 
     @Override
     public LiquecRepository getRepository() {
         return this.repository;
+    }
+
+    @Override
+    public Page<Liquec> findAll(final Pageable pageable) {
+        if (securityContextHelper.hasRole(GeoPocketRole.ROLE_ADMIN)) {
+            return this.getRepository().findAll(pageable);
+        }
+        return this.getRepository().findAllByProjectUser(securityContextHelper.getUserName(), pageable);
     }
 
     @Override

@@ -8,8 +8,6 @@ public interface ProjectService {
 
     Page<Project> findAll(final Pageable pageable);
 
-    Page<Project> findAllByUser(final Pageable pageable);
-
     Project get(final Long id);
 
     Project save(final Project project);

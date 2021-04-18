@@ -33,6 +33,8 @@ public class Audit {
     public void prePersist() {
         this.createdOn = LocalDateTime.now();
         this.createdBy = getLogin();
+        this.updatedOn = this.createdOn;
+        this.updatedBy = this.createdBy;
     }
 
     @PreUpdate

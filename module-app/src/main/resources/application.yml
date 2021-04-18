@@ -2,8 +2,6 @@ edu:
   uoc:
     geopocket:
       security:
-        enabled: false
-      swagger:
         enabled: true
 
 spring:

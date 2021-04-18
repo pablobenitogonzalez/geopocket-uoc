@@ -1,6 +1,8 @@
+import SecurityRepository from './SecurityRepository'
 import ProjectRepository from './ProjectRepository'
 
 const repositories = {
+    security: SecurityRepository,
     projects: ProjectRepository,
     // other repositories
 };

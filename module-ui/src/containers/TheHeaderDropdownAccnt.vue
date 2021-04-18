@@ -1,16 +1,16 @@
 <template>
   <CDropdown
-    inNav
-    class="c-header-nav-items"
-    placement="bottom-end"
-    add-menu-classes="pt-0"
+          inNav
+          class="c-header-nav-items"
+          placement="bottom-end"
+          add-menu-classes="pt-0"
   >
     <template #toggler>
       <CHeaderNavLink>
         <div class="c-avatar">
           <img
-            src="img/avatars/6.jpg"
-            class="c-avatar-img "
+                  src="img/avatars/6.jpg"
+                  class="c-avatar-img "
           />
         </div>
       </CHeaderNavLink>
@@ -26,21 +26,28 @@
       <CBadge color="primary" class="ml-auto">{{ itemsCount }}</CBadge>
     </CDropdownItem>
     <CDropdownDivider/>
-    <CDropdownItem>
+    <CDropdownItem v-on:click="logout()">
       <CIcon name="cil-lock-locked" /> Logout
     </CDropdownItem>
   </CDropdown>
 </template>
 
 <script>
-export default {
-  name: 'TheHeaderDropdownAccnt',
-  data () {
-    return { 
-      itemsCount: 42
+  import router from './../router'
+
+  export default {
+    name: 'TheHeaderDropdownAccnt',
+    data () {
+      return {
+        itemsCount: 42
+      }
+    },
+    methods: {
+      logout() {
+        router.push('/login');
+      }
     }
   }
-}
 </script>
 
 <style scoped>

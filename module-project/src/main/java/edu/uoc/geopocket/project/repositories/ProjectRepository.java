@@ -6,5 +6,5 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface ProjectRepository extends JpaRepository<Project, Long> {
-    Page<Project> findAllByUser(String user, Pageable var1);
+    Page<Project> findAllByUser(String user, Pageable pageable);
 }

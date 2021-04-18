@@ -2,8 +2,8 @@ import Repository from './Repository'
 
 const resource = '/project';
 export default {
-    get() {
-        return Repository.get(`${resource}`);
+    get(page = 0, size = 10) {
+        return Repository.get(`${resource}?page=${page}&size=${size}&sort=audit.updatedOn,desc`);
     },
     getProject(id) {
         return Repository.get(`${resource}/${id}`);

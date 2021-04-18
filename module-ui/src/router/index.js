@@ -4,6 +4,8 @@ import Router from 'vue-router'
 // Containers
 const TheContainer = () => import('@/containers/TheContainer')
 
+const Login = () => import('@/views/pages/Login')
+
 // Views
 const Dashboard = () => import('@/views/Dashboard')
 const ManageProjects = () => import('@/views/project/ManageProjects')
@@ -12,17 +14,22 @@ const ManageLiquecCalculations = () => import('@/views/liquec/ManageLiquecCalcul
 const ManageLiquecDrafts = () => import('@/views/liquec/ManageLiquecDrafts')
 const CreateNewLiquec = () => import('@/views/liquec/CreateNewLiquec')
 
-Vue.use(Router)
+Vue.use(Router);
 
-export default new Router({
+const router = new Router({
   mode: 'hash', // https://router.vuejs.org/api/#mode
   linkActiveClass: 'active',
   scrollBehavior: () => ({ y: 0 }),
   routes: configRoutes()
-})
+});
 
 function configRoutes () {
   return [
+    {
+      path: '/login',
+      name: 'Login',
+      component: Login
+    },
     {
       path: '/',
       redirect: '/dashboard',
@@ -80,7 +87,26 @@ function configRoutes () {
           ]
         }
       ]
-    }
+    },
+    // otherwise redirect to home
+    { path: '*', redirect: '/' }
   ]
 }
 
+router.beforeEach((to, from, next) => {
+  // redirect to login page if not logged in and trying to access a restricted page
+  const publicPages = ['/login'];
+  const authRequired = !publicPages.includes(to.path);
+  const loggedIn = localStorage.getItem('user');
+
+  if (authRequired && !loggedIn) {
+    return next({
+      path: '/login',
+      query: { returnUrl: to.path }
+    });
+  }
+
+  next();
+});
+
+export default router;

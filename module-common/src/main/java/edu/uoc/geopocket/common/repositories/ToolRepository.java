@@ -5,4 +5,5 @@ import org.springframework.data.domain.Pageable;
 
 public interface ToolRepository<T> {
     Page<T> findAllByProject(Long projectId, Pageable page);
+    Page<T> findAllByProjectUser(String user, Pageable pageable);
 }

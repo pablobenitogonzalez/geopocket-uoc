@@ -16,7 +16,6 @@ import javax.validation.Valid;
 
 @RestController
 @RequestMapping("/liquec")
-@CrossOrigin(origins = "*")
 public class LiquecController extends AbstractToolController<Liquec, LiquecDTO, LiquecInputDTO> {
 
     private LiquecService service;

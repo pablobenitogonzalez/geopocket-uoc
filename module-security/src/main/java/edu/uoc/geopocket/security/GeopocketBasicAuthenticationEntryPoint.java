@@ -14,10 +14,10 @@ public class GeopocketBasicAuthenticationEntryPoint extends BasicAuthenticationE
 
     @Override
     public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException authEx) throws IOException {
-        response.addHeader("WWW-Authenticate", "Basic realm=\"\" + getRealmName() + \"\"");
-        response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+        response.addHeader("WWW-Authenticate", "Basic realm=" + getRealmName());
+        response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
         PrintWriter writer = response.getWriter();
-        writer.println("HTTP Status 401 - " + authEx.getMessage());
+        writer.println(authEx.getMessage());
     }
 
     @Override
