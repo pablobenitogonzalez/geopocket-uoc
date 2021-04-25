@@ -16,6 +16,7 @@ export default {
             if(user) {
                 // store user details and basic auth credentials in local storage
                 // to keep user logged in between page refreshes
+                console.log('login!!!');
                 user.authdata = window.btoa(username + ':' + password);
                 localStorage.setItem('user', JSON.stringify(user));
                 axios.defaults.headers['Authorization'] = 'Basic ' + user.authdata
@@ -27,5 +28,6 @@ export default {
         // remove user from local storage to log user out
         localStorage.removeItem('user');
         axios.defaults.headers['Authorization'] = '';
+        console.log('logout!!!');
     }
 }

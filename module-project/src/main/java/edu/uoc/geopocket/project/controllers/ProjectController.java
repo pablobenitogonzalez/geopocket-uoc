@@ -9,11 +9,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.Collections;
+import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -39,6 +41,15 @@ public class ProjectController {
             .orElse(Collections.emptyList()).stream().map(e -> modelMapper.map(e, ProjectDTO.class))
             .collect(Collectors.toList()), pageProject.getPageable(),
             pageProject.getTotalElements());
+    }
+
+    @GetMapping("/autocomplete")
+    @ResponseStatus(HttpStatus.OK)
+    public List<ProjectDTO> autocomplete(final @Param("name") String name) {
+        final List<Project> projects = service.autocomplete(name);
+        return Optional.of(projects)
+                .orElse(Collections.emptyList()).stream().map(e -> modelMapper.map(e, ProjectDTO.class))
+                .collect(Collectors.toList());
     }
 
     @GetMapping("/{id}")

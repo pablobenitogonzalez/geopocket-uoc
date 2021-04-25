@@ -1,1 +1,31 @@
 // Here you can add other styles
+input.autocomplete-input {
+  padding: 8px 8px 8px 44px;
+  font-size: 0.875rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #768192;
+}
+ul.autocomplete-result-list {
+  font-size: 0.875rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #768192;
+}
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+.jumbotron {
+  background-color: #eeeeee;
+  padding: 2rem 2rem;
+}
+.list-group {
+  margin-bottom: 0.8rem;
+}

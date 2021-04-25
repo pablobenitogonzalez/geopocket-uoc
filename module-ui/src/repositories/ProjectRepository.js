@@ -5,6 +5,9 @@ export default {
     get(page = 0, size = 10) {
         return Repository.get(`${resource}?page=${page}&size=${size}&sort=audit.updatedOn,desc`);
     },
+    autocomplete(name) {
+        return Repository.get(`${resource}/autocomplete?name=${name}`);
+    },
     getProject(id) {
         return Repository.get(`${resource}/${id}`);
     },

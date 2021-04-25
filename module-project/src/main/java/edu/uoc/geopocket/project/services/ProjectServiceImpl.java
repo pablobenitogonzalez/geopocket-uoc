@@ -11,6 +11,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Objects;
 
 @Service
@@ -32,6 +33,14 @@ public class ProjectServiceImpl implements ProjectService {
             return repository.findAll(pageable);
         }
         return repository.findAllByUser(securityContextHelper.getUserName(), pageable);
+    }
+
+    @Override
+    public List<Project> autocomplete(String projectName) {
+        if (securityContextHelper.hasRole(GeoPocketRole.ROLE_ADMIN)) {
+            return repository.findAllByNameContainingIgnoreCaseOrderByNameAsc(projectName);
+        }
+        return repository.findAllByUserAndNameContainingIgnoreCaseOrderByNameAsc(securityContextHelper.getUserName(), projectName);
     }
 
     @Override
