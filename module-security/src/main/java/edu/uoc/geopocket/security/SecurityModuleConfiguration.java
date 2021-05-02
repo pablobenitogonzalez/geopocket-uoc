@@ -4,6 +4,7 @@ import edu.uoc.geopocket.security.common.GeoPocketRole;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
+import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -54,8 +55,11 @@ public class SecurityModuleConfiguration extends WebSecurityConfigurerAdapter {
   protected void configure(HttpSecurity http) throws Exception {
     http.cors().and().csrf().disable()
             .authorizeRequests()
+            .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
+            .antMatchers("/").permitAll()
             .antMatchers("/login").permitAll()
             .antMatchers("/public/**").permitAll()
+            .antMatchers("/resources/**").permitAll()
             .anyRequest().authenticated()
             .and()
             .httpBasic()

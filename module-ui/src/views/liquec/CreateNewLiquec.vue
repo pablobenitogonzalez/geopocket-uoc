@@ -2,23 +2,40 @@
   <CCard>
     <CCardHeader>
       <CRow>
-        <CCol col="6" class="text-left">
+        <CCol col="6" class="text-left" style="line-height: 38px">
           Liquec - Liquefaction According to Eurocode
         </CCol>
         <CCol col="6" class="text-right">
-          <span style="padding-right: 12px">Calculate</span>
+          <CButton
+                  style="padding-right: 8px"
+                  color="primary"
+                  shape="pill"
+                  size="sm"
+                  :disabled="saveDraftButton"
+                  @click="saveDraft"
+                  v-c-tooltip.hover="{ content: 'Save draft' }"
+          >
+            <CIcon :height="mainIconHeight" name="cil-save" />
+          </CButton>
+          <span style="padding-right: 10px"></span>
           <CButton
                   color="primary"
                   shape="pill"
-                  size="sm" disabled>
-            <CIcon name="cil-media-play"/>
+                  size="sm"
+                  :disabled="calculateButton"
+                  @click="calculate"
+                  v-c-tooltip.hover="{ content: 'Calculate' }"
+          >
+            <CIcon :height="mainIconHeight" name="cil-media-play"/>
           </CButton>
         </CCol>
       </CRow>
     </CCardHeader>
     <CCardBody>
       <CTabs>
-        <CTab title="Main" active>
+        <CTab title="Main"
+              active
+        >
           <br/>
           <br/>
           <CRow>
@@ -35,7 +52,7 @@
                             :value="code.key"
                             :custom="true"
                             :name="`Option ${0}`"
-                            :checked="optionIndex === 0"
+                            :checked="code.selected"
                             :inline="true"
                             @update:checked="onChangeChecked"
                     />
@@ -117,7 +134,7 @@
                         @input="onGroundInput"
                 />
                 <hr/>
-                <CTableWrapper
+                <CSoilTableWrapper
                         :items="liquec.soilLayers"
                         hover
                         striped
@@ -220,6 +237,19 @@
                           :isValid="finesContentInputValidation"
                           @input="onFinesContentInput"
                   />
+                  <span style="padding-right: 30px">Check Liquefaction:</span>
+                  <CInputRadio
+                          v-for="(code, optionIndex) in checkLiquefaction"
+                          :key="code.key"
+                          :label="code.name"
+                          type="radio"
+                          :value="code.key"
+                          :custom="true"
+                          :name="`Option ${0}`"
+                          :checked="optionIndex === 0"
+                          :inline="true"
+                          @update:checked="onChangeCheckLiquefaction"
+                  ></CInputRadio>
                   <template #footer>
                     <CButton @click="soilLayerModal = false" color="dark">Cancel</CButton>
                     <CButton
@@ -229,6 +259,16 @@
                       Create
                     </CButton>
                   </template>
+                </CModal>
+                <CModal
+                        :show.sync="checkSptModal"
+                        title="Cannot Remove Last Layer"
+                        color="primary"
+                        :no-close-on-backdrop="true"
+                        :centered="true"
+                >
+                  The last soil layer cannot be deleted because there are SPTs within it.
+                  Remove SPTs before removing the soil layer.
                 </CModal>
               </CJumbotron>
               <br/>
@@ -244,7 +284,93 @@
           <br/>
           <CRow>
             <CCol sm="6">
+              <br/>
               <CJumbotron style="margin-bottom: 8px">
+                <CSptTableWrapper
+                        :items="liquec.spts"
+                        hover
+                        striped
+                        bordered
+                        small
+                        fixed
+                />
+                <CRow>
+                  <CCol sm="6"></CCol>
+                  <CCol sm="6">
+                    <div style="float: right">
+                      <CButton
+                              color="dark"
+                              @click="launchSptModal"
+                              class="mr-1"
+                              variant="outline"
+                              :disabled="addSptModalButton"
+                      >
+                        Add
+                      </CButton>
+                      <CButton
+                              color="dark"
+                              @click="removeSpt"
+                              class="mr-1"
+                              variant="outline"
+                              :disabled="removeSptButton"
+                      >
+                        Remove
+                      </CButton>
+                    </div>
+                  </CCol>
+                </CRow>
+                <CModal
+                        :show.sync="sptModal"
+                        :no-close-on-backdrop="true"
+                        :centered="true"
+                >
+                  <template #header>
+                    <h6 class="modal-title">Add New SPT</h6>
+                    <CButtonClose @click="sptModal = false" class="text-white"/>
+                  </template>
+                  <CInput
+                          label="Depth (m):"
+                          placeholder="Enter depth"
+                          :description="depthDescription"
+                          horizontal
+                          type="text"
+                          :lazy=false
+                          v-model="spt.depth"
+                          :isValid="depthInputValidation"
+                          @input="onDepthInput"
+                  />
+                  <CInput
+                          label="SPT Blow Counts (N):"
+                          placeholder="Enter SPT blow counts"
+                          description="Range of supported values: {0-50} (N)"
+                          horizontal
+                          type="text"
+                          :lazy=false
+                          v-model="spt.sptBlowCounts"
+                          :isValid="sptBlowCountsInputValidation"
+                          @input="onSptBlowCountsInput"
+                  />
+                  <CInput
+                          label="Energy Ratio (%):"
+                          placeholder="Enter energy ratio"
+                          description="Range of supported values: {0.0-100.0} (%)"
+                          horizontal
+                          type="text"
+                          :lazy=false
+                          v-model="spt.energyRatio"
+                          :isValid="energyRatioInputValidation"
+                          @input="onEnergyRatioInput"
+                  />
+                  <template #footer>
+                    <CButton @click="sptModal = false" color="dark">Cancel</CButton>
+                    <CButton
+                            @click="addSpt"
+                            color="primary"
+                            :disabled="addSptButton">
+                      Create
+                    </CButton>
+                  </template>
+                </CModal>
               </CJumbotron>
             </CCol>
             <CCol sm="6">
@@ -254,47 +380,49 @@
             </CCol>
           </CRow>
         </CTab>
-        <CTab title="Result" disabled>
-          3. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore
-          et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-          aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
-          dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui
-          officia deserunt mollit anim id est laborum.
-        </CTab>
       </CTabs>
     </CCardBody>
   </CCard>
-
-
-
 </template>
 
 <script>
   import Autocomplete from '@trevoreyre/autocomplete-vue'
   import '@trevoreyre/autocomplete-vue/dist/style.css'
   import {RepositoryFactory} from './../../repositories/RepositoryFactory'
-  import CTableWrapper from './SoilTable.vue'
+  import CSoilTableWrapper from './SoilTable.vue'
+  import CSptTableWrapper from './SptTable.vue'
   import {Chart} from 'highcharts-vue'
+  import router from "../../router";
 
   const ProjectRepository = RepositoryFactory.get('projects');
+  const LiquecRepository = RepositoryFactory.get('liquec');
   export default {
     name: 'CreateNewLiquec',
     components: {
       Autocomplete,
-      CTableWrapper,
+      CSoilTableWrapper: CSoilTableWrapper,
+      CSptTableWrapper: CSptTableWrapper,
       highcharts: Chart
+    },
+    created() {
+      this.liquec.id = this.$route.params.id;
     },
     data () {
       return {
-        codes: [{key: "EUROCODE", name: "Eurocode"}, {key: "NCSE_02", name: "NCSE-02"}],
+        codes: [{key: "EUROCODE", name: "Eurocode", selected: true}, {key: "NCSE_02", name: "NCSE-02", selected: false}],
+        mainIconHeight: 20,
+        saveDraftButton: "disabled",
+        calculateButton: "disabled",
         autocomplete: [],
         selectedProject: {},
         earthquakeReadonly: false,
-        coefficientReadonly: true,
+        coefficientReadonly: false,
         peakInputValidation: null,
-        earthquakeInputValidation: true,
+        earthquakeInputValidation: null,
         coefficientInputValidation: null,
         groundInputValidation: null,
+        checkSptModal: false,
+        checkLiquefaction: [{key: true, name: "Yes"}, {key: false, name: "No"}],
         soilLayerModal: false,
         soilLayer: {
           startDepth: 0.0,
@@ -314,7 +442,22 @@
         finesContentInputValidation: null,
         addLayerButton: "disabled",
         removeLayerButton: "disabled",
+        sptModal: false,
+        spt: {
+          depth: null,
+          sptBlowCounts: null,
+          energyRatio: 60.0
+        },
+        depthBound: 30,
+        depthDescription: "Range of supported values: {0.01-30.00} (m)",
+        depthInputValidation: null,
+        sptBlowCountsInputValidation: null,
+        energyRatioInputValidation: true,
+        addSptModalButton: "disabled",
+        addSptButton: "disabled",
+        removeSptButton: "disabled",
         liquec: {
+          id: null,
           projectId: null,
           code: "EUROCODE",
           peakGroundAcceleration: null,
@@ -379,7 +522,8 @@
             text: null
           },
           xAxis: {
-            min: -20,
+            max: 0,
+            min: -30,
             reversed: false,
             title: {
               enabled: false,
@@ -396,20 +540,6 @@
             plotLines: [
               {
                 label: {
-                  text: 'GWT',
-                  style: {
-                    color: 'blue',
-                    fontWeight: 'bold'
-                  }
-                },
-                zIndex: 99,
-                color: 'blue',
-                dashStyle: 'longdashdot',
-                value: -3,
-                width: 2
-              },
-              {
-                label: {
                   text: '',
                   align: 'right',
                   style: {
@@ -422,58 +552,18 @@
                 dashStyle: 'dash',
                 value: 0,
                 width: 0.5
-              },
-              {
-                label: {
-                  text: 'rock',
-                  align: 'right',
-                  style: {
-                    color: 'brown',
-                    fontWeight: '300'
-                  }
-                },
-                zIndex: -99,
-                color: 'brown',
-                value: -2,
-                width: 0.5
-              },
-              {
-                label: {
-                  text: 'sand',
-                  align: 'right',
-                  style: {
-                    color: 'brown',
-                    fontWeight: '300'
-                  }
-                },
-                zIndex: -99,
-                color: 'brown',
-                value: -10,
-                width: 0.5
-              },
-              {
-                label: {
-                  text: 'limo',
-                  align: 'right',
-                  style: {
-                    color: 'brown',
-                    fontWeight: '300'
-                  }
-                },
-                zIndex: -99,
-                color: 'brown',
-                value: -17,
-                width: 0.5
               }
             ]
           },
           yAxis: {
+            min: 0,
+            max: 50,
             opposite: true,
             title: {
               text: null
             },
             labels: {
-              format: '{value}'
+              format: '{value} N'
             },
             accessibility: {
               rangeDescription: 'Range: 0 to 20'
@@ -485,7 +575,7 @@
           },
           tooltip: {
             headerFormat: '<b>{series.name}</b><br/>',
-            pointFormat: '{point.x} m: {point.y}'
+            pointFormat: '{point.x} m: {point.y} N'
           },
           plotOptions: {
             spline: {
@@ -496,12 +586,145 @@
           },
           series: [{
             name: 'SPT',
-            data: [[0, 2], [-5, 8], [-10, 4], [-15, 12]]
+            data: []
           }]
         }
       }
     },
+    mounted() {
+      if (this.liquec.id != null) {
+        this.fetch();
+      } else  {
+        this.coefficientReadonly = true;
+        this.earthquakeInputValidation = true;
+      }
+    },
+    watch: {
+      liquec: {
+        handler(val) {
+          this.saveDraftButton = (this.liquec.projectId)? null : "disabled";
+          this.calculateButton = (this.liquec.projectId &&
+                  this.liquec.code &&
+                  this.liquec.peakGroundAcceleration &&
+                  this.liquec.earthquakeMagnitude &&
+                  this.liquec.coefficientOfContribution &&
+                  this.liquec.groundWaterTableDepth &&
+                  this.liquec.soilLayers.length > 0 &&
+                  this.liquec.spts.length > 0)? null : "disabled";
+
+        },
+        deep: true
+      }
+    },
     methods: {
+      async fetch() {
+        const {data} = await LiquecRepository.getLiquec(this.liquec.id);
+        this.initDraft(data);
+      },
+      initDraft(data) {
+        const self = this;
+        this.liquec.projectId = data.project.id;
+        this.selectedProject = data.project;
+        this.liquec.code = data.code;
+        this.liquec.peakGroundAcceleration = data.peakGroundAcceleration;
+        this.onPeakInput(this.liquec.peakGroundAcceleration);
+        if (this.liquec.code === 'EUROCODE') {
+          this.codes[0].selected = true;
+          this.codes[1].selected = false;
+          this.liquec.earthquakeMagnitude = data.earthquakeMagnitude;
+          this.onEarthquakeInput(this.liquec.earthquakeMagnitude);
+          this.liquec.coefficientOfContribution = 1.0;
+          this.coefficientReadonly = true;
+        } else {
+          this.codes[0].selected = false;
+          this.codes[1].selected = true;
+          this.liquec.earthquakeMagnitude = 7.5;
+          this.earthquakeReadonly = true;
+          this.liquec.coefficientOfContribution = data.coefficientOfContribution;
+          this.onCoefficientInput(this.liquec.coefficientOfContribution);
+        }
+        this.liquec.groundWaterTableDepth = data.groundWaterTableDepth;
+        this.onGroundInput(this.liquec.groundWaterTableDepth);
+        data.soilLayers.forEach(function (o) {
+          self.liquec.soilLayers.push({
+            startDepth: o.startDepth,
+            finalDepth: o.finalDepth,
+            soilType: o.soilType,
+            aboveGwt: o.aboveGwt,
+            belowGwt: o.belowGwt,
+            finesContent: o.finesContent,
+            checkLiquefaction: o.checkLiquefaction
+          });
+        });
+        // highcharts
+        this.setLayerChartBound();
+        this.liquec.soilLayers.forEach(function (o) {
+          self.layerChartOptions.series.unshift({
+            color: '#' + Math.floor(Math.random()*16777215).toString(16),
+            name: o.soilType,
+            data: [-(parseFloat(o.finalDepth)-parseFloat(o.startDepth)), -(parseFloat(o.finalDepth)-parseFloat(o.startDepth))]
+          });
+          self.sptChartOptions.xAxis.plotLines.push({
+            label: {
+              text: o.soilType,
+              align: 'left',
+              style: {
+                color: 'brown',
+                fontWeight: '300'
+              }
+            },
+            zIndex: -99,
+            color: 'brown',
+            value: -parseFloat(o.finalDepth),
+            width: 0.5
+          });
+        });
+        this.setXSptChartBound();
+        // reset
+        this.soilLayer.startDepth = (this.liquec.soilLayers.length > 0)? this.liquec.soilLayers[this.liquec.soilLayers.length-1].finalDepth : 0.0;
+        this.soilLayer.layerThickness = null;
+        this.soilLayer.soilType = null;
+        this.soilLayer.aboveGwt =null;
+        this.soilLayer.belowGwt = null;
+        this.soilLayer.finesContent = null;
+        this.layerThicknessBound = (this.liquec.soilLayers.length > 0)? 30 - this.liquec.soilLayers[this.liquec.soilLayers.length-1].finalDepth : 30.0;
+        this.layerThicknessDescription = 'Range of supported values: {0.01-' + parseFloat(this.layerThicknessBound) + '} (m)';
+        this.layerThicknessInputValidation = null;
+        this.soilTypeInputValidation = null;
+        this.aboveGwtInputValidation = null;
+        this.belowGwtInputValidation = null;
+        this.finesContentInputValidation = null;
+        this.addLayerButton = "disabled";
+        this.handleRemoveLayerButton();
+        this.handleAddSptModalButton();
+        data.spts.forEach(function (o) {
+          self.liquec.spts.push({
+            depth: o.depth,
+            sptBlowCounts: o.sptBlowCounts,
+            energyRatio: o.energyRatio
+          });
+        });
+        this.liquec.spts.sort(function(a, b) {
+          return parseFloat(a.depth) - parseFloat(b.depth);
+        });
+        // highcharts
+        this.liquec.spts.forEach(function (o) {
+          self.sptChartOptions.series[0].data.push([-parseFloat(o.depth), parseFloat(o.sptBlowCounts)]);
+        });
+        this.sptChartOptions.series[0].data.sort(function(a, b) {
+          return a[0] - b[0];
+        });
+        // reset
+        this.spt.depth = null;
+        this.spt.sptBlowCounts = null;
+        this.spt.energyRatio = 60.0;
+        this.depthInputValidation = null;
+        this.sptBlowCountsInputValidation = null;
+        this.energyRatioInputValidation = true;
+        this.addSptButton = "disabled";
+        this.handleRemoveSptButton();
+        this.setYSptChartBound();
+      },
       onChangeChecked(checked, e) {
         this.liquec.code = e.target.value;
         if (this.liquec.code === this.codes[1].key) { // NCSE_02
@@ -548,10 +771,12 @@
         this.groundInputValidation = !!value && value >= 0.0 && value <= 30.0;
         // highcharts
         this.layerChartOptions.yAxis.plotLines = [];
+        this.removeGwtFromSptChart();
         if(this.groundInputValidation) {
-          this.layerChartOptions.yAxis.plotLines.push({
+          const gwt = {
             label: {
               text: 'GWT',
+              align: 'right',
               style: {
                 color: 'blue',
                 fontWeight: 'bold'
@@ -562,10 +787,13 @@
             dashStyle: 'dash',
             value: -parseFloat(value),
             width: 2
-          })
+          };
+          this.layerChartOptions.yAxis.plotLines.push(gwt);
+          this.sptChartOptions.xAxis.plotLines.push(gwt);
         }
         if(this.liquec.soilLayers.length > 0) {
           this.setLayerChartBound();
+          this.setXSptChartBound();
         }
       },
       onLayerThicknessInput(value) {
@@ -599,6 +827,9 @@
       handleRemoveLayerButton() {
         this.removeLayerButton = (this.liquec.soilLayers.length > 0)? null : "disabled";
       },
+      onChangeCheckLiquefaction(checked, e) {
+        this.soilLayer.checkLiquefaction = e.target.value;
+      },
       addSoilLayer() {
         this.liquec.soilLayers.push({
           startDepth: this.soilLayer.startDepth,
@@ -616,6 +847,21 @@
           name: this.soilLayer.soilType,
           data: [-parseFloat(this.soilLayer.layerThickness), -parseFloat(this.soilLayer.layerThickness)]
         });
+        this.setXSptChartBound();
+        this.sptChartOptions.xAxis.plotLines.push({
+          label: {
+            text: this.soilLayer.soilType,
+            align: 'left',
+            style: {
+              color: 'brown',
+              fontWeight: '300'
+            }
+          },
+          zIndex: -99,
+          color: 'brown',
+          value: -parseFloat(this.liquec.soilLayers[this.liquec.soilLayers.length-1].finalDepth),
+          width: 0.5
+        });
         // reset
         this.soilLayer.startDepth = this.liquec.soilLayers[this.liquec.soilLayers.length-1].finalDepth;
         this.soilLayer.layerThickness = null;
@@ -623,7 +869,6 @@
         this.soilLayer.aboveGwt =null;
         this.soilLayer.belowGwt = null;
         this.soilLayer.finesContent = null;
-        this.soilLayer.checkLiquefaction = true;
         this.layerThicknessBound = 30 - this.liquec.soilLayers[this.liquec.soilLayers.length-1].finalDepth;
         this.layerThicknessDescription = 'Range of supported values: {0.01-' + parseFloat(this.layerThicknessBound) + '} (m)';
         this.layerThicknessInputValidation = null;
@@ -633,30 +878,43 @@
         this.finesContentInputValidation = null;
         this.addLayerButton = "disabled";
         this.handleRemoveLayerButton();
+        this.handleAddSptModalButton();
         this.soilLayerModal = false;
       },
       removeSoilLayer() {
-        if (this.liquec.soilLayers.length > 0) {
+        if (this.liquec.soilLayers.length > 0 && this.checkSptLayer()) {
+          const finalDepthToRemove = this.liquec.soilLayers[this.liquec.soilLayers.length - 1].finalDepth;
           this.liquec.soilLayers.pop();
+          // highcharts
+          this.layerChartOptions.series.shift();
+          this.removeLayerFromSptChart(-parseFloat(finalDepthToRemove));
+          this.setLayerChartBound();
+          this.setXSptChartBound();
         }
         this.handleRemoveLayerButton();
+        this.handleAddSptModalButton();
         this.soilLayer.startDepth = (this.liquec.soilLayers.length > 0)?
                 this.liquec.soilLayers[this.liquec.soilLayers.length - 1].finalDepth : 0.0;
-        // highcharts
-        if (this.liquec.soilLayers.length > 0) {
-          this.layerChartOptions.series.shift();
-        } else {
-          this.layerChartOptions.series = [];
+      },
+      checkSptLayer() {
+        const startDepthToRemove = this.liquec.soilLayers[this.liquec.soilLayers.length - 1].startDepth;
+        const finalDepthToRemove = this.liquec.soilLayers[this.liquec.soilLayers.length - 1].finalDepth;
+        const index = this.liquec.spts.findIndex(function (o) {
+          return o.depth <= finalDepthToRemove && o.depth >= startDepthToRemove;
+        });
+        if (index !== -1) {
+          this.checkSptModal = true;
+          return false;
         }
-        this.setLayerChartBound();
+        return true;
       },
       setLayerChartBound() {
-        const margin = 5.0;
+        const margin = 3.0;
         const layerBound = ((this.liquec.soilLayers.length > 0)? -parseFloat(this.liquec.soilLayers[this.liquec.soilLayers.length-1].finalDepth) : 0.0) - margin;
         const gwtBound = ((this.liquec.groundWaterTableDepth != null && this.liquec.groundWaterTableDepth !== '')? -parseFloat(this.liquec.groundWaterTableDepth) : 0.0) - margin;
         const lower = Math.min(layerBound, gwtBound);
         this.layerChartOptions.yAxis.min = (lower < -30 || lower === -margin)? -30 : lower;
-        this.cleanLayerChart()
+        this.cleanLayerChart();
       },
       cleanLayerChart() {
         if (this.dirtyLayerChartSeries) {
@@ -666,6 +924,103 @@
           if (index !== -1) this.layerChartOptions.series.splice(index, 1);
           this.dirtyLayerChartSeries = false;
         }
+      },
+      removeGwtFromSptChart() {
+        const index = this.sptChartOptions.xAxis.plotLines.findIndex(function (o) {
+          return o.label.text === 'GWT';
+        });
+        if (index !== -1) this.sptChartOptions.xAxis.plotLines.splice(index, 1);
+      },
+      removeLayerFromSptChart(value) {
+        const index = this.sptChartOptions.xAxis.plotLines.findIndex(function (o) {
+          return o.value === value;
+        });
+        if (index !== -1) this.sptChartOptions.xAxis.plotLines.splice(index, 1);
+      },
+      setXSptChartBound() {
+        const margin = 3.0;
+        const layerBound = ((this.liquec.soilLayers.length > 0)? -parseFloat(this.liquec.soilLayers[this.liquec.soilLayers.length-1].finalDepth) : 0.0) - margin;
+        const gwtBound = ((this.liquec.groundWaterTableDepth != null && this.liquec.groundWaterTableDepth !== '')? -parseFloat(this.liquec.groundWaterTableDepth) : 0.0) - margin;
+        const sptBound = ((this.liquec.spts.length > 0)? -parseFloat(this.liquec.spts[this.liquec.spts.length-1].depth) : 0.0) - margin;
+        const lower = Math.min(layerBound, gwtBound, sptBound);
+        this.sptChartOptions.xAxis.min = (lower < -30 || lower === -margin)? -30 : lower;
+      },
+      setYSptChartBound() {
+        const margin = 3.0;
+        const maxSpt = Math.max.apply(Math, this.liquec.spts.map(function(o) { return o.sptBlowCounts; })) + margin;
+        this.sptChartOptions.yAxis.max = (maxSpt < 50 || maxSpt === margin)? maxSpt : 50;
+      },
+      onDepthInput(value) {
+        this.depthInputValidation = !!value && value >= 0.01 && value <= this.depthBound;
+        this.handleAddSptButton();
+      },
+      onSptBlowCountsInput(value) {
+        this.sptBlowCountsInputValidation = !!value && value >= 0.00 && value <= 50.0;
+        this.handleAddSptButton();
+      },
+      onEnergyRatioInput(value) {
+        this.energyRatioInputValidation = !!value && value >= 0.00 && value <= 100.0;
+        this.handleAddSptButton();
+      },
+      handleAddSptModalButton() {
+        this.addSptModalButton = (this.liquec.soilLayers.length > 0)? null : "disabled";
+      },
+      launchSptModal() {
+        this.depthBound = (this.liquec.soilLayers.length > 0)? parseFloat(this.liquec.soilLayers[this.liquec.soilLayers.length-1].finalDepth) : 0.0;
+        this.depthDescription = 'Range of supported values: {0.01-' + parseFloat(this.depthBound) + '} (m)';;
+        this.sptModal = true;
+      },
+      handleAddSptButton() {
+        this.addSptButton = (
+                this.depthInputValidation &&
+                this.sptBlowCountsInputValidation &&
+                this.energyRatioInputValidation)? null : "disabled";
+      },
+      handleRemoveSptButton() {
+        this.removeSptButton = (this.liquec.spts.length > 0)? null : "disabled";
+      },
+      addSpt() {
+        this.liquec.spts.push({
+          depth: this.spt.depth,
+          sptBlowCounts: this.spt.sptBlowCounts,
+          energyRatio: this.spt.energyRatio
+        });
+        this.liquec.spts.sort(function(a, b) {
+          return parseFloat(a.depth) - parseFloat(b.depth);
+        });
+        // highcharts
+        this.sptChartOptions.series[0].data.push([-parseFloat(this.spt.depth), parseFloat(this.spt.sptBlowCounts)]);
+        this.sptChartOptions.series[0].data.sort(function(a, b) {
+          return a[0] - b[0];
+        });
+        // reset
+        this.spt.depth = null;
+        this.spt.sptBlowCounts = null;
+        this.spt.energyRatio = 60.0;
+        this.depthInputValidation = null;
+        this.sptBlowCountsInputValidation = null;
+        this.energyRatioInputValidation = true;
+        this.addSptButton = "disabled";
+        this.handleRemoveSptButton();
+        this.setYSptChartBound();
+        this.sptModal = false;
+      },
+      removeSpt() {
+        if (this.liquec.spts.length > 0) {
+          this.liquec.spts.pop();
+          // highcharts
+          this.sptChartOptions.series[0].data.shift();
+        }
+        this.handleRemoveSptButton();
+        this.setYSptChartBound();
+      },
+      async calculate() {
+        const {data} = await LiquecRepository.calculate(this.liquec);
+        await router.push(`/liquec/${data.id}`);
+      },
+      async saveDraft() {
+        const {data} = await LiquecRepository.saveDraft(this.liquec);
+        this.liquec.id = data.id;
       }
     }
   }

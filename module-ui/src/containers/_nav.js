@@ -48,7 +48,7 @@ export default [
           },
           {
             name: 'Create New Liquec',
-            to: '/liquec/create',
+            to: '/liquec/create/new',
             icon: 'cil-plus'
           }
         ]

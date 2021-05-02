@@ -45,7 +45,11 @@ public class ProjectServiceImpl implements ProjectService {
 
     @Override
     public Project get(final Long id) {
-        return repository.findById(id).orElseThrow(() -> new GeoPocketException(String.format("Project %s not found", id)));
+        final Project project = repository.findById(id).orElseThrow(() -> new GeoPocketException(String.format("Project %s not found", id)));
+        if (!securityContextHelper.hasRole(GeoPocketRole.ROLE_ADMIN) && !project.getUser().equals(securityContextHelper.getUserName())) {
+            throw new GeoPocketException("Different project owner");
+        }
+        return project;
     }
 
     @Override

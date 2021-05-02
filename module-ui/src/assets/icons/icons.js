@@ -29,7 +29,12 @@ import {
     cilApplications,
     cilBlur,
     cilPlus,
-    cilMediaPlay
+    cilMediaPlay,
+    cilSave,
+    cilClone,
+    cilInfo,
+    cilSync,
+    cilArrowCircleRight
 } from '@coreui/icons'
 import {
   cifUs,
@@ -143,7 +148,12 @@ export const iconsSet = Object.assign(
       cilBlur,
       cilFolder,
       cilPlus,
-      cilMediaPlay
+      cilMediaPlay,
+      cilSave,
+      cilClone,
+      cilInfo,
+      cilSync,
+      cilArrowCircleRight
   },
   {
     cifUs,

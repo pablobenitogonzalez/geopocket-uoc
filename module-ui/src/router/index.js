@@ -13,6 +13,7 @@ const CreateNewProject = () => import('@/views/project/CreateNewProject')
 const ManageLiquecCalculations = () => import('@/views/liquec/ManageLiquecCalculations')
 const ManageLiquecDrafts = () => import('@/views/liquec/ManageLiquecDrafts')
 const CreateNewLiquec = () => import('@/views/liquec/CreateNewLiquec')
+const LiquecResult = () => import('@/views/liquec/LiquecResult')
 
 Vue.use(Router);
 
@@ -81,8 +82,30 @@ function configRoutes () {
             },
             {
               path: 'create',
-              name: 'Create New Liquec',
-              component: CreateNewLiquec
+              redirect: '/liquec/create/new',
+              name: 'Create',
+              component: {
+                render(c) {
+                  return c('router-view')
+                }
+              },
+              children: [
+                {
+                  path: 'new',
+                  name: 'Create New Liquec',
+                  component: CreateNewLiquec
+                },
+                {
+                  path: 'draft/:id',
+                  name: 'Create Liquec From Draft',
+                  component: CreateNewLiquec
+                }
+              ]
+            },
+            {
+              path: ':id',
+              name: 'Liquec Result',
+              component: LiquecResult
             }
           ]
         }

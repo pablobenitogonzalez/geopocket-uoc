@@ -1,24 +1,54 @@
 <template>
-  <CRow>
-    <CCol col>
-      <CCard>
-        <CCardHeader>
-          <CIcon name="cil-justify-center"/><strong> Manage Liquec Drafts</strong>
-        </CCardHeader>
-        <CCardBody>
-        </CCardBody>
-      </CCard>
-    </CCol>
-  </CRow>
+  <div>
+    <CRow>
+      <CCol sm="12">
+        <CTableWrapper
+                :items="liquecCollection"
+                hover
+                striped
+                bordered
+                small
+                fixed
+                caption="Liquec Drafts"
+                :totalPages="totalPages"
+                :activePage="pageNumber+1"
+                @updatePagination:activePage="onChangePagination"
+        />
+      </CCol>
+    </CRow>
+  </div>
 </template>
 
 <script>
-export default {
-  name: 'ManageLiquecDrafts',
-  data () {
-    return {}
+  import {RepositoryFactory} from './../../repositories/RepositoryFactory'
+  import CTableWrapper from './LiquecTable.vue'
+
+  const LiquecRepository = RepositoryFactory.get('liquec');
+  export default {
+    name: 'ManageLiquecDrafts',
+    components: { CTableWrapper },
+    data () {
+      return {
+        liquecCollection: [],
+        totalPages: 0,
+        pageNumber: 0
+      }
+    },
+    mounted() {
+      this.fetch(0)
+    },
+    methods: {
+      async fetch(page) {
+        const {data} = await LiquecRepository.get('DRAFT', page);
+        this.liquecCollection = data.content;
+        this.totalPages = data.totalPages;
+        this.pageNumber = data.pageable.pageNumber;
+      },
+      onChangePagination(page) {
+        this.fetch(page-1)
+      }
+    }
   }
-}
 </script>
 
 <style>

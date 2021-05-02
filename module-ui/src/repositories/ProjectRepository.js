@@ -11,13 +11,13 @@ export default {
     getProject(id) {
         return Repository.get(`${resource}/${id}`);
     },
-    createProject (playload) {
+    createProject(playload) {
         return Repository.post(`${resource}`, playload);
     },
-    updateProject (id, playload) {
+    updateProject(id, playload) {
         return Repository.post(`${resource}/${id}`, playload);
     },
-    deleteProject (id) {
+    deleteProject(id) {
         return Repository.delete(`${resource}/${id}`);
     }
 }

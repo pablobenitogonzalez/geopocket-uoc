@@ -29,3 +29,15 @@ input[type=number] {
 .list-group {
   margin-bottom: 0.8rem;
 }
+.modal-primary .modal-content {
+  border-color: transparent;
+}
+text.highcharts-title {
+  fill: #434348 !important;
+  font-weight: normal !important;
+  font-size: 1em !important;
+}
+.btn-square {
+  padding: 0 !important;
+  margin: 0 !important;
+}

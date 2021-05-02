@@ -10,10 +10,6 @@ public abstract class AbstractToolService<T extends GeoPocketEntity> {
 
     public abstract JpaRepository<T, Long> getRepository();
 
-    public abstract Page<T> findAll(final Pageable pageable);
-
-    public abstract Page<T> findAllByProject(final Long projectId, final Pageable pageable);
-
     public T get(final long id) {
         return this.getRepository().findById(id).orElseThrow(() -> new GeoPocketException(String.format("Entity %s not found", id)));
     }
@@ -25,5 +21,7 @@ public abstract class AbstractToolService<T extends GeoPocketEntity> {
     public void delete(final T element) {
         this.getRepository().delete(element);
     }
+
+    public abstract T clone(final Long id);
 
 }
