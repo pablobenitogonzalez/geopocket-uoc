@@ -64,7 +64,7 @@
                 return parseFloat(number).toFixed(2);
             },
             getSafetyFactor(sptResult) {
-                if (sptResult.result === 'ERROR') return sptResult.message;
+                if (sptResult.result === 'ERROR' || sptResult.result === 'SKIP') return sptResult.message;
                 return this.formatNumber(sptResult.safetyFactor);
             }
         }

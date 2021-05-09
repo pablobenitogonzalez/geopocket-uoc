@@ -32,6 +32,15 @@
       </CRow>
     </CCardHeader>
     <CCardBody>
+      <CModal
+              :show.sync="saveDraftModal"
+              title="Liquec Draft Saved"
+              color="primary"
+              :no-close-on-backdrop="true"
+              :centered="true"
+      >
+        Liquec has been correctly stored as draft.
+      </CModal>
       <CTabs>
         <CTab title="Main"
               active
@@ -196,7 +205,7 @@
                   <CInput
                           label="Soil Type:"
                           placeholder="Enter soil type"
-                          description="Any custom description"
+                          description="Range of supported characters: {3-60}"
                           horizontal
                           type="text"
                           :lazy=false
@@ -391,7 +400,6 @@
   import {RepositoryFactory} from './../../repositories/RepositoryFactory'
   import CSoilTableWrapper from './SoilTable.vue'
   import CSptTableWrapper from './SptTable.vue'
-  import {Chart} from 'highcharts-vue'
   import router from "../../router";
 
   const ProjectRepository = RepositoryFactory.get('projects');
@@ -401,8 +409,7 @@
     components: {
       Autocomplete,
       CSoilTableWrapper: CSoilTableWrapper,
-      CSptTableWrapper: CSptTableWrapper,
-      highcharts: Chart
+      CSptTableWrapper: CSptTableWrapper
     },
     created() {
       this.liquec.id = this.$route.params.id;
@@ -411,6 +418,7 @@
       return {
         codes: [{key: "EUROCODE", name: "Eurocode", selected: true}, {key: "NCSE_02", name: "NCSE-02", selected: false}],
         mainIconHeight: 20,
+        saveDraftModal: false,
         saveDraftButton: "disabled",
         calculateButton: "disabled",
         autocomplete: [],
@@ -433,6 +441,8 @@
           finesContent: null,
           checkLiquefaction: true,
         },
+        stringMin: 2,
+        stringMax: 60,
         layerThicknessBound: 30,
         layerThicknessDescription: "Range of supported values: {0.01-30.00} (m)",
         layerThicknessInputValidation: null,
@@ -603,15 +613,21 @@
       liquec: {
         handler(val) {
           this.saveDraftButton = (this.liquec.projectId)? null : "disabled";
-          this.calculateButton = (this.liquec.projectId &&
-                  this.liquec.code &&
-                  this.liquec.peakGroundAcceleration &&
-                  this.liquec.earthquakeMagnitude &&
-                  this.liquec.coefficientOfContribution &&
-                  this.liquec.groundWaterTableDepth &&
-                  this.liquec.soilLayers.length > 0 &&
-                  this.liquec.spts.length > 0)? null : "disabled";
-
+          this.calculateButton = (this.liquec.code === 'EUROCODE')?
+                  (this.liquec.projectId &&
+                          this.liquec.code &&
+                          this.peakInputValidation &&
+                          this.earthquakeInputValidation &&
+                          this.groundInputValidation &&
+                          this.liquec.soilLayers.length > 0 &&
+                          this.liquec.spts.length > 0)? null : "disabled" :
+                  (this.liquec.projectId &&
+                          this.liquec.code &&
+                          this.peakInputValidation &&
+                          this.coefficientInputValidation &&
+                          this.groundInputValidation &&
+                          this.liquec.soilLayers.length > 0 &&
+                          this.liquec.spts.length > 0)? null : "disabled";
         },
         deep: true
       }
@@ -801,7 +817,7 @@
         this.handleAddLayerButton();
       },
       onSoilTypeInput(value) {
-        this.soilTypeInputValidation = !!value;
+        this.soilTypeInputValidation = !!value && value.length > this.stringMin && value.length < this.stringMax;
         this.handleAddLayerButton();
       },
       onAboveGwtInput(value) {
@@ -1018,9 +1034,12 @@
         const {data} = await LiquecRepository.calculate(this.liquec);
         await router.push(`/liquec/${data.id}`);
       },
-      async saveDraft() {
-        const {data} = await LiquecRepository.saveDraft(this.liquec);
-        this.liquec.id = data.id;
+      saveDraft() {
+        const self = this;
+        LiquecRepository.saveDraft(this.liquec).then(response => {
+          self.liquec.id = response.id;
+          self.saveDraftModal = true;
+        });
       }
     }
   }

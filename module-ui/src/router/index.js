@@ -10,6 +10,7 @@ const Login = () => import('@/views/pages/Login')
 const Dashboard = () => import('@/views/Dashboard')
 const ManageProjects = () => import('@/views/project/ManageProjects')
 const CreateNewProject = () => import('@/views/project/CreateNewProject')
+const ProjectDetail = () => import('@/views/project/ProjectDetail')
 const ManageLiquecCalculations = () => import('@/views/liquec/ManageLiquecCalculations')
 const ManageLiquecDrafts = () => import('@/views/liquec/ManageLiquecDrafts')
 const CreateNewLiquec = () => import('@/views/liquec/CreateNewLiquec')
@@ -59,6 +60,11 @@ function configRoutes () {
               path: 'create',
               name: 'Create New Project',
               component: CreateNewProject
+            },
+            {
+              path: ':id',
+              name: 'Project Detail',
+              component: ProjectDetail
             }
           ]
         },

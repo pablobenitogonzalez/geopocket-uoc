@@ -29,5 +29,9 @@ export default {
         localStorage.removeItem('user');
         axios.defaults.headers['Authorization'] = '';
         console.log('logout!!!');
+    },
+    getUserName() {
+        const user = JSON.parse(localStorage.getItem('user'));
+        return user.data.name;
     }
 }

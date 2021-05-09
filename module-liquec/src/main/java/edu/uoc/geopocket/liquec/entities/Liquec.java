@@ -1,10 +1,10 @@
 package edu.uoc.geopocket.liquec.entities;
 
+import edu.uoc.geopocket.common.Status;
 import edu.uoc.geopocket.common.entities.Audit;
 import edu.uoc.geopocket.common.entities.ColumnDefinitions;
 import edu.uoc.geopocket.common.entities.GeoPocketEntity;
 import edu.uoc.geopocket.liquec.common.LiquecCode;
-import edu.uoc.geopocket.liquec.common.LiquecStatus;
 import edu.uoc.geopocket.project.entities.Project;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -31,7 +31,7 @@ public class Liquec implements GeoPocketEntity {
 
     @Enumerated(EnumType.STRING)
     @Column(name = "STATUS", columnDefinition = ColumnDefinitions.VARCHAR2_30)
-    private LiquecStatus status;
+    private Status status;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "CODE", columnDefinition = ColumnDefinitions.VARCHAR2_30)

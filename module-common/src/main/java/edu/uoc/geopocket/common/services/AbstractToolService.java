@@ -2,11 +2,9 @@ package edu.uoc.geopocket.common.services;
 
 import edu.uoc.geopocket.common.entities.GeoPocketEntity;
 import edu.uoc.geopocket.common.exceptions.GeoPocketException;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public abstract class AbstractToolService<T extends GeoPocketEntity> {
+public abstract class AbstractToolService<T extends GeoPocketEntity> implements ToolService {
 
     public abstract JpaRepository<T, Long> getRepository();
 

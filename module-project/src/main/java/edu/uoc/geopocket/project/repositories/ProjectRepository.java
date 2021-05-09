@@ -11,4 +11,5 @@ public interface ProjectRepository extends JpaRepository<Project, Long> {
     Page<Project> findAllByUser(String user, Pageable pageable);
     List<Project> findAllByNameContainingIgnoreCaseOrderByNameAsc(String name);
     List<Project> findAllByUserAndNameContainingIgnoreCaseOrderByNameAsc(String user, String name);
+    Long countByUser(String user);
 }

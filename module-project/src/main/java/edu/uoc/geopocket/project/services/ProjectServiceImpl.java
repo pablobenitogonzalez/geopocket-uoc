@@ -71,4 +71,12 @@ public class ProjectServiceImpl implements ProjectService {
         repository.delete(project);
     }
 
+    @Override
+    public Long countProjects() {
+        if (securityContextHelper.hasRole(GeoPocketRole.ROLE_ADMIN)) {
+            return repository.count();
+        }
+        return repository.countByUser(securityContextHelper.getUserName());
+    }
+
 }

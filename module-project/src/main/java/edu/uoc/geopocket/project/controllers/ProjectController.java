@@ -77,4 +77,10 @@ public class ProjectController {
     public void remove(final @PathVariable("id") Long id) {
         service.delete(id);
     }
+
+    @GetMapping("/total")
+    @ResponseStatus(HttpStatus.OK)
+    public Long countProjects() {
+        return service.countProjects();
+    }
 }

@@ -1,6 +1,6 @@
 package edu.uoc.geopocket.liquec.dtos;
 
-import edu.uoc.geopocket.liquec.common.LiquecStatus;
+import edu.uoc.geopocket.common.Status;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -8,5 +8,5 @@ import lombok.Setter;
 @Setter
 public class LiquecSearchDTO {
     private Long projectId;
-    private LiquecStatus status;
+    private Status status;
 }

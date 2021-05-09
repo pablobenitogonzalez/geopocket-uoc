@@ -26,16 +26,16 @@
             <CCol sm="6">
               <CJumbotron style="margin-bottom: 8px">
                 <CListGroup>
-                  <CListGroupItem>Identifier: {{liquec.id}}</CListGroupItem>
-                  <CListGroupItem>Code calculation: {{liquec.code}}</CListGroupItem>
-                  <CListGroupItem>Peak Ground Acceleration: {{liquec.peakGroundAcceleration}}</CListGroupItem>
-                  <CListGroupItem v-if="liquec.code === 'EUROCODE'">Earthquake Magnitude: {{liquec.earthquakeMagnitude}}</CListGroupItem>
-                  <CListGroupItem v-if="liquec.code === 'NCSE_02'">Coefficient Of Contribution: {{liquec.coefficientOfContribution}}</CListGroupItem>
-                  <CListGroupItem>Ground Water Table Depth: {{liquec.groundWaterTableDepth}}</CListGroupItem>
-                  <CListGroupItem>Project Name: {{liquec.project.name}}</CListGroupItem>
-                  <CListGroupItem>Project Location: {{liquec.project.location}}</CListGroupItem>
-                  <CListGroupItem>Project Organization: {{liquec.project.organization}}</CListGroupItem>
-                  <CListGroupItem>Calculated On: {{getUpdated(liquec.audit.updatedOn)}}</CListGroupItem>
+                  <CListGroupItem><b>Identifier:</b> {{liquec.id}}</CListGroupItem>
+                  <CListGroupItem><b>Code calculation:</b> {{liquec.code}}</CListGroupItem>
+                  <CListGroupItem><b>Peak Ground Acceleration:</b> {{liquec.peakGroundAcceleration}}</CListGroupItem>
+                  <CListGroupItem v-if="liquec.code === 'EUROCODE'"><b>Earthquake Magnitude:</b> {{liquec.earthquakeMagnitude}}</CListGroupItem>
+                  <CListGroupItem v-if="liquec.code === 'NCSE_02'"><b>Coefficient Of Contribution:</b> {{liquec.coefficientOfContribution}}</CListGroupItem>
+                  <CListGroupItem><b>Ground Water Table Depth:</b> {{liquec.groundWaterTableDepth}}</CListGroupItem>
+                  <CListGroupItem><b>Project Name:</b> {{liquec.project.name}}</CListGroupItem>
+                  <CListGroupItem><b>Project Location:</b> {{liquec.project.location}}</CListGroupItem>
+                  <CListGroupItem><b>Project Organization:</b> {{liquec.project.organization}}</CListGroupItem>
+                  <CListGroupItem><b>Calculated On:</b> {{getUpdated(liquec.audit.updatedOn)}}</CListGroupItem>
                 </CListGroup>
               </CJumbotron>
             </CCol>
@@ -82,7 +82,6 @@
 
 <script>
   import {RepositoryFactory} from './../../repositories/RepositoryFactory'
-  import {Chart} from 'highcharts-vue'
   import CResultTableWrapper from './ResultTable.vue'
   import moment from 'moment'
   import router from "../../router";
@@ -91,7 +90,6 @@
   export default {
     name: 'LiquecResult',
     components: {
-      highcharts: Chart,
       CResultTableWrapper: CResultTableWrapper
     },
     created() {
@@ -486,6 +484,8 @@
         data.spts.forEach(function (spt) {
           if (spt.sptResult.result === 'ERROR') {
             spt._classes = 'table-dark';
+          } else if (spt.sptResult.result === 'SKIP') {
+            spt._classes = 'table-dark';
           } else if (spt.sptResult.safetyFactor < 1) {
             spt._classes = 'table-danger';
           } else if (spt.sptResult.safetyFactor < 1.25) {
@@ -498,7 +498,7 @@
         return date !== null ? this.formatDate(date) : '-'
       },
       formatDate(date) {
-        return moment(date).format('DD-MM-YYYY HH:MM:SS')
+        return moment(date).format('DD-MM-YYYY HH:mm:ss')
       },
       async cloneLiquec() {
         const {data} = await LiquecRepository.clone(this.liquec.id);
@@ -534,7 +534,7 @@
         this.safetyFactorChartOptions.xAxis.min = xBound;
         this.safetyFactorChartOptions.yAxis.max = this.getYSafetyFactorChartBound();
         this.liquec.spts.forEach(function (spt) {
-          if (spt.sptResult.result !== 'ERROR') {
+          if (spt.sptResult.result !== 'ERROR' && spt.sptResult.result !== 'SKIP') {
             // highcharts: spt corrected
             self.sptCorrectedChartOptions.series[0].data.push([-parseFloat(spt.depth), parseFloat(spt.sptResult.sptCorrected)]);
             self.sptCorrectedChartOptions.series[0].data.sort(function (a, b) {

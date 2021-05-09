@@ -15,9 +15,12 @@ export default {
         return Repository.post(`${resource}`, playload);
     },
     updateProject(id, playload) {
-        return Repository.post(`${resource}/${id}`, playload);
+        return Repository.put(`${resource}/${id}`, playload);
     },
     deleteProject(id) {
         return Repository.delete(`${resource}/${id}`);
+    },
+    countProjects() {
+        return Repository.get(`${resource}/total`);
     }
 }

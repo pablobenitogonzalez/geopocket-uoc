@@ -26,7 +26,7 @@ public class CheckLiquefactionOptionTask extends AbstractTaskExecutable {
 
         log.info("Check liquefaction: " + liquecProject.getSoilLayers().get(layerIndexWithSptInside).getCheckLiquefaction());
         if (!liquecProject.getSoilLayers().get(layerIndexWithSptInside).getCheckLiquefaction()) {
-            throw new LiquecTaskException(task, Result.SKIPT, LiquecReason.NOT_LIQUEFACTION);
+            throw new LiquecTaskException(task, Result.SKIP, LiquecReason.NOT_LIQUEFACTION);
         }
     }
 

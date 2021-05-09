@@ -18,4 +18,6 @@ public interface ProjectService {
 
     void delete(final Long id);
 
+    Long countProjects();
+
 }

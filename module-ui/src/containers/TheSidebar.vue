@@ -5,8 +5,8 @@
     :show.sync="show"
   >
     <CSidebarBrand 
-      :imgFull="{ width: 118, height: 46, alt: 'Logo', src: 'img/brand/coreui-base-white.svg'}"
-      :imgMinimized="{ width: 118, height: 46, alt: 'Logo', src: 'img/brand/coreui-signet-white.svg'}"
+      :imgFull="{ width: 118, height: 46, alt: 'Logo', src: 'img/brand/geopocket-base-white.svg'}"
+      :imgMinimized="{ width: 118, height: 46, alt: 'Logo', src: 'img/brand/geopocket-signet-white.svg'}"
     />
     <CRenderFunction flat :content-to-render="nav"/>
     <CSidebarMinimizer

@@ -1,5 +1,6 @@
 package edu.uoc.geopocket.liquec.common;
 
+import edu.uoc.geopocket.common.Status;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -7,5 +8,5 @@ import lombok.Setter;
 @Setter
 public class LiquecSearch {
     private Long projectId;
-    private LiquecStatus status;
+    private Status status;
 }

@@ -23,6 +23,19 @@
                 <template #updated="{item}">
                     <td>{{getUpdated(item.audit)}}</td>
                 </template>
+                <template #actions="{item}">
+                    <td>
+                        <CButton
+                                color="secondary-off"
+                                shape="square"
+                                size="sm"
+                                @click="toDetail(item.id)"
+                                v-c-tooltip.hover="{ content: 'Detail' }"
+                        >
+                            <CIcon :height="20" name="cil-arrow-circle-right"/>
+                        </CButton>
+                    </td>
+                </template>
             </CDataTable>
             <CPagination
                     v-if="totalPages > 1"
@@ -38,6 +51,7 @@
 
 <script>
     import moment from 'moment'
+    import router from "../../router";
 
     export default {
         name: 'ProjectTable',
@@ -51,7 +65,7 @@
             fields: {
                 type: Array,
                 default () {
-                    return ['id', 'name', 'location', 'organization', 'user', 'created', 'updated']
+                    return ['id', 'name', 'location', 'organization', 'user', 'created', 'updated', 'actions']
                 }
             },
             caption: {
@@ -79,6 +93,9 @@
             },
             onChangePagination(value) {
                 this.$emit('updatePagination:activePage', value)
+            },
+            toDetail(id) {
+                router.push(`/project/${id}`);
             }
         }
     }

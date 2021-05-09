@@ -34,7 +34,8 @@ import {
     cilClone,
     cilInfo,
     cilSync,
-    cilArrowCircleRight
+    cilArrowCircleRight,
+    cilTrash
 } from '@coreui/icons'
 import {
   cifUs,
@@ -153,7 +154,8 @@ export const iconsSet = Object.assign(
       cilClone,
       cilInfo,
       cilSync,
-      cilArrowCircleRight
+      cilArrowCircleRight,
+      cilTrash
   },
   {
     cifUs,

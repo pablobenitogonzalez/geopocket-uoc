@@ -17,6 +17,7 @@
         <module>module-liquec</module>
         <module>module-project</module>
         <module>module-security</module>
+        <module>module-statistics</module>
         <module>module-ui</module>
     </modules>
 
@@ -104,6 +105,11 @@
             <dependency>
                 <groupId>edu.uoc.geopocket</groupId>
                 <artifactId>module-security</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>edu.uoc.geopocket</groupId>
+                <artifactId>module-statistics</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>

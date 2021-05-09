@@ -41,6 +41,10 @@
         </dependency>
         <dependency>
             <groupId>edu.uoc.geopocket</groupId>
+            <artifactId>module-statistics</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>edu.uoc.geopocket</groupId>
             <artifactId>module-ui</artifactId>
         </dependency>
 

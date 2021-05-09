@@ -3,6 +3,7 @@ package edu.uoc.geopocket;
 import edu.uoc.geopocket.common.EnableCommonModule;
 import edu.uoc.geopocket.liquec.EnableLiquecModule;
 import edu.uoc.geopocket.project.EnableProjectModule;
+import edu.uoc.geopocket.statistics.EnableStatisticsModule;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration;
@@ -10,6 +11,7 @@ import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfi
 @EnableCommonModule
 @EnableProjectModule
 @EnableLiquecModule
+@EnableStatisticsModule
 @SpringBootApplication(exclude = { SecurityAutoConfiguration.class })
 public class GeoPocket {
 
