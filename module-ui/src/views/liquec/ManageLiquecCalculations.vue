@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-show="!loading">
     <CRow>
       <CCol sm="12">
         <CTableWrapper
@@ -20,6 +20,7 @@
 </template>
 
 <script>
+  import Status from "../../assets/constants/status";
   import {RepositoryFactory} from './../../repositories/RepositoryFactory'
   import CTableWrapper from './LiquecTable.vue'
 
@@ -29,6 +30,7 @@ export default {
   components: { CTableWrapper },
   data () {
     return {
+      loading: true,
       liquecCollection: [],
       totalPages: 0,
       pageNumber: 0
@@ -39,10 +41,11 @@ export default {
   },
   methods: {
     async fetch(page) {
-      const {data} = await LiquecRepository.get('CALCULATED', page);
+      const {data} = await LiquecRepository.get(Status.CALCULATED, page);
       this.liquecCollection = this.addClasses(data.content);
       this.totalPages = data.totalPages;
       this.pageNumber = data.pageable.pageNumber;
+      this.loading = false;
     },
     addClasses(collection) {
       collection.forEach(function (liquec) {

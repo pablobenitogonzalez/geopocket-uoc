@@ -1,86 +1,125 @@
 <template>
-  <CRow>
-    <CCol col>
-      <CCard>
-        <CCardHeader>
-          <CRow>
-            <CCol col="6" class="text-left" style="line-height: 38px">
-              Liquec - Calculation Results
-            </CCol>
-            <CCol col="6" class="text-right">
-              <CButton
-                      style="padding-right: 8px"
-                      color="primary"
-                      shape="pill"
-                      size="sm"
-                      @click="cloneLiquec"
-                      v-c-tooltip.hover="{ content: 'Clone Liquec' }"
-              >
-                <CIcon :height="mainIconHeight" name="cil-clone" />
-              </CButton>
-            </CCol>
-          </CRow>
-        </CCardHeader>
-        <CCardBody>
-          <CRow>
-            <CCol sm="6">
-              <CJumbotron style="margin-bottom: 8px">
-                <CListGroup>
-                  <CListGroupItem><b>Identifier:</b> {{liquec.id}}</CListGroupItem>
-                  <CListGroupItem><b>Code calculation:</b> {{liquec.code}}</CListGroupItem>
-                  <CListGroupItem><b>Peak Ground Acceleration:</b> {{liquec.peakGroundAcceleration}}</CListGroupItem>
-                  <CListGroupItem v-if="liquec.code === 'EUROCODE'"><b>Earthquake Magnitude:</b> {{liquec.earthquakeMagnitude}}</CListGroupItem>
-                  <CListGroupItem v-if="liquec.code === 'NCSE_02'"><b>Coefficient Of Contribution:</b> {{liquec.coefficientOfContribution}}</CListGroupItem>
-                  <CListGroupItem><b>Ground Water Table Depth:</b> {{liquec.groundWaterTableDepth}}</CListGroupItem>
-                  <CListGroupItem><b>Project Name:</b> {{liquec.project.name}}</CListGroupItem>
-                  <CListGroupItem><b>Project Location:</b> {{liquec.project.location}}</CListGroupItem>
-                  <CListGroupItem><b>Project Organization:</b> {{liquec.project.organization}}</CListGroupItem>
-                  <CListGroupItem><b>Calculated On:</b> {{getUpdated(liquec.audit.updatedOn)}}</CListGroupItem>
-                </CListGroup>
-              </CJumbotron>
-            </CCol>
-            <CCol sm="6">
-              <CJumbotron style="margin-bottom: 8px">
-                <CResultTableWrapper
-                        :items="liquec.spts"
-                        hover
-                        striped
-                        bordered
-                        small
-                        fixed
-                />
-              </CJumbotron>
-            </CCol>
-          </CRow>
-          <CRow>
-            <CCol sm="3">
-              <CJumbotron style="margin-bottom: 8px; background-color: #ffffff; padding: 1rem 1rem">
-                <highcharts :options="sptCorrectedChartOptions"></highcharts>
-              </CJumbotron>
-            </CCol>
-            <CCol sm="3">
-              <CJumbotron style="margin-bottom: 8px; background-color: #ffffff; padding: 1rem 1rem">
-                <highcharts :options="cycleStressRatioChartOptions"></highcharts>
-              </CJumbotron>
-            </CCol>
-            <CCol sm="3">
-              <CJumbotron style="margin-bottom: 8px; background-color: #ffffff; padding: 1rem 1rem">
-                <highcharts :options="cycleResistRatioChartOptions"></highcharts>
-              </CJumbotron>
-            </CCol>
-            <CCol sm="3">
-              <CJumbotron style="margin-bottom: 8px; background-color: #ffffff; padding: 1rem 1rem">
-                <highcharts :options="safetyFactorChartOptions"></highcharts>
-              </CJumbotron>
-            </CCol>
-          </CRow>
-        </CCardBody>
-      </CCard>
-    </CCol>
-  </CRow>
+    <CRow>
+      <CCol col>
+        <CCard>
+          <CCardHeader>
+            <CRow>
+              <CCol col="6" class="text-left" style="line-height: 38px">
+                Liquec - Calculation Results
+              </CCol>
+              <CCol col="6" class="text-right">
+                <CButton
+                        style="padding-right: 8px"
+                        color="primary"
+                        shape="pill"
+                        size="sm"
+                        @click="cloneLiquec"
+                        v-c-tooltip.hover="{ content: 'Clone Liquec' }"
+                >
+                  <CIcon :height="mainIconHeight" name="cil-clone" />
+                </CButton>
+              </CCol>
+            </CRow>
+          </CCardHeader>
+          <CCardBody>
+            <CRow>
+              <CCol sm="6">
+                <CCard style="min-height: 425px">
+                  <CCardHeader class="information">
+                    Main Information
+                  </CCardHeader>
+                  <CCardBody class="information">
+                    <CTabs variant="pills" vertical>
+                      <CTab active>
+                        <template slot="title">
+                          <CIcon name="cil-applications"/> <span style="margin-left: 8px">Calculation</span>
+                        </template>
+                        <CListGroup>
+                          <CListGroupItem><b>Calculation identifier:</b> {{liquec.id}}</CListGroupItem>
+                          <CListGroupItem v-if="liquec.code === EUROCODE"><b>Code:</b> Eurocode</CListGroupItem>
+                          <CListGroupItem v-if="liquec.code === NCSE_02"><b>Code:</b> NCSE-02</CListGroupItem>
+                          <CListGroupItem><b>Peak Ground Acceleration:</b> {{liquec.peakGroundAcceleration}} (a/g)</CListGroupItem>
+                          <CListGroupItem v-if="liquec.code === EUROCODE"><b>Earthquake Magnitude:</b> {{liquec.earthquakeMagnitude}} (Mw)</CListGroupItem>
+                          <CListGroupItem v-if="liquec.code === NCSE_02"><b>Coefficient Of Contribution:</b> {{liquec.coefficientOfContribution}} (K)</CListGroupItem>
+                          <CListGroupItem><b>Calculated By:</b> {{liquec.audit.updatedBy}}</CListGroupItem>
+                          <CListGroupItem><b>Calculated On:</b> {{getUpdated(liquec.audit.updatedOn)}}</CListGroupItem>
+                        </CListGroup>
+                      </CTab>
+                      <CTab active>
+                        <template slot="title">
+                          <CIcon name="cil-folder"/> <span style="margin-left: 8px">Project</span>
+                        </template>
+                        <CListGroup>
+                          <CListGroupItem><b>Project identifier:</b> {{liquec.project.id}}</CListGroupItem>
+                          <CListGroupItem><b>Project Name:</b> {{liquec.project.name}}</CListGroupItem>
+                          <CListGroupItem><b>Project Location:</b> {{liquec.project.location}}</CListGroupItem>
+                          <CListGroupItem><b>Project Organization:</b> {{liquec.project.organization}}</CListGroupItem>
+                          <CListGroupItem><b>Owner:</b> {{liquec.project.user}}</CListGroupItem>
+                          <CListGroupItem><b>Created On:</b> {{getUpdated(liquec.project.audit.createdOn)}}</CListGroupItem>
+                          <CListGroupItem><b>Updated On:</b> {{getUpdated(liquec.project.audit.updatedOn)}}</CListGroupItem>
+                        </CListGroup>
+                      </CTab>
+                      <CTab :disabled="disabled">
+                        <template slot="title">
+                          <CIcon name="cil-bookmark"/> <span style="margin-left: 8px">Additional</span>
+                        </template>
+                        <CListGroup>
+                          <CListGroupItem><b>Build Version:</b> {{liquec.calculationInfo.buildVersion}}</CListGroupItem>
+                          <CListGroupItem><b>Build Group:</b> {{liquec.calculationInfo.buildGroup}}</CListGroupItem>
+                          <CListGroupItem><b>Build Artifact:</b> {{liquec.calculationInfo.buildArtifact}}</CListGroupItem>
+                          <CListGroupItem><b>Build Time:</b> {{liquec.calculationInfo.buildTime}}</CListGroupItem>
+                          <CListGroupItem><b>Active Profile:</b> {{liquec.calculationInfo.activeProfiles}}</CListGroupItem>
+                          <CListGroupItem><b>Elapsed Time:</b> {{liquec.calculationInfo.elapsedTime}} (ns)</CListGroupItem>
+                        </CListGroup>
+                      </CTab>
+                    </CTabs>
+                  </CCardBody>
+                </CCard>
+              </CCol>
+              <CCol sm="6">
+                <CJumbotron style="margin-bottom: 8px; min-height: 425px">
+                  <CResultTableWrapper
+                          :items="liquec.spts"
+                          hover
+                          striped
+                          bordered
+                          small
+                          fixed
+                  />
+                </CJumbotron>
+              </CCol>
+            </CRow>
+            <CRow>
+              <CCol sm="3">
+                <CJumbotron style="margin-bottom: 8px; background-color: #ffffff; padding: 1rem 1rem">
+                  <highcharts :options="sptCorrectedChartOptions"></highcharts>
+                </CJumbotron>
+              </CCol>
+              <CCol sm="3">
+                <CJumbotron style="margin-bottom: 8px; background-color: #ffffff; padding: 1rem 1rem">
+                  <highcharts :options="cycleStressRatioChartOptions"></highcharts>
+                </CJumbotron>
+              </CCol>
+              <CCol sm="3">
+                <CJumbotron style="margin-bottom: 8px; background-color: #ffffff; padding: 1rem 1rem">
+                  <highcharts :options="cycleResistRatioChartOptions"></highcharts>
+                </CJumbotron>
+              </CCol>
+              <CCol sm="3">
+                <CJumbotron style="margin-bottom: 8px; background-color: #ffffff; padding: 1rem 1rem">
+                  <highcharts :options="safetyFactorChartOptions"></highcharts>
+                </CJumbotron>
+              </CCol>
+            </CRow>
+          </CCardBody>
+        </CCard>
+      </CCol>
+    </CRow>
 </template>
 
 <script>
+  import Code from './../../assets/constants/code';
+  import Result from './../../assets/constants/result';
   import {RepositoryFactory} from './../../repositories/RepositoryFactory'
   import CResultTableWrapper from './ResultTable.vue'
   import moment from 'moment'
@@ -97,13 +136,19 @@
     },
     data () {
       return {
+        EUROCODE: Code.EUROCODE,
+        NCSE_02: Code.NCSE_02,
         id: null,
         liquec: {
           id: null,
           project: {
             name: null,
             location: null,
-            organization: null
+            organization: null,
+            audit: {
+              createdOn: null,
+              createdBy: null
+            }
           },
           code: null,
           peakGroundAcceleration: null,
@@ -113,9 +158,19 @@
           soilLayers: [],
           spts: [],
           audit: {
-            updatedOn: null
+            updatedOn: null,
+            createdOn: null
+          },
+          calculationInfo: {
+            buildVersion: null,
+            buildGroup: null,
+            buildArtifact: null,
+            buildTime: null,
+            activeProfiles: null,
+            elapsedTime: null
           }
         },
+        disabled: "disabled",
         mainIconHeight: 20,
         sptCorrectedChartOptions: {
           chart: {
@@ -479,12 +534,13 @@
         const {data} = await LiquecRepository.getLiquec(this.id);
         this.liquec = this.addClasses(data);
         this.initCharts();
+        this.disabled = (data.calculationInfo)? null : "disabled";
       },
       addClasses(data) {
         data.spts.forEach(function (spt) {
-          if (spt.sptResult.result === 'ERROR') {
+          if (spt.sptResult.result === Result.ERROR) {
             spt._classes = 'table-dark';
-          } else if (spt.sptResult.result === 'SKIP') {
+          } else if (spt.sptResult.result === Result.SKIP) {
             spt._classes = 'table-dark';
           } else if (spt.sptResult.safetyFactor < 1) {
             spt._classes = 'table-danger';
@@ -534,7 +590,7 @@
         this.safetyFactorChartOptions.xAxis.min = xBound;
         this.safetyFactorChartOptions.yAxis.max = this.getYSafetyFactorChartBound();
         this.liquec.spts.forEach(function (spt) {
-          if (spt.sptResult.result !== 'ERROR' && spt.sptResult.result !== 'SKIP') {
+          if (spt.sptResult.result !== Result.ERROR && spt.sptResult.result !== Result.SKIP) {
             // highcharts: spt corrected
             self.sptCorrectedChartOptions.series[0].data.push([-parseFloat(spt.depth), parseFloat(spt.sptResult.sptCorrected)]);
             self.sptCorrectedChartOptions.series[0].data.sort(function (a, b) {

@@ -22,15 +22,15 @@
                         <CBadge v-if="item._result === 'success'" shape="pill" color="success">{{item.id}}</CBadge>
                         <CBadge v-if="item._result === 'warning'" shape="pill" color="warning">{{item.id}}</CBadge>
                         <CBadge v-if="item._result === 'danger'" shape="pill" color="danger">{{item.id}}</CBadge>
-                        <CBadge v-if="item.status === 'draft'" shape="pill" color="secondary">{{item.id}}</CBadge>
+                        <CBadge v-if="item.status === DRAFT" shape="pill" color="secondary">{{item.id}}</CBadge>
                     </td>
                 </template>
                 <template #project="{item}">
                     <td>{{item.project.name}}</td>
                 </template>
                 <template #mode="{item}">
-                    <td v-if="item.code === 'EUROCODE'">Eurocode</td>
-                    <td v-if="item.code === 'NCSE_02'">NCSE-02</td>
+                    <td v-if="item.code === EUROCODE">Eurocode</td>
+                    <td v-if="item.code === NCSE_02">NCSE-02</td>
                 </template>
                 <template #layers="{item}">
                     <td>{{item.soilLayers.length}}</td>
@@ -47,8 +47,11 @@
                 <template #owner="{item}">
                     <td>{{item.audit.createdBy}}</td>
                 </template>
+                <template #updatedBy="{item}">
+                    <td>{{item.audit.updatedBy}}</td>
+                </template>
                 <template #actions="{item}">
-                    <td v-if="item.status === 'calculated'">
+                    <td v-if="item.status === CALCULATED">
                         <CButton
                                 color="secondary-off"
                                 shape="square"
@@ -59,7 +62,7 @@
                             <CIcon :height="20" name="cil-arrow-circle-right"/>
                         </CButton>
                     </td>
-                    <td v-if="item.status === 'draft'">
+                    <td v-if="item.status === DRAFT">
                         <CButton
                                 color="secondary-off"
                                 shape="square"
@@ -85,6 +88,8 @@
 </template>
 
 <script>
+    import Code from "../../assets/constants/code";
+    import Status from "../../assets/constants/status";
     import moment from 'moment'
     import router from "../../router";
 
@@ -92,6 +97,10 @@
         name: 'LiquecTable',
         data () {
             return {
+                EUROCODE: Code.EUROCODE,
+                NCSE_02: Code.NCSE_02,
+                DRAFT: Status.DRAFT,
+                CALCULATED: Status.CALCULATED,
                 currentPage: this.activePage,
             }
         },
@@ -100,7 +109,7 @@
             fields: {
                 type: Array,
                 default () {
-                    return ['id', 'project', 'mode', 'layers', 'spts', 'created', 'updated', 'owner', 'actions']
+                    return ['id', 'project', 'mode', 'layers', 'spts', 'created', 'updated', 'owner', 'updatedBy', 'actions']
                 }
             },
             caption: {

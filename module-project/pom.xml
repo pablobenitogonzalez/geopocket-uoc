@@ -42,10 +42,10 @@
             <artifactId>slf4j-api</artifactId>
         </dependency>
 
-        <!-- ModelMapper -->
+        <!-- MapStruct -->
         <dependency>
-            <groupId>org.modelmapper</groupId>
-            <artifactId>modelmapper</artifactId>
+            <groupId>org.mapstruct</groupId>
+            <artifactId>mapstruct</artifactId>
         </dependency>
 
         <!-- H2 Database -->
@@ -63,6 +63,10 @@
         </dependency>
 
         <!-- Hibernate validator -->
+        <dependency>
+            <groupId>javax.validation</groupId>
+            <artifactId>validation-api</artifactId>
+        </dependency>
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-validator</artifactId>

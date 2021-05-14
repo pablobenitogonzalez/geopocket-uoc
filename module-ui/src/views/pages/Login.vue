@@ -12,9 +12,9 @@
             <h2>GeoPocket</h2>
             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
             <p>
-              Username: <i>user1</i> | Password: <i>123456</i><br>
-              Username: <i>user2</i> | Password: <i>123456</i><br>
-              Username: <i>admin</i> | Password: <i>123456</i></p>
+              <i>student1@uoc.edu</i> - <i>123456</i><br>
+              <i>student2@uoc.edu</i> - <i>123456</i><br>
+              <i>professor@uoc.edu</i> - <i>123456</i></p>
           </CCard>
           <CCard class="p-4">
             <CCardBody>

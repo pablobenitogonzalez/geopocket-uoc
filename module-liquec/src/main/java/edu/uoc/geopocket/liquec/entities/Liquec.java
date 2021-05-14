@@ -1,10 +1,10 @@
 package edu.uoc.geopocket.liquec.entities;
 
 import edu.uoc.geopocket.common.Status;
-import edu.uoc.geopocket.common.entities.Audit;
-import edu.uoc.geopocket.common.entities.ColumnDefinitions;
-import edu.uoc.geopocket.common.entities.GeoPocketEntity;
+import edu.uoc.geopocket.common.entities.*;
+import edu.uoc.geopocket.common.jpa.converters.StatusJpaConverter;
 import edu.uoc.geopocket.liquec.common.LiquecCode;
+import edu.uoc.geopocket.liquec.jpa.converters.CodeJpaConverter;
 import edu.uoc.geopocket.project.entities.Project;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -15,10 +15,10 @@ import java.util.List;
 
 @Getter
 @Setter
-@Entity
 @EqualsAndHashCode(of = {"id"})
+@Entity
 @Table(name = "LIQUEC")
-public class Liquec implements GeoPocketEntity {
+public class Liquec implements GeoPocketToolEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,12 +29,12 @@ public class Liquec implements GeoPocketEntity {
     @JoinColumn(name = "PROJECT_ID")
     private Project project;
 
-    @Enumerated(EnumType.STRING)
-    @Column(name = "STATUS", columnDefinition = ColumnDefinitions.VARCHAR2_30)
+    @Convert(converter = StatusJpaConverter.class)
+    @Column(name = "STATUS", columnDefinition = ColumnDefinitions.VARCHAR_30)
     private Status status;
 
-    @Enumerated(EnumType.STRING)
-    @Column(name = "CODE", columnDefinition = ColumnDefinitions.VARCHAR2_30)
+    @Convert(converter = CodeJpaConverter.class)
+    @Column(name = "CODE", columnDefinition = ColumnDefinitions.VARCHAR_30)
     private LiquecCode code;
 
     @Column(name = "PEAK_GROUND_ACC")
@@ -59,5 +59,8 @@ public class Liquec implements GeoPocketEntity {
 
     @Embedded
     private Audit audit = new Audit();
+
+    @Embedded
+    private CalculationInfo calculationInfo = new CalculationInfo();
 
 }

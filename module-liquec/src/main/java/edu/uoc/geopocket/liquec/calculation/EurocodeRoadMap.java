@@ -1,5 +1,6 @@
 package edu.uoc.geopocket.liquec.calculation;
 
+import edu.uoc.geopocket.common.calculation.RoadMap;
 import org.springframework.stereotype.Component;
 
 import static edu.uoc.geopocket.liquec.calculation.LiquecTask.*;

@@ -1,6 +1,6 @@
 package edu.uoc.geopocket.liquec.calculation.ranges.crr;
 
-import edu.uoc.geopocket.liquec.calculation.Describable;
+import edu.uoc.geopocket.common.calculation.Describable;
 import edu.uoc.geopocket.liquec.calculation.LiquecFines;
 import lombok.Getter;
 

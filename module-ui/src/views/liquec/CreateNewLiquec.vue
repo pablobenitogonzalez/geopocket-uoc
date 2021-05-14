@@ -395,6 +395,7 @@
 </template>
 
 <script>
+  import Code from './../../assets/constants/code';
   import Autocomplete from '@trevoreyre/autocomplete-vue'
   import '@trevoreyre/autocomplete-vue/dist/style.css'
   import {RepositoryFactory} from './../../repositories/RepositoryFactory'
@@ -416,7 +417,7 @@
     },
     data () {
       return {
-        codes: [{key: "EUROCODE", name: "Eurocode", selected: true}, {key: "NCSE_02", name: "NCSE-02", selected: false}],
+        codes: [{key: Code.EUROCODE, name: "Eurocode", selected: true}, {key: Code.NCSE_02, name: "NCSE-02", selected: false}],
         mainIconHeight: 20,
         saveDraftModal: false,
         saveDraftButton: "disabled",
@@ -441,7 +442,7 @@
           finesContent: null,
           checkLiquefaction: true,
         },
-        stringMin: 2,
+        stringMin: 3,
         stringMax: 60,
         layerThicknessBound: 30,
         layerThicknessDescription: "Range of supported values: {0.01-30.00} (m)",
@@ -469,7 +470,7 @@
         liquec: {
           id: null,
           projectId: null,
-          code: "EUROCODE",
+          code: Code.EUROCODE,
           peakGroundAcceleration: null,
           earthquakeMagnitude: 7.5,
           coefficientOfContribution: 1.0,
@@ -613,16 +614,16 @@
       liquec: {
         handler(val) {
           this.saveDraftButton = (this.liquec.projectId)? null : "disabled";
-          this.calculateButton = (this.liquec.code === 'EUROCODE')?
+          this.calculateButton = (this.liquec.code === Code.EUROCODE)?
                   (this.liquec.projectId &&
-                          this.liquec.code &&
+                          this.liquec.code === Code.EUROCODE &&
                           this.peakInputValidation &&
                           this.earthquakeInputValidation &&
                           this.groundInputValidation &&
                           this.liquec.soilLayers.length > 0 &&
                           this.liquec.spts.length > 0)? null : "disabled" :
                   (this.liquec.projectId &&
-                          this.liquec.code &&
+                          this.liquec.code === Code.NCSE_02 &&
                           this.peakInputValidation &&
                           this.coefficientInputValidation &&
                           this.groundInputValidation &&
@@ -644,7 +645,7 @@
         this.liquec.code = data.code;
         this.liquec.peakGroundAcceleration = data.peakGroundAcceleration;
         this.onPeakInput(this.liquec.peakGroundAcceleration);
-        if (this.liquec.code === 'EUROCODE') {
+        if (this.liquec.code === Code.EUROCODE) {
           this.codes[0].selected = true;
           this.codes[1].selected = false;
           this.liquec.earthquakeMagnitude = data.earthquakeMagnitude;
@@ -742,7 +743,7 @@
         this.setYSptChartBound();
       },
       onChangeChecked(checked, e) {
-        this.liquec.code = e.target.value;
+        this.liquec.code = parseInt(e.target.value);
         if (this.liquec.code === this.codes[1].key) { // NCSE_02
           this.earthquakeReadonly = true;
           this.earthquakeInputValidation = null;
@@ -817,7 +818,7 @@
         this.handleAddLayerButton();
       },
       onSoilTypeInput(value) {
-        this.soilTypeInputValidation = !!value && value.length > this.stringMin && value.length < this.stringMax;
+        this.soilTypeInputValidation = !!value && value.length >= this.stringMin && value.length <= this.stringMax;
         this.handleAddLayerButton();
       },
       onAboveGwtInput(value) {
@@ -983,7 +984,7 @@
       },
       launchSptModal() {
         this.depthBound = (this.liquec.soilLayers.length > 0)? parseFloat(this.liquec.soilLayers[this.liquec.soilLayers.length-1].finalDepth) : 0.0;
-        this.depthDescription = 'Range of supported values: {0.01-' + parseFloat(this.depthBound) + '} (m)';;
+        this.depthDescription = 'Range of supported values: {0.01-' + parseFloat(this.depthBound) + '} (m)';
         this.sptModal = true;
       },
       handleAddSptButton() {

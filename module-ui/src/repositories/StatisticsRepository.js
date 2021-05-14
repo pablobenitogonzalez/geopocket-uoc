@@ -1,11 +1,17 @@
-import Repository from './Repository'
+import ajax from './Repository'
 
 const resource = '/statistics';
 export default {
+    getStatistics() {
+        return ajax.get(`${resource}/dashboard`);
+    },
     countAll() {
-        return Repository.get(`${resource}/count`);
+        return ajax.get(`${resource}/count`);
     },
     getUsages(id) {
-        return Repository.get(`${resource}/${id}`);
+        return ajax.get(`${resource}/${id}/usages`);
+    },
+    getSummaries(id) {
+        return ajax.get(`${resource}/${id}/summaries`);
     }
 }

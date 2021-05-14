@@ -8,7 +8,6 @@ import edu.uoc.geopocket.security.helper.SecurityContextHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -29,7 +28,7 @@ public class ProjectServiceImpl implements ProjectService {
 
     @Override
     public Page<Project> findAll(final Pageable pageable) {
-        if (securityContextHelper.hasRole(GeoPocketRole.ROLE_ADMIN)) {
+        if (securityContextHelper.hasRole(GeoPocketRole.ROLE_PROFESSOR)) {
             return repository.findAll(pageable);
         }
         return repository.findAllByUser(securityContextHelper.getUserName(), pageable);
@@ -37,7 +36,7 @@ public class ProjectServiceImpl implements ProjectService {
 
     @Override
     public List<Project> autocomplete(String projectName) {
-        if (securityContextHelper.hasRole(GeoPocketRole.ROLE_ADMIN)) {
+        if (securityContextHelper.hasRole(GeoPocketRole.ROLE_PROFESSOR)) {
             return repository.findAllByNameContainingIgnoreCaseOrderByNameAsc(projectName);
         }
         return repository.findAllByUserAndNameContainingIgnoreCaseOrderByNameAsc(securityContextHelper.getUserName(), projectName);
@@ -46,7 +45,7 @@ public class ProjectServiceImpl implements ProjectService {
     @Override
     public Project get(final Long id) {
         final Project project = repository.findById(id).orElseThrow(() -> new GeoPocketException(String.format("Project %s not found", id)));
-        if (!securityContextHelper.hasRole(GeoPocketRole.ROLE_ADMIN) && !project.getUser().equals(securityContextHelper.getUserName())) {
+        if (!securityContextHelper.hasRole(GeoPocketRole.ROLE_PROFESSOR) && !project.getUser().equals(securityContextHelper.getUserName())) {
             throw new GeoPocketException("Different project owner");
         }
         return project;
@@ -73,7 +72,7 @@ public class ProjectServiceImpl implements ProjectService {
 
     @Override
     public Long countProjects() {
-        if (securityContextHelper.hasRole(GeoPocketRole.ROLE_ADMIN)) {
+        if (securityContextHelper.hasRole(GeoPocketRole.ROLE_PROFESSOR)) {
             return repository.count();
         }
         return repository.countByUser(securityContextHelper.getUserName());

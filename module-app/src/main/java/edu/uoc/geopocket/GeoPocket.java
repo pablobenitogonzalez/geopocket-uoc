@@ -1,5 +1,6 @@
 package edu.uoc.geopocket;
 
+import edu.uoc.geopocket.berock.EnableBerockModule;
 import edu.uoc.geopocket.common.EnableCommonModule;
 import edu.uoc.geopocket.liquec.EnableLiquecModule;
 import edu.uoc.geopocket.project.EnableProjectModule;
@@ -10,6 +11,7 @@ import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfi
 
 @EnableCommonModule
 @EnableProjectModule
+@EnableBerockModule
 @EnableLiquecModule
 @EnableStatisticsModule
 @SpringBootApplication(exclude = { SecurityAutoConfiguration.class })

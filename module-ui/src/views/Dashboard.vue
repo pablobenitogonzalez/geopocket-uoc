@@ -3,18 +3,18 @@
         <CRow>
             <CCol sm="6" md="4">
                 <CWidgetIcon
-                        header="999"
+                        :header="projects+''"
                         text="Projects"
                         color="primary"
-                        :icon-padding="true"
+                        :icon-padding="false"
                 >
                     <CIcon name="cil-folder" width="24"/>
                 </CWidgetIcon>
                 <CWidgetIcon v-for="app in apps"
                              :header="app.total+''"
-                             :text="app.tool"
-                             color="dark"
-                             :icon-padding="true"
+                             :text="tools[app.tool].name+' ('+tools[app.tool].description+')'"
+                             :color="tools[app.tool].color"
+                             :icon-padding="false"
                 >
                     <CIcon name="cil-applications" width="24"/>
                 </CWidgetIcon>
@@ -35,42 +35,58 @@
             </CCol>
         </CRow>
         <CRow>
-            <CCol sm="6" md="12">
+            <CCol sm="12">
                 <CCard>
+                    <CCardHeader>
+                        Last Calculations
+                    </CCardHeader>
                     <CCardBody>
-                        <highcharts :options="appTimeChartOptions"></highcharts>
+                        <CSummaryTableWrapper v-show="!loading"
+                                              :items="summaries"
+                                              hover
+                                              striped
+                                              bordered
+                                              small
+                                              fixed
+                        />
                     </CCardBody>
                 </CCard>
             </CCol>
         </CRow>
-
     </div>
 </template>
 
 <script>
+    import Status from './../assets/constants/status';
+    import {RepositoryFactory} from './../repositories/RepositoryFactory'
+    import CSummaryTableWrapper from './common/SummaryTable.vue'
 
+    const StatisticsRepository = RepositoryFactory.get('statistics');
     export default {
         name: 'Dashboard',
         components: {
+            CSummaryTableWrapper
         },
         data () {
             return {
-                apps: [
-                    {
-                        tool: 'Liquec',
-                        total: 10
-                    } ,
-                    {
-                        tool: 'App2',
-                        total: 20
+                loading: true,
+                tools: {
+                    berock: {
+                        name: 'Berock',
+                        description: 'Bearing Resistance in Rocks',
+                        color: 'primary'
                     },
-                    {
-                        tool: 'App3',
-                        total: 5
+                    liquec: {
+                        name: 'Liquec',
+                        description: 'Liquefaction According to Eurocode',
+                        color: 'primary'
                     }
-                ],
+                },
+                projects: 0,
+                apps: [],
+                summaries: [],
                 appUsageChartOptions: {
-                    colors: ['#C0C0C0', '#FFD700'],
+                    colors: ['#b1b7c1', '#f9b115'],
                     chart: {
                         type: 'column',
                         inverted: true,
@@ -100,11 +116,7 @@
                             }
                         },
                         lineWidth: 0,
-                        categories: [
-                            'Liquec',
-                            'App2',
-                            'App3'
-                        ]
+                        categories: []
                     },
                     yAxis: {
                         crosshair: {
@@ -130,12 +142,12 @@
                     },
                     series: [
                         {
-                            name: 'Draft',
-                            data: [10, 5, 7]
+                            name: 'draft',
+                            data: []
                         },
                         {
-                            name: 'Calculated',
-                            data: [22, 23, 8]
+                            name: 'calculated',
+                            data: []
                         }
                     ]
                 },
@@ -162,75 +174,59 @@
                             allowPointSelect: true,
                             cursor: 'pointer',
                             dataLabels: {
-                                enabled: true
+                                enabled: true,
+                                format: '<b>{point.name}</b>: {point.percentage:.1f} %'
                             },
-                            showInLegend: true
+                            showInLegend: false
                         }
                     },
                     legend: {
                         enabled: false
                     },
-                    series: [{
-                        name: 'Percentage',
-                        colorByPoint: true,
-                        data: [
-                            {
-                                name: 'Liquec',
-                                y: 15.00
-                            },
-                            {
-                                name: 'App2',
-                                y: 30.00
-                            },
-                            {
-                                name: 'App3',
-                                y: 55.00
-                            }
-                        ]
-                    }]
-                },
-                appTimeChartOptions: {
-                    chart: {
-                        type: 'spline'
-                    },
-                    legend: {
-                        enabled: true,
-                        symbolWidth: 40
-                    },
-                    title: {
-                        text: 'Usages in last days'
-                    },
-                    subtitle: {
-                        text: null
-                    },
-                    yAxis: {
-                        title: {
-                            text: null
-                        }
-                    },
-                    xAxis: {
-                        categories: ['05/04', '06/04', '07/04', '08/04', '09/04', '10/04', 'Today']
-                    },
-                    tooltip: {
-                        valueSuffix: '%'
-                    },
-                    series: [
-                        {
-                            name: 'Liquec',
-                            data: [0,1,3,5,0,1,2],
-                            dashStyle: 'ShortDot',
-                            color: '#f0a45d'
-                        }, {
-                            name: 'App2',
-                            data: [2,2,10,2,9,3,3],
-                            dashStyle: 'ShortDot'
-                        }, {
-                            name: 'App3',
-                            data: [5,1,1,0,0,0,1],
-                            dashStyle: 'ShortDot'
-                        }
-                    ]
+                    series: []
                 }
+            }
+        },
+        mounted() {
+            this.fetch()
+        },
+        methods: {
+            async fetch() {
+                const {data} = await StatisticsRepository.getStatistics();
+                this.projects = data.projects;
+                this.apps = data.toolMetrics;
+                this.summaries = data.summaries;
+                this.initUsagesChart(data);
+                this.initPercentagesChart(data);
+                this.loading = false;
+            },
+            initUsagesChart(statistics) {
+                const self = this;
+                statistics.toolMetrics.forEach(function (o) {
+                    self.appUsageChartOptions.xAxis.categories.push(self.tools[o.tool].name);
+                    statistics.toolStatusMetrics.forEach(function (e) {
+                        if (o.tool === e.tool) {
+                            (e.status === Status.DRAFT)? self.appUsageChartOptions.series[0].data.push(e.total) :
+                                self.appUsageChartOptions.series[1].data.push(e.total);
+                        }
+                    })
+                });
+
+            },
+            initPercentagesChart(statistics) {
+                const self = this;
+                const pie = {
+                    name: 'Percentage',
+                    colorByPoint: true,
+                    data: []
+                };
+                statistics.toolMetrics.forEach(function (o) {
+                    pie.data.push({
+                        name: self.tools[o.tool].name,
+                        y: o.percentage
+                    })
+                });
+                self.appPercentageChartOptions.series.push(pie);
             }
         }
     }

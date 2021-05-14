@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-show="!loading">
     <CRow>
       <CCol sm="12">
         <CTableWrapper
@@ -29,6 +29,7 @@
     components: { CTableWrapper },
     data() {
       return {
+        loading: true,
         projects: [],
         totalPages: 0,
         pageNumber: 0
@@ -43,6 +44,7 @@
         this.projects = data.content;
         this.totalPages = data.totalPages;
         this.pageNumber = data.pageable.pageNumber;
+        this.loading = false;
       },
       onChangePagination(page) {
         this.fetch(page-1)

@@ -1,0 +1,21 @@
+version: '3.3'
+
+services:
+  db-service:
+    container_name: geopocket-db-local
+    image: mysql:8.0.19
+    restart: always
+    environment:
+      MYSQL_DATABASE: 'geopocket'
+      MYSQL_USER: 'geopocket'
+      MYSQL_PASSWORD: 'password'
+      MYSQL_ROOT_PASSWORD: 'password'
+    ports:
+      - '3306:3306'
+    expose:
+      - '3306'
+    volumes:
+      - mysql:/var/lib/mysql
+
+volumes:
+  mysql:

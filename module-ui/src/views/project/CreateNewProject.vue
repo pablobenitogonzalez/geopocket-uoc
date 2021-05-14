@@ -79,7 +79,7 @@
     name: 'CreateNewProject',
     data () {
       return {
-        stringMin: 2,
+        stringMin: 3,
         stringMax: 60,
         mainIconHeight: 20,
         saveButton: "disabled",
@@ -110,13 +110,13 @@
         await router.push(`/project/manage`);
       },
       onNameInput(value) {
-        this.nameInputValidation = !!value && value.length > this.stringMin && value.length < this.stringMax;
+        this.nameInputValidation = !!value && value.length >= this.stringMin && value.length <= this.stringMax;
       },
       onLocationInput(value) {
-        this.locationInputValidation = !!value && value.length > this.stringMin && value.length < this.stringMax;
+        this.locationInputValidation = !!value && value.length >= this.stringMin && value.length <= this.stringMax;
       },
       onOrganizationInput(value) {
-        this.organizationInputValidation = !!value && value.length > this.stringMin && value.length < this.stringMax;
+        this.organizationInputValidation = !!value && value.length >= this.stringMin && value.length <= this.stringMax;
       }
     }
   }

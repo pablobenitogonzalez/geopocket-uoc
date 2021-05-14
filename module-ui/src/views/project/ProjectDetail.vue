@@ -1,127 +1,151 @@
 <template>
-  <CRow>
-    <CCol col>
-      <CCard>
-        <CCardHeader>
-          <CRow>
-            <CCol col="6" class="text-left" style="line-height: 38px">
-              Project Details
-            </CCol>
-            <CCol col="6" class="text-right">
-              <CButton
-                      style="padding-right: 8px"
-                      color="primary"
-                      shape="pill"
-                      size="sm"
-                      @click="editProject"
-                      v-c-tooltip.hover="{ content: 'Edit project' }"
-              >
-                <CIcon :height="mainIconHeight" name="cil-pencil" />
-              </CButton>
-              <span style="padding-right: 10px"></span>
-              <CButton
-                      style="padding-right: 8px"
-                      color="primary"
-                      shape="pill"
-                      size="sm"
-                      :disabled="deleteButton"
-                      @click="deleteProject"
-                      v-c-tooltip.hover="{ content: 'Delete project' }"
-              >
-                <CIcon :height="mainIconHeight" name="cil-trash" />
-              </CButton>
-            </CCol>
-          </CRow>
-        </CCardHeader>
-        <CCardBody>
-          <CRow>
-            <CCol sm="6">
-              <CJumbotron style="margin-bottom: 8px">
-                <CListGroup>
-                  <CListGroupItem><b>Identifier:</b> {{project.id}}</CListGroupItem>
-                  <CListGroupItem><b>Project Name:</b> {{project.name}}</CListGroupItem>
-                  <CListGroupItem><b>Project Location:</b> {{project.location}}</CListGroupItem>
-                  <CListGroupItem><b>Project Organization:</b> {{project.organization}}</CListGroupItem>
-                  <CListGroupItem><b>Project Owner:</b> {{project.user}}</CListGroupItem>
-                  <CListGroupItem><b>Created On:</b> {{getDate(project.audit.createdOn)}}</CListGroupItem>
-                  <CListGroupItem><b>Updated On:</b> {{getDate(project.audit.updatedOn)}}</CListGroupItem>
-                </CListGroup>
-              </CJumbotron>
-            </CCol>
-            <CCol sm="6">
-              <CJumbotron style="margin-bottom: 8px; background-color: #ffffff; padding: 1rem 1rem">
-                <highcharts :options="usagesChartOptions"></highcharts>
-              </CJumbotron>
-            </CCol>
-          </CRow>
-          <CModal
-                  :show.sync="projectModal"
-                  :no-close-on-backdrop="true"
-                  :centered="true"
-          >
-            <template #header>
-              <h6 class="modal-title">Edit Project</h6>
-              <CButtonClose @click="projectModal = false" class="text-white"/>
-            </template>
-            <CInput
-                    label="Project Name:"
-                    placeholder="Enter project name"
-                    description="Range of supported characters: {3-60}"
-                    type="text"
-                    :lazy=false
-                    v-model="project.name"
-                    :isValid="nameInputValidation"
-                    @input="onNameInput"
-                    horizontal
-            />
-            <CInput
-                    label="Project Location:"
-                    placeholder="Enter project location"
-                    description="Range of supported characters: {3-60}"
-                    type="text"
-                    :lazy=false
-                    v-model="project.location"
-                    :isValid="locationInputValidation"
-                    @input="onLocationInput"
-                    horizontal
-            />
-            <CInput
-                    label="Project Organization:"
-                    placeholder="Enter project organization"
-                    description="Range of supported characters: {3-60}"
-                    type="text"
-                    :lazy=false
-                    v-model="project.organization"
-                    :isValid="organizationInputValidation"
-                    @input="onOrganizationInput"
-                    horizontal
-            />
-            <template #footer>
-              <CButton @click="projectModal = false" color="dark">Cancel</CButton>
-              <CButton
-                      @click="edit"
-                      color="primary"
-                      :disabled="editButton">
-                Create
-              </CButton>
-            </template>
-          </CModal>
-        </CCardBody>
-      </CCard>
-    </CCol>
-  </CRow>
+  <div>
+    <CRow>
+      <CCol col>
+        <CCard>
+          <CCardHeader>
+            <CRow>
+              <CCol col="6" class="text-left" style="line-height: 38px">
+                Project Details
+              </CCol>
+              <CCol col="6" class="text-right">
+                <CButton
+                        style="padding-right: 8px"
+                        color="primary"
+                        shape="pill"
+                        size="sm"
+                        @click="editProject"
+                        v-c-tooltip.hover="{ content: 'Edit project' }"
+                >
+                  <CIcon :height="mainIconHeight" name="cil-pencil" />
+                </CButton>
+                <span style="padding-right: 10px"></span>
+                <CButton
+                        style="padding-right: 8px"
+                        color="primary"
+                        shape="pill"
+                        size="sm"
+                        :disabled="deleteButton"
+                        @click="deleteProject"
+                        v-c-tooltip.hover="{ content: 'Delete project' }"
+                >
+                  <CIcon :height="mainIconHeight" name="cil-trash" />
+                </CButton>
+              </CCol>
+            </CRow>
+          </CCardHeader>
+          <CCardBody>
+            <CRow>
+              <CCol sm="6">
+                <CCard style="min-height: 425px">
+                  <CCardHeader class="information">
+                    Main Information
+                  </CCardHeader>
+                  <CCardBody class="information">
+                    <CListGroup>
+                      <CListGroupItem><b>Project Identifier:</b> {{project.id}}</CListGroupItem>
+                      <CListGroupItem><b>Project Name:</b> {{project.name}}</CListGroupItem>
+                      <CListGroupItem><b>Project Location:</b> {{project.location}}</CListGroupItem>
+                      <CListGroupItem><b>Project Organization:</b> {{project.organization}}</CListGroupItem>
+                      <CListGroupItem><b>Project Owner:</b> {{project.user}} (<i>last updated by {{project.audit.updatedBy}}</i>)</CListGroupItem>
+                      <CListGroupItem><b>Created On:</b> {{getDate(project.audit.createdOn)}}</CListGroupItem>
+                      <CListGroupItem><b>Updated On:</b> {{getDate(project.audit.updatedOn)}}</CListGroupItem>
+                    </CListGroup>
+                  </CCardBody>
+                </CCard>
+              </CCol>
+              <CCol sm="6">
+                <CJumbotron style="margin-bottom: 8px; background-color: #ffffff; padding: 1rem 1rem">
+                  <highcharts :options="usagesChartOptions"></highcharts>
+                </CJumbotron>
+              </CCol>
+            </CRow>
+            <CRow>
+              <CCol sm="12">
+                <CJumbotron v-show="!loading" style="margin-bottom: 8px">
+                  <CSummaryTableWrapper
+                          :items="summaries"
+                          hover
+                          striped
+                          bordered
+                          small
+                          fixed
+                  />
+                </CJumbotron>
+              </CCol>
+            </CRow>
+            <CModal
+                    :show.sync="projectModal"
+                    :no-close-on-backdrop="true"
+                    :centered="true"
+            >
+              <template #header>
+                <h6 class="modal-title">Edit Project</h6>
+                <CButtonClose @click="closeEditModal" class="text-white"/>
+              </template>
+              <CInput
+                      label="Project Name:"
+                      placeholder="Enter project name"
+                      description="Range of supported characters: {3-60}"
+                      type="text"
+                      :lazy=false
+                      v-model="modalName"
+                      :isValid="nameInputValidation"
+                      @input="onNameInput"
+                      horizontal
+              />
+              <CInput
+                      label="Project Location:"
+                      placeholder="Enter project location"
+                      description="Range of supported characters: {3-60}"
+                      type="text"
+                      :lazy=false
+                      v-model="modalLocation"
+                      :isValid="locationInputValidation"
+                      @input="onLocationInput"
+                      horizontal
+              />
+              <CInput
+                      label="Project Organization:"
+                      placeholder="Enter project organization"
+                      description="Range of supported characters: {3-60}"
+                      type="text"
+                      :lazy=false
+                      v-model="modalOrganization"
+                      :isValid="organizationInputValidation"
+                      @input="onOrganizationInput"
+                      horizontal
+              />
+              <template #footer>
+                <CButton @click="closeEditModal" color="dark">Cancel</CButton>
+                <CButton
+                        @click="edit"
+                        color="primary"
+                        :disabled="editButton">
+                  Update
+                </CButton>
+              </template>
+            </CModal>
+          </CCardBody>
+        </CCard>
+      </CCol>
+    </CRow>
+  </div>
 </template>
 
 <script>
   import {RepositoryFactory} from './../../repositories/RepositoryFactory'
   import moment from 'moment'
   import router from "../../router";
+  import CSummaryTableWrapper from '../common/SummaryTable.vue'
+  import Status from "../../assets/constants/status";
 
   const ProjectRepository = RepositoryFactory.get('projects');
   const StatisticsRepository = RepositoryFactory.get('statistics');
   export default {
     name: 'ProjectDetail',
     components: {
+      CSummaryTableWrapper
     },
     watch: {
       project: {
@@ -138,13 +162,22 @@
     },
     data () {
       return {
+        loading: true,
         id: null,
+        status: [
+          {key: Status.DRAFT, value: 'Draft'},
+          {key: Status.CALCULATED, value: 'Calculated'}
+        ],
         tools: {
+          berock: {
+            name: 'Berock'
+          },
           liquec: {
             name: 'Liquec'
           }
         },
-        stringMin: 2,
+        summaries: [],
+        stringMin: 3,
         stringMax: 60,
         mainIconHeight: 20,
         deleteButton: "disabled",
@@ -161,9 +194,13 @@
           user: null,
           audit: {
             createdOn: null,
-            updatedOn: null
+            updatedOn: null,
+            updatedBy: null
           }
         },
+        modalName: null,
+        modalLocation: null,
+        modalOrganization: null,
         toolUsages: [],
         usagesChartOptions: {
           chart: {
@@ -220,7 +257,10 @@
           this.checkDeleteButton(response.data);
           self.toolUsages = response.data;
         });
-
+        await StatisticsRepository.getSummaries(this.id).then(response => {
+          self.summaries = response.data;
+          this.loading = false;
+        });
       },
       getDate (date) {
         return date !== null ? this.formatDate(date) : '-'
@@ -229,9 +269,12 @@
         return moment(date).format('DD-MM-YYYY HH:mm:ss')
       },
       editProject() {
-        this.onNameInput(this.project.name);
-        this.onLocationInput(this.project.location);
-        this.onOrganizationInput(this.project.organization);
+        this.modalName = this.project.name;
+        this.modalLocation = this.project.location;
+        this.modalOrganization = this.project.organization;
+        this.onNameInput(this.modalName);
+        this.onLocationInput(this.modalLocation);
+        this.onOrganizationInput(this.modalOrganization);
         this.editButton = (this.nameInputValidation &&
                 this.locationInputValidation &&
                 this.organizationInputValidation)? null : "disabled";
@@ -246,7 +289,8 @@
       initChart(toolUsages) {
         const self = this;
         toolUsages.forEach(function (o) {
-          self.usagesChartOptions.xAxis.categories.push(`${self.tools[o.tool].name}<br>{${o.status}}`);
+          const status = self.status.find(e => e.key === o.status);
+          self.usagesChartOptions.xAxis.categories.push(`${self.tools[o.tool].name}<br>{${status.value}}`);
         });
         let users = toolUsages[0].usages.map(usage => usage.user);
         users.forEach((function (user) {
@@ -274,18 +318,30 @@
         this.deleteButton = (canDelete)? null : "disabled";
       },
       async edit() {
+        this.project.name = this.modalName;
+        this.project.location = this.modalLocation;
+        this.project.organization = this.modalOrganization;
         const {data} = await ProjectRepository.updateProject(this.id, this.project);
         this.project = data;
+        this.modalName = null;
+        this.modalLocation = null;
+        this.modalOrganization = null;
         this.projectModal = false;
       },
       onNameInput(value) {
-        this.nameInputValidation = !!value && value.length > this.stringMin && value.length < this.stringMax;
+        this.nameInputValidation = !!value && value.length >= this.stringMin && value.length <= this.stringMax;
       },
       onLocationInput(value) {
-        this.locationInputValidation = !!value && value.length > this.stringMin && value.length < this.stringMax;
+        this.locationInputValidation = !!value && value.length >= this.stringMin && value.length <= this.stringMax;
       },
       onOrganizationInput(value) {
-        this.organizationInputValidation = !!value && value.length > this.stringMin && value.length < this.stringMax;
+        this.organizationInputValidation = !!value && value.length >= this.stringMin && value.length <= this.stringMax;
+      },
+      closeEditModal()  {
+        this.modalName = null;
+        this.modalLocation = null;
+        this.modalOrganization = null;
+        this.projectModal = false;
       }
     }
   }

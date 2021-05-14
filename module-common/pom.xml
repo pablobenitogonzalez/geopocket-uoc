@@ -42,10 +42,10 @@
             <artifactId>slf4j-api</artifactId>
         </dependency>
 
-        <!-- ModelMapper -->
+        <!-- MapStruct -->
         <dependency>
-            <groupId>org.modelmapper</groupId>
-            <artifactId>modelmapper</artifactId>
+            <groupId>org.mapstruct</groupId>
+            <artifactId>mapstruct</artifactId>
         </dependency>
 
         <!-- H2 Database -->

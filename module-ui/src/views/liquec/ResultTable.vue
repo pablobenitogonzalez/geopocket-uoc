@@ -32,6 +32,8 @@
 </template>
 
 <script>
+    import Result from "../../assets/constants/result";
+
     export default {
         name: 'ResultTable',
         data () {
@@ -64,7 +66,7 @@
                 return parseFloat(number).toFixed(2);
             },
             getSafetyFactor(sptResult) {
-                if (sptResult.result === 'ERROR' || sptResult.result === 'SKIP') return sptResult.message;
+                if (sptResult.result === Result.ERROR || sptResult.result === Result.SKIP) return sptResult.message;
                 return this.formatNumber(sptResult.safetyFactor);
             }
         }

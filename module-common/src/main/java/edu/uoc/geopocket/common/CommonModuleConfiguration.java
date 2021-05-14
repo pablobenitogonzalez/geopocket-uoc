@@ -1,12 +1,13 @@
 package edu.uoc.geopocket.common;
 
 import lombok.extern.slf4j.Slf4j;
-import org.modelmapper.ModelMapper;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
 import javax.annotation.PostConstruct;
+import javax.validation.Validation;
+import javax.validation.Validator;
 
 @Slf4j
 @Configuration
@@ -19,7 +20,7 @@ public class CommonModuleConfiguration {
   }
 
   @Bean
-  public ModelMapper modelMapper() {
-    return new ModelMapper();
+  public Validator validator() {
+    return Validation.buildDefaultValidatorFactory().getValidator();
   }
 }

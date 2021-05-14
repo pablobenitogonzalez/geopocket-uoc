@@ -1,6 +1,8 @@
 package edu.uoc.geopocket.liquec.calculation;
 
-public enum LiquecReason {
+import edu.uoc.geopocket.common.calculation.Reason;
+
+public enum LiquecReason implements Reason {
     MAX_DEPTH_CHECK("> %depth% (m)"),
     ABOVE_GWT("above GWT"),
     NOT_LIQUEFACTION("not check"),

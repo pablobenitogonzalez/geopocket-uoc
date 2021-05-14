@@ -7,8 +7,8 @@ import java.util.Arrays;
 @Getter
 public enum GeoPocketRole {
 
-    ROLE_USER("ROLE_USER"),
-    ROLE_ADMIN("ROLE_ADMIN");
+    ROLE_STUDENT("ROLE_STUDENT"),
+    ROLE_PROFESSOR("ROLE_PROFESSOR");
 
     private String role;
 

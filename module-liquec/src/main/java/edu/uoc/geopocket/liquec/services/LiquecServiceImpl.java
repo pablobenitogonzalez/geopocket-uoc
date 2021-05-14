@@ -1,9 +1,11 @@
 package edu.uoc.geopocket.liquec.services;
 
 import edu.uoc.geopocket.common.Status;
-import edu.uoc.geopocket.common.Usage;
+import edu.uoc.geopocket.common.Tool;
 import edu.uoc.geopocket.common.exceptions.GeoPocketException;
 import edu.uoc.geopocket.common.services.AbstractToolService;
+import edu.uoc.geopocket.common.services.StatisticsService;
+import edu.uoc.geopocket.common.services.ToolService;
 import edu.uoc.geopocket.liquec.calculation.LiquecExecutor;
 import edu.uoc.geopocket.liquec.common.LiquecSearch;
 import edu.uoc.geopocket.liquec.criterias.LiquecCriteria;
@@ -13,48 +15,34 @@ import edu.uoc.geopocket.liquec.entities.Spt;
 import edu.uoc.geopocket.liquec.repositories.LiquecRepository;
 import edu.uoc.geopocket.project.entities.Project;
 import edu.uoc.geopocket.project.services.ProjectService;
-import edu.uoc.geopocket.security.common.GeoPocketRole;
 import edu.uoc.geopocket.security.helper.SecurityContextHelper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
+import org.springframework.boot.info.BuildProperties;
+import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.util.*;
-import java.util.stream.Collectors;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Objects;
+import java.util.Optional;
 
 @Service
-public class LiquecServiceImpl extends AbstractToolService<Liquec> implements LiquecService {
-
-    private LiquecRepository repository;
-
-    private LiquecCriteria criteria;
+public class LiquecServiceImpl extends AbstractToolService<Liquec, LiquecSearch>
+        implements ToolService<Liquec, LiquecSearch>, StatisticsService, LiquecService {
 
     private ProjectService projectService;
 
     private LiquecExecutor executor;
 
-    protected SecurityContextHelper securityContextHelper;
-
     @Autowired
-    public LiquecServiceImpl(final LiquecRepository repository, final LiquecCriteria criteria, final ProjectService projectService,
-                             final LiquecExecutor executor, final SecurityContextHelper securityContextHelper) {
-        this.repository = repository;
-        this.criteria = criteria;
+    public LiquecServiceImpl(final BuildProperties buildProperties, final Environment environment,
+                             final LiquecRepository repository, final LiquecCriteria criteria,
+                             final ProjectService projectService, final LiquecExecutor executor,
+                             final SecurityContextHelper securityContextHelper) {
+        super(Tool.LIQUEC, LiquecSearch.class, buildProperties, environment, repository, criteria, securityContextHelper);
         this.projectService = projectService;
         this.executor = executor;
-        this.securityContextHelper = securityContextHelper;
-    }
-
-    @Override
-    public LiquecRepository getRepository() {
-        return this.repository;
-    }
-
-    @Override
-    public Page<Liquec> findAll(final LiquecSearch liquecSearch, final Pageable pageable) {
-        return criteria.findAll(liquecSearch, pageable);
     }
 
     @Override
@@ -88,13 +76,14 @@ public class LiquecServiceImpl extends AbstractToolService<Liquec> implements Li
     @Transactional
     public Liquec calculate(final Liquec liquec, final Long projectId) {
         final Liquec liquecDBO = saveDraft(liquec, projectId);
+        liquecDBO.setCalculationInfo(buildCalculationInfo());
         executor.calculate(liquecDBO);
         liquecDBO.setStatus(Status.CALCULATED);
         return repository.save(liquecDBO);
     }
 
     @Override
-    public Liquec clone(Long id) {
+    public Liquec clone(final Long id) {
         final Liquec liquecDBO = get(id);
         final Liquec liquec = new Liquec();
         liquec.setCode(liquecDBO.getCode());
@@ -123,41 +112,6 @@ public class LiquecServiceImpl extends AbstractToolService<Liquec> implements Li
             liquec.getSpts().add(spt);
         });
         return saveDraft(liquec, liquecDBO.getProject().getId());
-    }
-
-    @Override
-    public Long countAll() {
-        if (securityContextHelper.hasRole(GeoPocketRole.ROLE_ADMIN)) {
-            return repository.count();
-        }
-        return repository.countByAuditCreatedBy(securityContextHelper.getUserName());
-    }
-
-    @Override
-    public List<Usage> countUsages(Long projectId, Status status) {
-        if (securityContextHelper.hasRole(GeoPocketRole.ROLE_ADMIN)) {
-            final Set<String> users = repository.findDistinctUsers(projectId);
-            final List<Usage> usages = Optional.ofNullable(users).orElse(Collections.emptySet()).stream()
-                    .map(user -> Usage.builder().user(user).usage(repository.countByProjectIdAndStatusAndAuditCreatedBy(projectId, status, user)).build())
-                    .collect(Collectors.toList());
-            if (!checkUsages(usages)) {
-                usages.add(Usage.builder().user(securityContextHelper.getUserName()).usage(0L).build());
-            }
-            return usages;
-        }
-        final ArrayList<Usage> usages = new ArrayList<>();
-        usages.add(Usage.builder().user(securityContextHelper.getUserName())
-                .usage(repository.countByProjectIdAndStatusAndAuditCreatedBy(projectId, status, securityContextHelper.getUserName())).build());
-        return usages;
-    }
-
-    private boolean checkUsages(final List<Usage> usages) {
-        for (Usage usage : usages) {
-            if (usage.getUser().equals(securityContextHelper.getUserName())) {
-                return true;
-            }
-        };
-        return false;
     }
 
 }

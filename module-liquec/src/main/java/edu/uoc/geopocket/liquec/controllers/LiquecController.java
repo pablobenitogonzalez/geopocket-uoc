@@ -6,10 +6,13 @@ import edu.uoc.geopocket.liquec.dtos.LiquecDTO;
 import edu.uoc.geopocket.liquec.dtos.LiquecInputDTO;
 import edu.uoc.geopocket.liquec.dtos.LiquecSearchDTO;
 import edu.uoc.geopocket.liquec.entities.Liquec;
+import edu.uoc.geopocket.liquec.mappers.LiquecInputMapper;
+import edu.uoc.geopocket.liquec.mappers.LiquecMapper;
+import edu.uoc.geopocket.liquec.mappers.LiquecSearchMapper;
 import edu.uoc.geopocket.liquec.services.LiquecServiceImpl;
+import edu.uoc.geopocket.liquec.validation.ValidationHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -18,27 +21,22 @@ import javax.validation.Valid;
 
 @RestController
 @RequestMapping("/liquec")
-public class LiquecController extends AbstractToolController<Liquec, LiquecDTO, LiquecInputDTO> {
+public class LiquecController extends AbstractToolController<Liquec, LiquecSearch, LiquecDTO, LiquecInputDTO, LiquecSearchDTO> {
 
-    private LiquecServiceImpl service;
+    private ValidationHelper validationHelper;
 
     @Autowired
-    public LiquecController(final LiquecServiceImpl service) {
-        super(Liquec.class, LiquecDTO.class);
-        this.service = service;
-    }
-
-    @Override
-    protected LiquecServiceImpl getService() {
-        return this.service;
+    public LiquecController(final LiquecServiceImpl service, final ValidationHelper validationHelper,
+                            final LiquecMapper mapper, final LiquecSearchMapper searchMapper,
+                            final LiquecInputMapper inputMapper) {
+        super(service, mapper, searchMapper, inputMapper);
+        this.validationHelper = validationHelper;
     }
 
     @GetMapping()
     @ResponseStatus(HttpStatus.OK)
-    public Page<LiquecDTO> findAll(final LiquecSearchDTO liquecSearchDTO, final Pageable pageable) {
-        final Page<Liquec> pageLiquec = service.findAll(this.modelMapper.map(liquecSearchDTO, LiquecSearch.class), pageable);
-        return new PageImpl<>(convertToDTOList(pageLiquec.getContent()), pageLiquec.getPageable(),
-            pageLiquec.getTotalElements());
+    public Page<LiquecDTO> findAll(final LiquecSearchDTO searchDTO, final Pageable pageable) {
+        return super.findAll(searchDTO, pageable);
     }
 
     @GetMapping("/{id}")
@@ -49,14 +47,17 @@ public class LiquecController extends AbstractToolController<Liquec, LiquecDTO, 
 
     @PostMapping("/draft")
     @ResponseStatus(HttpStatus.OK)
-    public LiquecDTO saveDraft(final @RequestBody LiquecInputDTO dto) {
-        return convertToDTO(getService().saveDraft(convertToEntity(dto), dto.getProjectId()));
+    public LiquecDTO saveDraft(final @RequestBody LiquecInputDTO inputDTO) {
+        validationHelper.validateDraft(inputDTO);
+        return super.saveDraft(inputDTO);
     }
 
     @PostMapping("/calculate")
     @ResponseStatus(HttpStatus.OK)
-    public LiquecDTO calculate(final @RequestBody @Valid LiquecInputDTO dto) {
-        return convertToDTO(getService().calculate(convertToEntity(dto), dto.getProjectId()));
+    public LiquecDTO calculate(final @RequestBody @Valid LiquecInputDTO inputDTO) {
+        validationHelper.validateSoilLayers(inputDTO.getSoilLayers());
+        validationHelper.validateSpts(inputDTO.getSoilLayers(), inputDTO.getSpts());
+        return super.calculate(inputDTO);
     }
 
     @DeleteMapping("/{id}")
@@ -67,8 +68,8 @@ public class LiquecController extends AbstractToolController<Liquec, LiquecDTO, 
 
     @PostMapping("/{id}/clone")
     @ResponseStatus(HttpStatus.OK)
-    public LiquecDTO calculate(final @PathVariable("id") Long id) {
-        return convertToDTO(getService().clone(id));
+    public LiquecDTO clone(final @PathVariable("id") Long id) {
+        return super.clone(id);
     }
 
 }

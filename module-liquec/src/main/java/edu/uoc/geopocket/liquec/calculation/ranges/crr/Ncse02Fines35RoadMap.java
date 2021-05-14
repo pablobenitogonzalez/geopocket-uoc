@@ -1,6 +1,6 @@
 package edu.uoc.geopocket.liquec.calculation.ranges.crr;
 
-import edu.uoc.geopocket.liquec.calculation.RoadMap;
+import edu.uoc.geopocket.common.calculation.RoadMap;
 import org.springframework.stereotype.Component;
 
 import static edu.uoc.geopocket.liquec.calculation.ranges.crr.EvaluableFines.*;

@@ -1,6 +1,7 @@
 package edu.uoc.geopocket.statistics.common;
 
 import edu.uoc.geopocket.common.Status;
+import edu.uoc.geopocket.common.Tool;
 import edu.uoc.geopocket.common.Usage;
 import lombok.*;
 

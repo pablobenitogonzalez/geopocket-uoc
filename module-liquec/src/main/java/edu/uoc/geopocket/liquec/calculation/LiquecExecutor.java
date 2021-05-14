@@ -1,6 +1,8 @@
 package edu.uoc.geopocket.liquec.calculation;
 
 import edu.uoc.geopocket.common.Result;
+import edu.uoc.geopocket.common.calculation.Describable;
+import edu.uoc.geopocket.common.calculation.RoadMap;
 import edu.uoc.geopocket.common.exceptions.GeoPocketException;
 import edu.uoc.geopocket.liquec.common.LiquecCode;
 import edu.uoc.geopocket.liquec.entities.Liquec;
@@ -17,43 +19,43 @@ import java.util.concurrent.TimeUnit;
 @Component
 public class LiquecExecutor {
 
-    private RoadMapTaskFactory roadMapFactory;
+    private LiquecRoadMapTaskFactory roadMapFactory;
 
-    private TaskFactory taskFactory;
+    private LiquecTaskFactory liquecTaskFactory;
 
     @Autowired
-    public LiquecExecutor(final RoadMapTaskFactory roadMapFactory, final TaskFactory taskFactory) {
+    public LiquecExecutor(final LiquecRoadMapTaskFactory roadMapFactory, final LiquecTaskFactory liquecTaskFactory) {
         this.roadMapFactory = roadMapFactory;
-        this.taskFactory = taskFactory;
+        this.liquecTaskFactory = liquecTaskFactory;
     }
 
-    public void calculate(final Liquec liquecProject) {
+    public void calculate(final Liquec liquec) {
 
-        this.checkCalculationData(liquecProject);
+        this.checkCalculationData(liquec);
 
         final long start = System.nanoTime();
 
         log.info("START LIQUEC CALCULATION");
 
-        for (Spt spt : liquecProject.getSpts()) {
+        for (Spt spt : liquec.getSpts()) {
             this.logStart(spt);
             spt.setSptResult(new SptResult());
-            final RoadMap roadMap = roadMapFactory.getRoadMap(liquecProject.getCode());
+            final RoadMap<? extends Describable> roadMap = roadMapFactory.getRoadMap(liquec.getCode());
             for (Object task : roadMap.getSteps()) {
                 try {
-                    final AbstractTaskExecutable executableTask = this.taskFactory.getExecutableTask((LiquecTask) task);
+                    final AbstractLiquecTaskExecutable executableTask = this.liquecTaskFactory.getExecutableTask((LiquecTask) task);
                     log.info(String.format("%s - Start task - %s",
-                            liquecProject.getCode().getDescription(), executableTask.getTask().getDescription()));
-                    executableTask.execute(liquecProject, spt);
+                            liquec.getCode().getName(), executableTask.getTask().getDescription()));
+                    executableTask.execute(liquec, spt);
                     spt.getSptResult().setResult(Result.OK);
                     log.info(String.format("%s - End task - %s with result %s",
-                        liquecProject.getCode().getDescription(), executableTask.getTask().getDescription(), Result.OK));
+                        liquec.getCode().getName(), executableTask.getTask().getDescription(), Result.OK));
                 } catch (LiquecTaskException e) {
                     final String message = e.getReasonMessage();
                     spt.getSptResult().setResult(e.getResult());
                     spt.getSptResult().setMessage(message);
                     log.info(String.format("%s - End task - %s with result %s and reason <%s>",
-                            liquecProject.getCode().getDescription(), e.getTask().getDescription(), e.getResult(), message));
+                            liquec.getCode().getName(), e.getTask().getDescription(), e.getResult(), message));
                     break;
                 }
             }
@@ -63,32 +65,35 @@ public class LiquecExecutor {
 
         log.info("END LIQUEC CALCULATION");
 
-        log.info(String.format("Calculation took %s", TimeUnit.NANOSECONDS.toMillis(System.nanoTime() - start)));
+        final long elapsedTime = TimeUnit.NANOSECONDS.toMillis(System.nanoTime() - start);
+        liquec.getCalculationInfo().setElapsedTime(elapsedTime);
+
+        log.info(String.format("Calculation took %s", elapsedTime));
     }
 
-    private void checkCalculationData(final Liquec liquecProject) {
-        if (liquecProject == null) {
-            throw new GeoPocketException("Project required");
+    private void checkCalculationData(final Liquec liquec) {
+        if (liquec == null) {
+            throw new GeoPocketException("Liquec required");
         }
-        if (liquecProject.getCode() == null) {
+        if (liquec.getCode() == null) {
             throw new GeoPocketException("Calculation code required");
         }
-        if (liquecProject.getPeakGroundAcceleration() == null) {
+        if (liquec.getPeakGroundAcceleration() == null) {
             throw new GeoPocketException("Peak ground acceleration required");
         }
-        if (liquecProject.getCode().equals(LiquecCode.EUROCODE) && liquecProject.getEarthquakeMagnitude() == null) {
+        if (liquec.getCode().equals(LiquecCode.EUROCODE) && liquec.getEarthquakeMagnitude() == null) {
             throw new GeoPocketException("Earthquake magnitude required");
         }
-        if (liquecProject.getCode().equals(LiquecCode.NCSE_02) && liquecProject.getCoefficientOfContribution() == null) {
+        if (liquec.getCode().equals(LiquecCode.NCSE_02) && liquec.getCoefficientOfContribution() == null) {
             throw new GeoPocketException("Coefficient of contribution required");
         }
-        if (liquecProject.getGroundWaterTableDepth() == null) {
+        if (liquec.getGroundWaterTableDepth() == null) {
             throw new GeoPocketException("Ground water table depth required");
         }
-        if (liquecProject.getSoilLayers().size() == 0) {
+        if (liquec.getSoilLayers().size() == 0) {
             throw new GeoPocketException("Soil layers list required");
         }
-        for (SoilLayer soilLayer : liquecProject.getSoilLayers()) {
+        for (SoilLayer soilLayer : liquec.getSoilLayers()) {
             if (soilLayer.getStartDepth() == null) {
                 throw new GeoPocketException("Start depth required");
             }
@@ -105,10 +110,10 @@ public class LiquecExecutor {
                 throw new GeoPocketException("EvaluableFines content required");
             }
         }
-        if (liquecProject.getSpts().size() == 0) {
+        if (liquec.getSpts().size() == 0) {
             throw new GeoPocketException("Standard penetration test list required");
         }
-        for (Spt spt : liquecProject.getSpts()) {
+        for (Spt spt : liquec.getSpts()) {
             if (spt.getDepth() == null) {
                 throw new GeoPocketException("SPT depth required");
             }

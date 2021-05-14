@@ -3,6 +3,7 @@ package edu.uoc.geopocket.liquec.entities;
 import edu.uoc.geopocket.common.Result;
 import edu.uoc.geopocket.common.entities.Audit;
 import edu.uoc.geopocket.common.entities.GeoPocketEntity;
+import edu.uoc.geopocket.common.jpa.converters.ResultJpaConverter;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -21,7 +22,7 @@ public class SptResult implements GeoPocketEntity {
     @Column(name = "ID", updatable = false)
     private Long id;
 
-    @Enumerated(EnumType.STRING)
+    @Convert(converter = ResultJpaConverter.class)
     @Column(name = "RESULT")
     private Result result;
 

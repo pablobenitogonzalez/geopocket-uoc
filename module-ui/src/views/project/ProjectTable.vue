@@ -23,6 +23,12 @@
                 <template #updated="{item}">
                     <td>{{getUpdated(item.audit)}}</td>
                 </template>
+                <template #owner="{item}">
+                    <td>{{item.audit.createdBy}}</td>
+                </template>
+                <template #updatedBy="{item}">
+                    <td>{{item.audit.updatedBy}}</td>
+                </template>
                 <template #actions="{item}">
                     <td>
                         <CButton
@@ -65,7 +71,7 @@
             fields: {
                 type: Array,
                 default () {
-                    return ['id', 'name', 'location', 'organization', 'user', 'created', 'updated', 'actions']
+                    return ['id', 'name', 'location', 'organization', 'user', 'created', 'updated', 'owner', 'updatedBy', 'actions']
                 }
             },
             caption: {

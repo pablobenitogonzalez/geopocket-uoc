@@ -3,8 +3,9 @@ package edu.uoc.geopocket.project.controllers;
 import edu.uoc.geopocket.project.dtos.ProjectDTO;
 import edu.uoc.geopocket.project.dtos.ProjectInputDTO;
 import edu.uoc.geopocket.project.entities.Project;
+import edu.uoc.geopocket.project.mappers.ProjectInputMapper;
+import edu.uoc.geopocket.project.mappers.ProjectMapper;
 import edu.uoc.geopocket.project.services.ProjectService;
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -25,12 +26,16 @@ public class ProjectController {
 
     private ProjectService service;
 
-    private ModelMapper modelMapper;
+    private ProjectMapper mapper;
+
+    private ProjectInputMapper inputMapper;
 
     @Autowired
-    public ProjectController(final ProjectService service, final ModelMapper modelMapper) {
+    public ProjectController(final ProjectService service, final ProjectMapper mapper,
+                             final ProjectInputMapper inputMapper) {
         this.service = service;
-        this.modelMapper = modelMapper;
+        this.mapper = mapper;
+        this.inputMapper = inputMapper;
     }
 
     @GetMapping()
@@ -38,7 +43,7 @@ public class ProjectController {
     public Page<ProjectDTO> findAll(final Pageable pageable) {
         final Page<Project> pageProject = service.findAll(pageable);
         return new PageImpl<>(Optional.of(pageProject.getContent())
-            .orElse(Collections.emptyList()).stream().map(e -> modelMapper.map(e, ProjectDTO.class))
+            .orElse(Collections.emptyList()).stream().map(e -> mapper.toDTO(e))
             .collect(Collectors.toList()), pageProject.getPageable(),
             pageProject.getTotalElements());
     }
@@ -48,28 +53,28 @@ public class ProjectController {
     public List<ProjectDTO> autocomplete(final @Param("name") String name) {
         final List<Project> projects = service.autocomplete(name);
         return Optional.of(projects)
-                .orElse(Collections.emptyList()).stream().map(e -> modelMapper.map(e, ProjectDTO.class))
+                .orElse(Collections.emptyList()).stream().map(e -> mapper.toDTO(e))
                 .collect(Collectors.toList());
     }
 
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
     public ProjectDTO findById(final @PathVariable("id") Long id) {
-        return modelMapper.map(service.get(id), ProjectDTO.class);
+        return mapper.toDTO(service.get(id));
     }
 
     @PostMapping()
     @ResponseStatus(HttpStatus.OK)
     public ProjectDTO create(final @RequestBody @Valid ProjectInputDTO dto) {
-        return modelMapper.map(service.save(modelMapper.map(dto, Project.class)), ProjectDTO.class);
+        return mapper.toDTO(service.save(inputMapper.toEntity(dto)));
     }
 
     @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
     public ProjectDTO update(final @PathVariable("id") Long id, final @RequestBody @Valid ProjectInputDTO dto) {
-        final Project project = modelMapper.map(dto, Project.class);
+        final Project project = inputMapper.toEntity(dto);
         project.setId(id);
-        return modelMapper.map(service.save(project), ProjectDTO.class);
+        return mapper.toDTO(service.save(project));
     }
 
     @DeleteMapping("/{id}")

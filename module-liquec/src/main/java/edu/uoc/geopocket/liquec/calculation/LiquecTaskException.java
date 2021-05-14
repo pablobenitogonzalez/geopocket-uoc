@@ -1,6 +1,7 @@
 package edu.uoc.geopocket.liquec.calculation;
 
 import edu.uoc.geopocket.common.Result;
+import edu.uoc.geopocket.common.calculation.TaskException;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
@@ -11,7 +12,7 @@ import java.util.Map;
 @Getter
 @Setter
 @AllArgsConstructor
-public class LiquecTaskException extends RuntimeException {
+public class LiquecTaskException extends RuntimeException implements TaskException<LiquecTask, LiquecReason>  {
     private LiquecTask task;
     private Result result;
     private LiquecReason reason;
@@ -24,7 +25,7 @@ public class LiquecTaskException extends RuntimeException {
         this.params = new HashMap<>();
     }
 
-    String getReasonMessage() {
+    public String getReasonMessage() {
         String reasonMessage = this.reason.getMessage();
         for (Map.Entry<String, String> entry : params.entrySet()) {
             reasonMessage = reasonMessage.replace(entry.getKey(), entry.getValue());

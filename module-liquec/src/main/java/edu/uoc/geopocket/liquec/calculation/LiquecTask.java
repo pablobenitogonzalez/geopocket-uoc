@@ -1,5 +1,7 @@
 package edu.uoc.geopocket.liquec.calculation;
 
+import edu.uoc.geopocket.common.calculation.Describable;
+
 public enum LiquecTask implements Describable {
     CHECK_DEPTH_ABOVE_GWT("Check Depth Above GWT"),
     CHECK_MAX_DEPTH("Check Max Depth"),

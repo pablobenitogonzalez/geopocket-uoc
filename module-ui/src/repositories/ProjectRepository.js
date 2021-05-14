@@ -1,26 +1,26 @@
-import Repository from './Repository'
+import ajax from './Repository'
 
 const resource = '/project';
 export default {
     get(page = 0, size = 10) {
-        return Repository.get(`${resource}?page=${page}&size=${size}&sort=audit.updatedOn,desc`);
+        return ajax.get(`${resource}?page=${page}&size=${size}&sort=audit.updatedOn,desc`);
     },
     autocomplete(name) {
-        return Repository.get(`${resource}/autocomplete?name=${name}`);
+        return ajax.get(`${resource}/autocomplete?name=${name}`);
     },
     getProject(id) {
-        return Repository.get(`${resource}/${id}`);
+        return ajax.get(`${resource}/${id}`);
     },
     createProject(playload) {
-        return Repository.post(`${resource}`, playload);
+        return ajax.post(`${resource}`, playload);
     },
     updateProject(id, playload) {
-        return Repository.put(`${resource}/${id}`, playload);
+        return ajax.put(`${resource}/${id}`, playload);
     },
     deleteProject(id) {
-        return Repository.delete(`${resource}/${id}`);
+        return ajax.delete(`${resource}/${id}`);
     },
     countProjects() {
-        return Repository.get(`${resource}/total`);
+        return ajax.get(`${resource}/total`);
     }
 }

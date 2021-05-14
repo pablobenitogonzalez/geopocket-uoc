@@ -7,11 +7,11 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.cors.CorsConfiguration;
@@ -38,17 +38,17 @@ public class SecurityModuleConfiguration extends WebSecurityConfigurerAdapter {
   @Autowired
   public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
     auth.inMemoryAuthentication()
-            .withUser("user1")
+            .withUser("student1@uoc.edu")
             .password(passwordEncoder().encode("123456"))
-            .roles(GeoPocketRole.ROLE_USER.getRoleName());
+            .roles(GeoPocketRole.ROLE_STUDENT.getRoleName());
     auth.inMemoryAuthentication()
-            .withUser("user2")
+            .withUser("student2@uoc.edu")
             .password(passwordEncoder().encode("123456"))
-            .roles(GeoPocketRole.ROLE_USER.getRoleName());
+            .roles(GeoPocketRole.ROLE_STUDENT.getRoleName());
     auth.inMemoryAuthentication()
-            .withUser("admin")
+            .withUser("professor@uoc.edu")
             .password(passwordEncoder().encode("123456"))
-            .roles(GeoPocketRole.ROLE_USER.getRoleName(), GeoPocketRole.ROLE_ADMIN.getRoleName());
+            .roles(GeoPocketRole.ROLE_STUDENT.getRoleName(), GeoPocketRole.ROLE_PROFESSOR.getRoleName());
   }
 
   @Override
@@ -58,12 +58,17 @@ public class SecurityModuleConfiguration extends WebSecurityConfigurerAdapter {
             .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
             .antMatchers("/").permitAll()
             .antMatchers("/login").permitAll()
-            .antMatchers("/public/**").permitAll()
-            .antMatchers("/resources/**").permitAll()
+            .antMatchers("/manifest.json").permitAll()
+            .antMatchers("/*.png").permitAll()
+            .antMatchers("/img/**/*").permitAll()
             .anyRequest().authenticated()
             .and()
             .httpBasic()
-            .authenticationEntryPoint(authenticationEntryPoint);
+            .authenticationEntryPoint(authenticationEntryPoint)
+            .and()
+            .sessionManagement()
+            .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+    ;
   }
 
   @Bean

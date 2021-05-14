@@ -1,6 +1,6 @@
 package edu.uoc.geopocket.statistics.dtos;
 
-import edu.uoc.geopocket.statistics.common.Tool;
+import edu.uoc.geopocket.common.Tool;
 import lombok.*;
 
 @Getter

@@ -1,7 +1,7 @@
 package edu.uoc.geopocket.liquec.calculation.ranges.crr;
 
 import edu.uoc.geopocket.common.exceptions.GeoPocketException;
-import edu.uoc.geopocket.liquec.calculation.RoadMap;
+import edu.uoc.geopocket.common.calculation.RoadMap;
 import edu.uoc.geopocket.liquec.common.LiquecCode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;

@@ -56,6 +56,10 @@
         projects: 0,
         apps: [],
         tools: {
+          berock: {
+            name: 'Berock',
+            path: '/berock/calculations'
+          },
           liquec: {
             name: 'Liquec',
             path: '/liquec/calculations'
