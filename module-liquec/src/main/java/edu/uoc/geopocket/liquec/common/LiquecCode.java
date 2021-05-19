@@ -4,19 +4,20 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 import lombok.Getter;
 
+import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.Objects;
 
 @Getter
 public enum LiquecCode {
-    EUROCODE(0, "Eurocode", 1.25f),
-    NCSE_02(1, "NCSE-02", 1.50f);
+    EUROCODE(0, "Eurocode", BigDecimal.valueOf(1.25)),
+    NCSE_02(1, "NCSE-02", BigDecimal.valueOf(1.50));
 
     private Integer id;
     private String name;
-    private Float safetyFactor;
+    private BigDecimal safetyFactor;
 
-    LiquecCode(final Integer id, final String name, final Float safetyFactor) {
+    LiquecCode(final Integer id, final String name, final BigDecimal safetyFactor) {
         this.id = id;
         this.name = name;
         this.safetyFactor = safetyFactor;

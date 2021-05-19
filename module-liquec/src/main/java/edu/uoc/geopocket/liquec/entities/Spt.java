@@ -12,25 +12,25 @@ import javax.persistence.*;
 @Setter
 @EqualsAndHashCode(of = {"id"})
 @Entity
-@Table(name = "LIQUEC_SPT")
+@Table(name = "liquec_spt")
 public class Spt implements GeoPocketEntity, Comparable<Spt> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ID", updatable = false)
+    @Column(name = "id", updatable = false)
     private Long id;
 
-    @Column(name = "DEPTH")
+    @Column(name = "depth")
     private Float depth;
 
-    @Column(name = "SPT_BLOW_COUNTS")
+    @Column(name = "spt_blow_counts")
     private Integer sptBlowCounts;
 
-    @Column(name = "ENERGY_RATIO")
+    @Column(name = "energy_ratio")
     private Float energyRatio;
 
     @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinColumn(name="SPT_RESULT_ID")
+    @JoinColumn(name="spt_result_id")
     private SptResult sptResult;
 
     @Embedded

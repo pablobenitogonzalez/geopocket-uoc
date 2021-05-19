@@ -32,12 +32,14 @@
 </template>
 
 <script>
-    import Result from "../../assets/constants/result";
+    import Functions from "../../assets/constants/Functions";
+    import Result from "../../assets/constants/Result";
 
     export default {
         name: 'ResultTable',
         data () {
             return {
+                fractionDigits: 3
             }
         },
         props: {
@@ -63,7 +65,7 @@
             },
             formatNumber(number) {
                 if (number == null || number === '') return '-';
-                return parseFloat(number).toFixed(2);
+                return Functions.getFormattedNumber(number, this.fractionDigits);
             },
             getSafetyFactor(sptResult) {
                 if (sptResult.result === Result.ERROR || sptResult.result === Result.SKIP) return sptResult.message;

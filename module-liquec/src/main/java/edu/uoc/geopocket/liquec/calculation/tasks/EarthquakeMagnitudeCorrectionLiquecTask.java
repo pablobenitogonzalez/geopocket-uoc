@@ -8,6 +8,8 @@ import edu.uoc.geopocket.liquec.entities.Spt;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
+import java.math.BigDecimal;
+
 @Slf4j
 @Component
 public class EarthquakeMagnitudeCorrectionLiquecTask extends AbstractLiquecTaskExecutable {
@@ -18,7 +20,8 @@ public class EarthquakeMagnitudeCorrectionLiquecTask extends AbstractLiquecTaskE
 
     public void execute(final Liquec liquec, final Spt targetSpt) {
 
-        final Double earthquakeMagnitudeCorrection = Polynomial.EARTHQUAKE_MAGNITUDE_CORRECTION.getValue(liquec.getEarthquakeMagnitude());
+        final BigDecimal earthquakeMagnitudeCorrection =
+                Polynomial.EARTHQUAKE_MAGNITUDE_CORRECTION.getValue(BigDecimal.valueOf(liquec.getEarthquakeMagnitude()));
 
         log.debug("Earthquake magnitude correction (CM): " + earthquakeMagnitudeCorrection);
 

@@ -8,6 +8,8 @@ import edu.uoc.geopocket.liquec.entities.Spt;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
+import java.math.BigDecimal;
+
 @Slf4j
 @Component
 public class SptCorrectionLiquecTask extends AbstractLiquecTaskExecutable {
@@ -18,10 +20,12 @@ public class SptCorrectionLiquecTask extends AbstractLiquecTaskExecutable {
 
     public void execute(final Liquec liquec, final Spt targetSpt) {
 
-        double sptCorrected = targetSpt.getSptBlowCounts() * (targetSpt.getEnergyRatio() / 60.0) * targetSpt.getSptResult().getEffectiveStressFactor();
+        BigDecimal sptCorrected = BigDecimal.valueOf(targetSpt.getSptBlowCounts())
+                .multiply(BigDecimal.valueOf(targetSpt.getEnergyRatio()).divide(BigDecimal.valueOf(60.0), MATH_CONTEXT))
+                .multiply(targetSpt.getSptResult().getEffectiveStressFactor());
 
         if (LiquecCode.EUROCODE.equals(liquec.getCode())) {
-            sptCorrected = targetSpt.getDepth() < 3.0 ? 0.75 * sptCorrected : sptCorrected;
+            sptCorrected = targetSpt.getDepth() < 3.0 ? BigDecimal.valueOf(0.75).multiply(sptCorrected) : sptCorrected;
         }
 
         log.info("SPT Corrected: " + sptCorrected + " (N60)");

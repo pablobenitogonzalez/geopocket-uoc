@@ -30,7 +30,7 @@ public class CrrRangeFactory {
     }
 
     public LiquecRange getCrrEvaluation(final Crr crr) {
-        return Optional.ofNullable(applicationContext.getBean(CrrRangeFactory.FACTORY.get(crr)))
+        return Optional.of(applicationContext.getBean(CrrRangeFactory.FACTORY.get(crr)))
                 .orElseThrow(() -> new GeoPocketException(String.format("Crr evaluation not found for [%s]", crr.getDescription())));
     }
 }

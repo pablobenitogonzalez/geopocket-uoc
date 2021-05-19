@@ -16,43 +16,43 @@ import java.math.BigDecimal;
 @Setter
 @EqualsAndHashCode(of = {"id"})
 @Entity
-@Table(name = "BEROCK_RESULT")
+@Table(name = "berock_result")
 public class BerockResult implements GeoPocketEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ID", updatable = false)
+    @Column(name = "id", updatable = false)
     private Long id;
 
     @Convert(converter = ResultJpaConverter.class)
-    @Column(name = "RESULT")
+    @Column(name = "result")
     private Result result;
 
-    @Column(name = "MESSAGE")
+    @Column(name = "message")
     private String message;
 
     @Convert(converter = BigDecimalConverter.class)
-    @Column(name = "ALLOWABLE_BEARING_PRESSURE")
+    @Column(name = "allowable_bearing_pressure")
     private BigDecimal allowableBearingPressure;
 
     @Convert(converter = BigDecimalConverter.class)
-    @Column(name = "ALPHA_3A")
+    @Column(name = "alpha_3a")
     private BigDecimal alpha3a;
 
     @Convert(converter = BigDecimalConverter.class)
-    @Column(name = "ALPHA_3B")
+    @Column(name = "alpha_3b")
     private BigDecimal alpha3b;
 
     @Convert(converter = BigDecimalConverter.class)
-    @Column(name = "FINAL_ALPHA_3")
+    @Column(name = "final_alpha_3")
     private BigDecimal finalAlpha3;
 
     @Convert(converter = BigDecimalConverter.class)
-    @Column(name = "JV")
+    @Column(name = "jv")
     private BigDecimal volumetricJointCount;
 
     @Convert(converter = BigDecimalConverter.class)
-    @Column(name = "CALCULATED_RDQ")
+    @Column(name = "calculated_rdq")
     private BigDecimal calculatedRDQ;
 
     @Embedded

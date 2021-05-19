@@ -61,6 +61,7 @@ public class SecurityModuleConfiguration extends WebSecurityConfigurerAdapter {
             .antMatchers("/manifest.json").permitAll()
             .antMatchers("/*.png").permitAll()
             .antMatchers("/img/**/*").permitAll()
+            .antMatchers("/h2-console/**").permitAll()
             .anyRequest().authenticated()
             .and()
             .httpBasic()
@@ -68,7 +69,7 @@ public class SecurityModuleConfiguration extends WebSecurityConfigurerAdapter {
             .and()
             .sessionManagement()
             .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-    ;
+            .and().headers().frameOptions().sameOrigin();
   }
 
   @Bean

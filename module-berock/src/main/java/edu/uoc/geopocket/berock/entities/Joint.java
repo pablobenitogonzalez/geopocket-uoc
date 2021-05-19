@@ -12,18 +12,18 @@ import javax.persistence.*;
 @Setter
 @EqualsAndHashCode(of = {"id"})
 @Entity
-@Table(name = "BEROCK_JOINT")
+@Table(name = "berock_joint")
 public class Joint implements GeoPocketEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ID", updatable = false)
+    @Column(name = "id", updatable = false)
     private Long id;
 
-    @Column(name = "SPACING")
+    @Column(name = "spacing")
     private Float spacing;
 
-    @Column(name = "FAMILY")
+    @Column(name = "family")
     private String family;
 
     @Embedded

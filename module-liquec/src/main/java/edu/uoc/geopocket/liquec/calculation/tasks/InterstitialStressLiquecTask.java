@@ -7,6 +7,8 @@ import edu.uoc.geopocket.liquec.entities.Spt;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
+import java.math.BigDecimal;
+
 @Slf4j
 @Component
 public class InterstitialStressLiquecTask extends AbstractLiquecTaskExecutable {
@@ -17,7 +19,8 @@ public class InterstitialStressLiquecTask extends AbstractLiquecTaskExecutable {
 
     public void execute(final Liquec liquec, final Spt targetSpt) {
 
-        final double interstitialStress = 10.0 * (targetSpt.getDepth() - liquec.getGroundWaterTableDepth());
+        final BigDecimal interstitialStress = BigDecimal.valueOf(10.0)
+                .multiply(BigDecimal.valueOf(targetSpt.getDepth()).subtract(BigDecimal.valueOf(liquec.getGroundWaterTableDepth())));
 
         log.info("Interstitial stress: " + interstitialStress + " KN/m2");
 

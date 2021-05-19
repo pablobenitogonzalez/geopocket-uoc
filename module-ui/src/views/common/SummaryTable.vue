@@ -63,7 +63,7 @@
 </template>
 
 <script>
-    import Status from './../../assets/constants/status';
+    import Status from '../../assets/constants/Status';
     import moment from 'moment';
     import router from "../../router";
 

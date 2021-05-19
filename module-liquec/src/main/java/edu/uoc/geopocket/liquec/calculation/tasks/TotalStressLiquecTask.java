@@ -8,6 +8,7 @@ import edu.uoc.geopocket.liquec.entities.Spt;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
+import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.List;
 
@@ -45,25 +46,25 @@ public class TotalStressLiquecTask extends AbstractLiquecTaskExecutable {
                 liquec.getGroundWaterTableDepth(), layerIndexWithSptInside, targetSpt.getDepth());
         log.info("Layer indexes below GWT: " + Arrays.toString(layerIndexesBelowGwt.toArray()));
 
-        double totalStress = this.retrieveStressFromLayersAboveGwt(liquec.getSoilLayers(), layerIndexesAboveGwt);
+        BigDecimal totalStress = this.retrieveStressFromLayersAboveGwt(liquec.getSoilLayers(), layerIndexesAboveGwt);
 
-        totalStress += this.retrieveAboveStressFromLayerWithGwtInside(liquec.getSoilLayers().get(layerIndexWithGwtInside),
-                liquec.getGroundWaterTableDepth());
+        totalStress = totalStress.add(this.retrieveAboveStressFromLayerWithGwtInside(liquec.getSoilLayers().get(layerIndexWithGwtInside),
+                liquec.getGroundWaterTableDepth()));
 
         if (layerIndexWithGwtInside == layerIndexWithSptInside) {
 
-            totalStress += this.retrieveBelowStressFromLayerWithGwtAndSptInside(liquec.getSoilLayers().get(layerIndexWithGwtInside),
-                    liquec.getGroundWaterTableDepth(),  targetSpt.getDepth());
+            totalStress = totalStress.add(this.retrieveBelowStressFromLayerWithGwtAndSptInside(liquec.getSoilLayers().get(layerIndexWithGwtInside),
+                    liquec.getGroundWaterTableDepth(),  targetSpt.getDepth()));
 
         } else {
 
-            totalStress += this.retrieveBelowStressFromLayerWithGwtInside(liquec.getSoilLayers().get(layerIndexWithGwtInside),
-                    liquec.getGroundWaterTableDepth());
+            totalStress = totalStress.add(this.retrieveBelowStressFromLayerWithGwtInside(liquec.getSoilLayers().get(layerIndexWithGwtInside),
+                    liquec.getGroundWaterTableDepth()));
 
-            totalStress += this.retrieveStressFromLayersBelowGwt(liquec.getSoilLayers(), layerIndexesBelowGwt);
+            totalStress = totalStress.add(this.retrieveStressFromLayersBelowGwt(liquec.getSoilLayers(), layerIndexesBelowGwt));
 
-            totalStress += this.retrieveBelowStressFromLayerWithSptInside(liquec.getSoilLayers().get(layerIndexWithSptInside),
-                    targetSpt.getDepth());
+            totalStress = totalStress.add(this.retrieveBelowStressFromLayerWithSptInside(liquec.getSoilLayers().get(layerIndexWithSptInside),
+                    targetSpt.getDepth()));
         }
 
         log.info("Total stress:" + totalStress + " KN/m2");
@@ -71,44 +72,52 @@ public class TotalStressLiquecTask extends AbstractLiquecTaskExecutable {
         targetSpt.getSptResult().setTotalStress(totalStress);
     }
 
-    private double retrieveStressFromLayersAboveGwt(final List<SoilLayer> soilLayers, final List<Integer> layerIndexesAboveGwt) {
-        double stress = 0;
+    private BigDecimal retrieveStressFromLayersAboveGwt(final List<SoilLayer> soilLayers, final List<Integer> layerIndexesAboveGwt) {
+        BigDecimal stress = BigDecimal.valueOf(0.0);
         for (Integer index : layerIndexesAboveGwt) {
-            stress += soilLayers.get(index).getAboveGwt() * (soilLayers.get(index).getFinalDepth() - soilLayers.get(index).getStartDepth());
+            stress = stress.add(BigDecimal.valueOf(soilLayers.get(index).getAboveGwt())
+                    .multiply(BigDecimal.valueOf(soilLayers.get(index).getFinalDepth())
+                            .subtract(BigDecimal.valueOf(soilLayers.get(index).getStartDepth()))));
         }
         log.info("Stress from layers above GWT: " + stress + " KN/m2");
         return stress;
     }
 
-    private double retrieveAboveStressFromLayerWithGwtInside(final SoilLayer soilLayer, final Float groundWaterTableDepth) {
-        final double stress = soilLayer.getAboveGwt() * (groundWaterTableDepth - soilLayer.getStartDepth());
+    private BigDecimal retrieveAboveStressFromLayerWithGwtInside(final SoilLayer soilLayer, final Float groundWaterTableDepth) {
+        final BigDecimal stress = BigDecimal.valueOf(soilLayer.getAboveGwt())
+                .multiply(BigDecimal.valueOf(groundWaterTableDepth).subtract(BigDecimal.valueOf(soilLayer.getStartDepth())));
         log.info("Above stress from layer with GWT inside: " + stress + " KN/m2");
         return stress;
     }
 
-    private double retrieveBelowStressFromLayerWithGwtAndSptInside(final SoilLayer soilLayer, final Float groundWaterTableDepth, final Float sptDepth) {
-        final double stress = soilLayer.getBelowGwt() * (sptDepth - groundWaterTableDepth);
+    private BigDecimal retrieveBelowStressFromLayerWithGwtAndSptInside(final SoilLayer soilLayer, final Float groundWaterTableDepth, final Float sptDepth) {
+        final BigDecimal stress = BigDecimal.valueOf(soilLayer.getBelowGwt())
+                .multiply(BigDecimal.valueOf(sptDepth).subtract(BigDecimal.valueOf(groundWaterTableDepth)));
         log.info("Below stress from layer with GWT and SPT inside: " + stress + " KN/m2");
         return stress;
     }
 
-    private double retrieveBelowStressFromLayerWithGwtInside(final SoilLayer soilLayer, final Float groundWaterTableDepth) {
-        final double stress = soilLayer.getBelowGwt() * (soilLayer.getFinalDepth() - groundWaterTableDepth);
+    private BigDecimal retrieveBelowStressFromLayerWithGwtInside(final SoilLayer soilLayer, final Float groundWaterTableDepth) {
+        final BigDecimal stress = BigDecimal.valueOf(soilLayer.getBelowGwt())
+                .multiply(BigDecimal.valueOf(soilLayer.getFinalDepth()).subtract(BigDecimal.valueOf(groundWaterTableDepth)));
         log.info("Below stress from layer with GWT inside: " + stress + " KN/m2");
         return stress;
     }
 
-    private double retrieveStressFromLayersBelowGwt(final List<SoilLayer> soilLayers, final List<Integer> layerIndexesBelowGwt) {
-        double stress = 0;
+    private BigDecimal retrieveStressFromLayersBelowGwt(final List<SoilLayer> soilLayers, final List<Integer> layerIndexesBelowGwt) {
+        BigDecimal stress = BigDecimal.valueOf(0.0);
         for (Integer index : layerIndexesBelowGwt) {
-            stress += soilLayers.get(index).getBelowGwt() * (soilLayers.get(index).getFinalDepth() - soilLayers.get(index).getStartDepth());
+            stress = stress.add(BigDecimal.valueOf(soilLayers.get(index).getBelowGwt())
+                    .multiply(BigDecimal.valueOf(soilLayers.get(index).getFinalDepth())
+                            .subtract(BigDecimal.valueOf(soilLayers.get(index).getStartDepth()))));
         }
         log.info("Stress from layers below GWT: " + stress + " KN/m2");
         return stress;
     }
 
-    private double retrieveBelowStressFromLayerWithSptInside(final SoilLayer soilLayer, final Float sptDepth) {
-        final double stress = soilLayer.getBelowGwt() * (sptDepth - soilLayer.getStartDepth());
+    private BigDecimal retrieveBelowStressFromLayerWithSptInside(final SoilLayer soilLayer, final Float sptDepth) {
+        final BigDecimal stress = BigDecimal.valueOf(soilLayer.getBelowGwt())
+                .multiply(BigDecimal.valueOf(sptDepth).subtract(BigDecimal.valueOf(soilLayer.getStartDepth())));
         log.info("Below stress from layer with SPT inside: " + stress + " KN/m2");
         return stress;
     }

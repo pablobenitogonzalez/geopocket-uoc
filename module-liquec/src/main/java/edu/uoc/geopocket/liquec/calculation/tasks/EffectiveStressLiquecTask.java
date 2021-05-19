@@ -7,6 +7,8 @@ import edu.uoc.geopocket.liquec.entities.Spt;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
+import java.math.BigDecimal;
+
 @Slf4j
 @Component
 public class EffectiveStressLiquecTask extends AbstractLiquecTaskExecutable {
@@ -17,7 +19,7 @@ public class EffectiveStressLiquecTask extends AbstractLiquecTaskExecutable {
 
     public void execute(final Liquec liquec, final Spt targetSpt) {
 
-        final double effectiveStress = targetSpt.getSptResult().getTotalStress() - targetSpt.getSptResult().getInterstitialStress();
+        final BigDecimal effectiveStress = targetSpt.getSptResult().getTotalStress().subtract(targetSpt.getSptResult().getInterstitialStress());
 
         log.debug("Effective stress: " + effectiveStress + " KN/m2");
 

@@ -7,6 +7,8 @@ import edu.uoc.geopocket.liquec.entities.Spt;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
+import java.math.BigDecimal;
+
 @Slf4j
 @Component
 public class SafetyFactorLiquecTask extends AbstractLiquecTaskExecutable {
@@ -17,7 +19,8 @@ public class SafetyFactorLiquecTask extends AbstractLiquecTaskExecutable {
 
     public void execute(final Liquec liquec, final Spt targetSpt) {
 
-        final Double safetyFactor = targetSpt.getSptResult().getCycleResistanceRatioCorrected() / targetSpt.getSptResult().getCycleStressRatio();
+        final BigDecimal safetyFactor = targetSpt.getSptResult().getCycleResistanceRatioCorrected()
+                .divide(targetSpt.getSptResult().getCycleStressRatio(), MATH_CONTEXT);
 
         log.debug("Safety factor: " + safetyFactor);
 

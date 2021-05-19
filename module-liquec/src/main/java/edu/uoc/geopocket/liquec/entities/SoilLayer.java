@@ -12,33 +12,33 @@ import javax.persistence.*;
 @Setter
 @EqualsAndHashCode(of = {"id"})
 @Entity
-@Table(name = "LIQUEC_SOIL_LAYER")
+@Table(name = "liquec_soil_layer")
 public class SoilLayer implements GeoPocketEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ID", updatable = false)
+    @Column(name = "id", updatable = false)
     private Long id;
 
-    @Column(name = "START_DEPTH")
+    @Column(name = "start_depth")
     private Float startDepth;
 
-    @Column(name = "FINAL_DEPTH")
+    @Column(name = "final_depth")
     private Float finalDepth;
 
-    @Column(name = "SOIL_TYPE")
+    @Column(name = "soil_type")
     private String soilType;
 
-    @Column(name = "ABOVE_GWT")
+    @Column(name = "above_gwt")
     private Float aboveGwt;
 
-    @Column(name = "BELOW_GWT")
+    @Column(name = "below_gwt")
     private Float belowGwt;
 
-    @Column(name = "FINES_CONTENT")
+    @Column(name = "fines_content")
     private Float finesContent;
 
-    @Column(name = "CHECK_LIQUEFACTION")
+    @Column(name = "check_liquefaction")
     private Boolean checkLiquefaction;
 
     @Embedded

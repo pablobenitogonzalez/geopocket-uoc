@@ -32,6 +32,29 @@ export default [
       },
       {
         _name: 'CSidebarNavDropdown',
+        name: 'Berock',
+        route: '/berock',
+        icon: 'cil-applications',
+        items: [
+          {
+            name: 'Manage Calculations',
+            to: '/berock/calculations',
+            icon: 'cil-settings'
+          },
+          {
+            name: 'Manage Drafts',
+            to: '/berock/drafts',
+            icon: 'cil-settings'
+          },
+          {
+            name: 'Create New Berock',
+            to: '/berock/create/new',
+            icon: 'cil-plus'
+          }
+        ]
+      },
+      {
+        _name: 'CSidebarNavDropdown',
         name: 'Liquec',
         route: '/liquec',
         icon: 'cil-applications',

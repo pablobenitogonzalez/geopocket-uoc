@@ -5,25 +5,27 @@ import lombok.extern.slf4j.Slf4j;
 import javax.persistence.AttributeConverter;
 import javax.persistence.Converter;
 import java.math.BigDecimal;
-import java.util.Objects;
 
 @Slf4j
 @Converter
 public class BigDecimalConverter implements AttributeConverter<BigDecimal, Double> {
 
     @Override
-    public Double convertToDatabaseColumn(BigDecimal value) {
-        if (Objects.isNull(value)) {
+    public Double convertToDatabaseColumn(BigDecimal bigDecimalValue) {
+        if (bigDecimalValue == null) {
             return null;
         }
-        return value.doubleValue();
+
+        return bigDecimalValue.doubleValue();
     }
 
     @Override
-    public BigDecimal convertToEntityAttribute(Double value) {
-        if (Objects.isNull(value)) {
+    public BigDecimal convertToEntityAttribute(Double doubleValue) {
+        if (doubleValue == null) {
             return null;
         }
-        return BigDecimal.valueOf(value);
+
+        return BigDecimal.valueOf(doubleValue);
     }
+
 }

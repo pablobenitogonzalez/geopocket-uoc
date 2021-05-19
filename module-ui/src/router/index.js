@@ -2,19 +2,23 @@ import Vue from 'vue'
 import Router from 'vue-router'
 
 // Containers
-const TheContainer = () => import('@/containers/TheContainer')
+const TheContainer = () => import('@/containers/TheContainer');
 
-const Login = () => import('@/views/pages/Login')
+const Login = () => import('@/views/pages/Login');
 
 // Views
-const Dashboard = () => import('@/views/Dashboard')
-const ManageProjects = () => import('@/views/project/ManageProjects')
-const CreateNewProject = () => import('@/views/project/CreateNewProject')
-const ProjectDetail = () => import('@/views/project/ProjectDetail')
-const ManageLiquecCalculations = () => import('@/views/liquec/ManageLiquecCalculations')
-const ManageLiquecDrafts = () => import('@/views/liquec/ManageLiquecDrafts')
-const CreateNewLiquec = () => import('@/views/liquec/CreateNewLiquec')
-const LiquecResult = () => import('@/views/liquec/LiquecResult')
+const Dashboard = () => import('@/views/Dashboard');
+const ManageProjects = () => import('@/views/project/ManageProjects');
+const CreateNewProject = () => import('@/views/project/CreateNewProject');
+const ProjectDetail = () => import('@/views/project/ProjectDetail');
+const ManageBerockCalculations = () => import('@/views/berock/ManageBerockCalculations');
+const ManageBerockDrafts = () => import('@/views/berock/ManageBerockDrafts');
+const CreateNewBerock = () => import('@/views/berock/CreateNewBerock');
+const BerockResult = () => import('@/views/berock/BerockResult');
+const ManageLiquecCalculations = () => import('@/views/liquec/ManageLiquecCalculations');
+const ManageLiquecDrafts = () => import('@/views/liquec/ManageLiquecDrafts');
+const CreateNewLiquec = () => import('@/views/liquec/CreateNewLiquec');
+const LiquecResult = () => import('@/views/liquec/LiquecResult');
 
 Vue.use(Router);
 
@@ -65,6 +69,53 @@ function configRoutes () {
               path: ':id',
               name: 'Project Detail',
               component: ProjectDetail
+            }
+          ]
+        },
+        {
+          path: 'berock',
+          redirect: '/berock/calculations',
+          name: 'Berock',
+          component: {
+            render (c) { return c('router-view') }
+          },
+          children: [
+            {
+              path: 'calculations',
+              name: 'Manage Berock Calculations',
+              component: ManageBerockCalculations
+            },
+            {
+              path: 'drafts',
+              name: 'Manage Berock Drafts',
+              component: ManageBerockDrafts
+            },
+            {
+              path: 'create',
+              redirect: '/liquec/create/new',
+              name: 'Create',
+              component: {
+                render(c) {
+                  return c('router-view')
+                }
+              },
+              children: [
+                {
+                  path: 'new',
+                  name: 'Create New Berock',
+                  component: CreateNewBerock
+                },
+                {
+                  path: 'draft/:id',
+                  name: 'Create Berock From Draft',
+                  component: CreateNewBerock
+                }
+              ]
+            },
+            {
+              path: ':id',
+              name: 'Berock Result',
+              component: BerockResult
             }
           ]
         },

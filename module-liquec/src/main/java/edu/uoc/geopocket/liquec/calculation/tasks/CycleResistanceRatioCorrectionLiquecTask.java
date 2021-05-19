@@ -8,6 +8,8 @@ import edu.uoc.geopocket.liquec.entities.Spt;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
+import java.math.BigDecimal;
+
 @Slf4j
 @Component
 public class CycleResistanceRatioCorrectionLiquecTask extends AbstractLiquecTaskExecutable {
@@ -18,12 +20,14 @@ public class CycleResistanceRatioCorrectionLiquecTask extends AbstractLiquecTask
 
     public void execute(final Liquec liquec, final Spt targetSpt) {
 
-        double cycleResistanceRatioCorrection;
+        BigDecimal cycleResistanceRatioCorrection;
 
         if (LiquecCode.EUROCODE.equals(liquec.getCode())) {
-            cycleResistanceRatioCorrection = targetSpt.getSptResult().getCycleResistanceRatio() * targetSpt.getSptResult().getEarthquakeMagnitudeCorrection();
+            cycleResistanceRatioCorrection = targetSpt.getSptResult().getCycleResistanceRatio()
+                    .multiply(targetSpt.getSptResult().getEarthquakeMagnitudeCorrection());
         } else {
-            cycleResistanceRatioCorrection = targetSpt.getSptResult().getCycleResistanceRatio() * targetSpt.getSptResult().getCoefficientContributionCorrection();
+            cycleResistanceRatioCorrection = targetSpt.getSptResult().getCycleResistanceRatio()
+                    .multiply(targetSpt.getSptResult().getCoefficientContributionCorrection());
         }
 
         log.info("Cycle resistance ratio correction: " + cycleResistanceRatioCorrection);

@@ -138,7 +138,8 @@
   import moment from 'moment'
   import router from "../../router";
   import CSummaryTableWrapper from '../common/SummaryTable.vue'
-  import Status from "../../assets/constants/status";
+  import Status from "../../assets/constants/Status";
+  import Functions from '../../assets/constants/Functions';
 
   const ProjectRepository = RepositoryFactory.get('projects');
   const StatisticsRepository = RepositoryFactory.get('statistics');
@@ -165,8 +166,8 @@
         loading: true,
         id: null,
         status: [
-          {key: Status.DRAFT, value: 'Draft'},
-          {key: Status.CALCULATED, value: 'Calculated'}
+          {key: Status.DRAFT, value: Functions.getLiteralName('status', Status.DRAFT)},
+          {key: Status.CALCULATED, value: Functions.getLiteralName('status', Status.CALCULATED)}
         ],
         tools: {
           berock: {

@@ -28,8 +28,10 @@
         <lombok.version>1.18.10</lombok.version>
         <sl4j.version>1.7.25</sl4j.version>
         <mapstruct.version>1.3.1.Final</mapstruct.version>
-        <h2database.version>1.4.200</h2database.version>
+        <!-- 1.4.196: h2 update causes an error with postgres liquebase -->
+        <h2database.version>1.4.196</h2database.version>
         <mysql.version>8.0.18</mysql.version>
+        <liquibase.version>3.8.9</liquibase.version>
         <validation-api.version>2.0.1.Final</validation-api.version>
         <hibernate-validator.version>6.1.2.Final</hibernate-validator.version>
         <commons-beanutils.version>1.9.4</commons-beanutils.version>
@@ -83,6 +85,13 @@
                 <groupId>mysql</groupId>
                 <artifactId>mysql-connector-java</artifactId>
                 <version>${mysql.version}</version>
+            </dependency>
+
+            <!-- Liquibase -->
+            <dependency>
+                <groupId>org.liquibase</groupId>
+                <artifactId>liquibase-core</artifactId>
+                <version>${liquibase.version}</version>
             </dependency>
 
             <!-- Hibernate validator -->

@@ -1,11 +1,14 @@
 package edu.uoc.geopocket.liquec.calculation.tasks;
 
+import ch.obermuhlner.math.big.BigDecimalMath;
 import edu.uoc.geopocket.liquec.calculation.AbstractLiquecTaskExecutable;
 import edu.uoc.geopocket.liquec.calculation.LiquecTask;
 import edu.uoc.geopocket.liquec.entities.Liquec;
 import edu.uoc.geopocket.liquec.entities.Spt;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
+
+import java.math.BigDecimal;
 
 @Slf4j
 @Component
@@ -17,7 +20,10 @@ public class CoefficientContributionCorrectionLiquecTask extends AbstractLiquecT
 
     public void execute(final Liquec liquec, final Spt targetSpt) {
 
-        final double coefficientContributionCorrection = 1.5 - (1.8 * Math.pow(liquec.getCoefficientOfContribution() - 1.0, 0.5));
+        final BigDecimal coefficientContributionCorrection =
+                BigDecimal.valueOf(1.5).subtract(BigDecimal.valueOf(1.8).multiply(
+                        BigDecimalMath.sqrt(BigDecimal.valueOf(liquec.getCoefficientOfContribution())
+                                .subtract(BigDecimal.valueOf(1.0)),  MATH_CONTEXT)));
 
         log.info("Coefficient contribution correction (KM): " + coefficientContributionCorrection);
 

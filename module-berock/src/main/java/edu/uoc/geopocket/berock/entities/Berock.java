@@ -7,7 +7,6 @@ import edu.uoc.geopocket.berock.jpa.converters.WeatheringDegreeTypeJpaConverter;
 import edu.uoc.geopocket.common.Status;
 import edu.uoc.geopocket.common.entities.Audit;
 import edu.uoc.geopocket.common.entities.CalculationInfo;
-import edu.uoc.geopocket.common.entities.ColumnDefinitions;
 import edu.uoc.geopocket.common.entities.GeoPocketToolEntity;
 import edu.uoc.geopocket.common.jpa.converters.StatusJpaConverter;
 import edu.uoc.geopocket.project.entities.Project;
@@ -22,42 +21,42 @@ import java.util.List;
 @Setter
 @EqualsAndHashCode(of = {"id"})
 @Entity
-@Table(name = "BEROCK")
+@Table(name = "berock")
 public class Berock implements GeoPocketToolEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ID", updatable = false)
+    @Column(name = "id", updatable = false)
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "PROJECT_ID")
+    @JoinColumn(name = "project_id")
     private Project project;
 
     @Convert(converter = StatusJpaConverter.class)
-    @Column(name = "STATUS", columnDefinition = ColumnDefinitions.VARCHAR_30)
+    @Column(name = "status")
     private Status status;
 
     @Convert(converter = RockTypeJpaConverter.class)
-    @Column(name = "ROCK_TYPE", columnDefinition = ColumnDefinitions.VARCHAR_30)
+    @Column(name = "rock_type")
     private RockType rockType;
 
     @Convert(converter = WeatheringDegreeTypeJpaConverter.class)
-    @Column(name = "WEATHERING_DEGREE", columnDefinition = ColumnDefinitions.VARCHAR_30)
+    @Column(name = "weathering_degree")
     private WeatheringDegree weatheringDegree;
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "BEROCK_ID")
+    @JoinColumn(name = "berock_id")
     private List<Joint> joints;
 
-    @Column(name = "RDQ")
+    @Column(name = "rdq")
     private Float rockQualityDesignation;
 
-    @Column(name = "UNIAXIAL_COMPRESSIVE_STRENGTH")
+    @Column(name = "uniaxial_compressive_strength")
     private Float uniaxialCompressiveStrength;
 
     @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinColumn(name="BEROCK_RESULT_ID")
+    @JoinColumn(name="berock_result_id")
     private BerockResult result;
 
     @Embedded

@@ -77,10 +77,10 @@
                 />
                 <br/>
                 <CListGroup>
-                  <CListGroupItem>Project id: {{selectedProject.id}}</CListGroupItem>
-                  <CListGroupItem>Project name: {{selectedProject.name}}</CListGroupItem>
-                  <CListGroupItem>Project location: {{selectedProject.location}}</CListGroupItem>
-                  <CListGroupItem>Project organization: {{selectedProject.organization}}</CListGroupItem>
+                  <CListGroupItem><b>Project Identifier:</b> {{selectedProject.id}}</CListGroupItem>
+                  <CListGroupItem><b>Project Name:</b> {{selectedProject.name}}</CListGroupItem>
+                  <CListGroupItem><b>Project Location:</b> {{selectedProject.location}}</CListGroupItem>
+                  <CListGroupItem><b>Project Organization:</b> {{selectedProject.organization}}</CListGroupItem>
                 </CListGroup>
               </CJumbotron>
             </CCol>
@@ -395,7 +395,8 @@
 </template>
 
 <script>
-  import Code from './../../assets/constants/code';
+  import Code from '../../assets/constants/Code';
+  import Functions from '../../assets/constants/Functions';
   import Autocomplete from '@trevoreyre/autocomplete-vue'
   import '@trevoreyre/autocomplete-vue/dist/style.css'
   import {RepositoryFactory} from './../../repositories/RepositoryFactory'
@@ -417,7 +418,10 @@
     },
     data () {
       return {
-        codes: [{key: Code.EUROCODE, name: "Eurocode", selected: true}, {key: Code.NCSE_02, name: "NCSE-02", selected: false}],
+        codes: [
+          {key: Code.EUROCODE, name: Functions.getLiteralName('code', Code.EUROCODE), selected: true},
+          {key: Code.NCSE_02, name: Functions.getLiteralName('code', Code.NCSE_02), selected: false}
+        ],
         mainIconHeight: 20,
         saveDraftModal: false,
         saveDraftButton: "disabled",

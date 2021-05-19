@@ -10,7 +10,7 @@ import java.math.MathContext;
 @AllArgsConstructor
 public abstract class AbstractBerockTaskExecutable {
 
-    protected static final MathContext MATH_CONTEXT = new MathContext(15);
+    protected static final MathContext MATH_CONTEXT = new MathContext(16);
 
     protected BerockTask task;
 

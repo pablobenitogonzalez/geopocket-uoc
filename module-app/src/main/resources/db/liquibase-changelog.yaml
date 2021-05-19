@@ -1,0 +1,25 @@
+databaseChangeLog:
+  - include:
+      file: changelog/001-project.yaml
+      relativeToChangelogFile: true
+  - include:
+      file: changelog/002-berock-result.yaml
+      relativeToChangelogFile: true
+  - include:
+      file: changelog/003-berock.yaml
+      relativeToChangelogFile: true
+  - include:
+      file: changelog/004-berock-joint.yaml
+      relativeToChangelogFile: true
+  - include:
+      file: changelog/005-liquec-spt-result.yaml
+      relativeToChangelogFile: true
+  - include:
+      file: changelog/006-liquec.yaml
+      relativeToChangelogFile: true
+  - include:
+      file: changelog/007-liquec-soil-layer.yaml
+      relativeToChangelogFile: true
+  - include:
+      file: changelog/008-liquec-spt.yaml
+      relativeToChangelogFile: true

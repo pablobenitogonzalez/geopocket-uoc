@@ -62,6 +62,7 @@ public class BerockServiceImpl extends AbstractToolService<Berock, BerockSearch>
         berockDBO.setRockType(berock.getRockType());
         berockDBO.setWeatheringDegree(berock.getWeatheringDegree());
         berockDBO.setRockQualityDesignation(berock.getRockQualityDesignation());
+        berockDBO.setUniaxialCompressiveStrength(berock.getUniaxialCompressiveStrength());
         berockDBO.getJoints().addAll(berock.getJoints());
         berockDBO.getAudit().preUpdate(); // issue with transactions
         return repository.save(berockDBO);
@@ -84,6 +85,7 @@ public class BerockServiceImpl extends AbstractToolService<Berock, BerockSearch>
         berock.setRockType(berockDBO.getRockType());
         berock.setWeatheringDegree(berockDBO.getWeatheringDegree());
         berock.setRockQualityDesignation(berockDBO.getRockQualityDesignation());
+        berock.setUniaxialCompressiveStrength(berockDBO.getUniaxialCompressiveStrength());
         berock.setJoints(new ArrayList<>());
         Optional.ofNullable(berockDBO.getJoints()).orElse(Collections.emptyList()).forEach(jointDBO -> {
             final Joint joint = new Joint();

@@ -1,5 +1,5 @@
 <template>
-    <CRow>
+    <CRow v-show="!loading">
       <CCol col>
         <CCard>
           <CCardHeader>
@@ -36,14 +36,28 @@
                         </template>
                         <CListGroup>
                           <CListGroupItem><b>Calculation identifier:</b> {{liquec.id}}</CListGroupItem>
-                          <CListGroupItem v-if="liquec.code === EUROCODE"><b>Code:</b> Eurocode</CListGroupItem>
-                          <CListGroupItem v-if="liquec.code === NCSE_02"><b>Code:</b> NCSE-02</CListGroupItem>
+                          <CListGroupItem v-if="liquec.code === EUROCODE"><b>Code:</b> {{literal_eurocode}}</CListGroupItem>
+                          <CListGroupItem v-if="liquec.code === NCSE_02"><b>Code:</b> {{literal_ncse_02}}</CListGroupItem>
                           <CListGroupItem><b>Peak Ground Acceleration:</b> {{liquec.peakGroundAcceleration}} (a/g)</CListGroupItem>
                           <CListGroupItem v-if="liquec.code === EUROCODE"><b>Earthquake Magnitude:</b> {{liquec.earthquakeMagnitude}} (Mw)</CListGroupItem>
                           <CListGroupItem v-if="liquec.code === NCSE_02"><b>Coefficient Of Contribution:</b> {{liquec.coefficientOfContribution}} (K)</CListGroupItem>
                           <CListGroupItem><b>Calculated By:</b> {{liquec.audit.updatedBy}}</CListGroupItem>
                           <CListGroupItem><b>Calculated On:</b> {{getUpdated(liquec.audit.updatedOn)}}</CListGroupItem>
                         </CListGroup>
+                      </CTab>
+                      <CTab active>
+                        <template slot="title">
+                          <CIcon name="cil-circle"/> <span style="margin-left: 8px">Soil Details</span>
+                        </template>
+                        <CSoilTableWrapper
+                                :items="liquec.soilLayers"
+                                hover
+                                striped
+                                bordered
+                                small
+                                fixed
+                                :fields="['startDepth', 'finalDepth', 'soilType', 'finesContent']"
+                        />
                       </CTab>
                       <CTab active>
                         <template slot="title">
@@ -59,9 +73,9 @@
                           <CListGroupItem><b>Updated On:</b> {{getUpdated(liquec.project.audit.updatedOn)}}</CListGroupItem>
                         </CListGroup>
                       </CTab>
-                      <CTab :disabled="disabled">
+                      <CTab v-if="!!liquec.calculationInfo">
                         <template slot="title">
-                          <CIcon name="cil-bookmark"/> <span style="margin-left: 8px">Additional</span>
+                          <CIcon name="cil-bookmark"/> <span style="margin-left: 8px">Admin Info</span>
                         </template>
                         <CListGroup>
                           <CListGroupItem><b>Build Version:</b> {{liquec.calculationInfo.buildVersion}}</CListGroupItem>
@@ -118,10 +132,13 @@
 </template>
 
 <script>
-  import Code from './../../assets/constants/code';
-  import Result from './../../assets/constants/result';
+  import Code from '../../assets/constants/Code';
+  import Result from '../../assets/constants/Result';
+  import Functions from '../../assets/constants/Functions';
   import {RepositoryFactory} from './../../repositories/RepositoryFactory'
   import CResultTableWrapper from './ResultTable.vue'
+  import CSoilTableWrapper from './SoilTable.vue'
+  import CSptTableWrapper from './SptTable.vue'
   import moment from 'moment'
   import router from "../../router";
 
@@ -129,15 +146,20 @@
   export default {
     name: 'LiquecResult',
     components: {
-      CResultTableWrapper: CResultTableWrapper
+      CResultTableWrapper: CResultTableWrapper,
+      CSoilTableWrapper: CSoilTableWrapper,
+      CSptTableWrapper: CSptTableWrapper
     },
     created() {
       this.id = this.$route.params.id;
     },
     data () {
       return {
+        loading: true,
         EUROCODE: Code.EUROCODE,
         NCSE_02: Code.NCSE_02,
+        literal_eurocode: Functions.getLiteralName('code', Code.EUROCODE),
+        literal_ncse_02: Functions.getLiteralName('code', Code.NCSE_02),
         id: null,
         liquec: {
           id: null,
@@ -170,7 +192,6 @@
             elapsedTime: null
           }
         },
-        disabled: "disabled",
         mainIconHeight: 20,
         sptCorrectedChartOptions: {
           chart: {
@@ -534,7 +555,7 @@
         const {data} = await LiquecRepository.getLiquec(this.id);
         this.liquec = this.addClasses(data);
         this.initCharts();
-        this.disabled = (data.calculationInfo)? null : "disabled";
+        this.loading = false;
       },
       addClasses(data) {
         data.spts.forEach(function (spt) {

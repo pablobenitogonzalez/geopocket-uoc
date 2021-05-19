@@ -8,6 +8,8 @@ import edu.uoc.geopocket.liquec.entities.Spt;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
+import java.math.BigDecimal;
+
 @Slf4j
 @Component
 public class CycleStressRatioLiquecTask extends AbstractLiquecTaskExecutable {
@@ -18,10 +20,12 @@ public class CycleStressRatioLiquecTask extends AbstractLiquecTaskExecutable {
 
     public void execute(final Liquec liquec, final Spt targetSpt) {
 
-        Double cycleStressRatio = 0.65 * (targetSpt.getSptResult().getTotalStress() / targetSpt.getSptResult().getEffectiveStress()) * liquec.getPeakGroundAcceleration();
+        BigDecimal cycleStressRatio = BigDecimal.valueOf(0.65)
+                .multiply(targetSpt.getSptResult().getTotalStress().divide(targetSpt.getSptResult().getEffectiveStress(), MATH_CONTEXT))
+                .multiply(BigDecimal.valueOf(liquec.getPeakGroundAcceleration()));
 
         if (LiquecCode.NCSE_02.equals(liquec.getCode())) {
-            cycleStressRatio = cycleStressRatio * targetSpt.getSptResult().getDepthFactor();
+            cycleStressRatio = cycleStressRatio.multiply(targetSpt.getSptResult().getDepthFactor());
         }
 
         log.info("Cycle stress ratio (CSR): " + cycleStressRatio);

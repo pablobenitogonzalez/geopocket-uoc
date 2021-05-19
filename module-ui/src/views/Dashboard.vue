@@ -57,7 +57,7 @@
 </template>
 
 <script>
-    import Status from './../assets/constants/status';
+    import Status from '../assets/constants/Status';
     import {RepositoryFactory} from './../repositories/RepositoryFactory'
     import CSummaryTableWrapper from './common/SummaryTable.vue'
 

@@ -15,6 +15,12 @@ RUN mkdir -p ${module_app}
 COPY ["${module_app}/src", "${module_app}/src"]
 COPY ["${module_app}/pom.xml","${module_app}/."]
 
+# module-berock
+ARG module_berock=module-berock
+RUN mkdir -p ${module_berock}
+COPY ["${module_berock}/src", "${module_berock}/src"]
+COPY ["${module_berock}/pom.xml", "${module_berock}/."]
+
 # module-common
 ARG module_common=module-common
 RUN mkdir -p ${module_common}

@@ -1,0 +1,61 @@
+databaseChangeLog:
+  - changeSet:
+      id: 8
+      author: pablobenitogonzalez
+      dbms: h2, mysql
+      changes:
+        - createTable:
+            tableName: liquec_spt
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  constraints:
+                    primaryKey: true
+                    constraintName: pk_liquec_spt
+                    nullable: false
+              - column:
+                  name: created_by
+                  type: varchar(255)
+              - column:
+                  name: created_on
+                  type: timestamp
+              - column:
+                  name: updated_by
+                  type: varchar(255)
+              - column:
+                  name: updated_on
+                  type: timestamp
+              - column:
+                  name: depth
+                  type: float
+              - column:
+                  name: energy_ratio
+                  type: float
+              - column:
+                  name: spt_blow_counts
+                  type: int
+              - column:
+                  name: spt_result_id
+                  type: bigint
+              - column:
+                  name: liquec_id
+                  type: bigint
+        - addForeignKeyConstraint:
+            baseTableName: liquec_spt
+            baseColumnNames: spt_result_id
+            constraintName: fk_liquec_spt_liquec_spt_result
+            referencedTableName: liquec_spt_result
+            referencedColumnNames: id
+        - addForeignKeyConstraint:
+            baseTableName: liquec_spt
+            baseColumnNames: liquec_id
+            constraintName: fk_liquec_spt_liquec
+            referencedTableName: liquec
+            referencedColumnNames: id
+        - addAutoIncrement:
+            columnName: id
+            columnDataType: bigint
+            tableName: liquec_spt
+            startWith: 1
+            incrementBy: 1

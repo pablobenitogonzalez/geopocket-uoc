@@ -29,8 +29,8 @@
                     <td>{{item.project.name}}</td>
                 </template>
                 <template #mode="{item}">
-                    <td v-if="item.code === EUROCODE">Eurocode</td>
-                    <td v-if="item.code === NCSE_02">NCSE-02</td>
+                    <td v-if="item.code === EUROCODE">{{literal_eurocode}}</td>
+                    <td v-if="item.code === NCSE_02">{{literal_ncse_02}}</td>
                 </template>
                 <template #layers="{item}">
                     <td>{{item.soilLayers.length}}</td>
@@ -88,8 +88,9 @@
 </template>
 
 <script>
-    import Code from "../../assets/constants/code";
-    import Status from "../../assets/constants/status";
+    import Code from "../../assets/constants/Code";
+    import Status from "../../assets/constants/Status";
+    import Functions from '../../assets/constants/Functions';
     import moment from 'moment'
     import router from "../../router";
 
@@ -101,6 +102,8 @@
                 NCSE_02: Code.NCSE_02,
                 DRAFT: Status.DRAFT,
                 CALCULATED: Status.CALCULATED,
+                literal_eurocode: Functions.getLiteralName('code', Code.EUROCODE),
+                literal_ncse_02: Functions.getLiteralName('code', Code.NCSE_02),
                 currentPage: this.activePage,
             }
         },

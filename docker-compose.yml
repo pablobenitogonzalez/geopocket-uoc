@@ -1,4 +1,4 @@
-version: '3.3'
+version: '3.5'
 
 services:
   db-service:
@@ -6,7 +6,7 @@ services:
     image: mysql:8.0.19
     networks:
       - geopocket-network
-    restart: always
+    restart: unless-stopped
     environment:
       MYSQL_DATABASE: 'geopocket'
       MYSQL_USER: 'geopocket'
