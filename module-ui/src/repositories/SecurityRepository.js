@@ -1,9 +1,9 @@
-import ajax from './Repository'
+import axiosInstance from './Repository'
 
 const resource = '/security';
 export default {
     login(username, password) {
-        return ajax.post(`${resource}/login`, {}, {
+        return axiosInstance.post(`${resource}/login`, {}, {
             withCredentials: true,
             headers: {
                 'Accept': 'application/json',

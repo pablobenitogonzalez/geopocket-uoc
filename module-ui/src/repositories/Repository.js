@@ -1,12 +1,12 @@
 import axios from 'axios'
 
-const baseURL = 'http://localhost:8080';
+const baseURL = process.env.VUE_APP_API_BASE_URL;
 
-const ajax = axios.create({
+const axiosInstance = axios.create({
     baseURL: baseURL
 });
 
-ajax.interceptors.request.use(
+axiosInstance.interceptors.request.use(
     (config) => {
         let user = JSON.parse(localStorage.getItem('user'));
         if (user && user.authdata) {
@@ -19,4 +19,4 @@ ajax.interceptors.request.use(
     }
 );
 
-export default ajax
+export default axiosInstance

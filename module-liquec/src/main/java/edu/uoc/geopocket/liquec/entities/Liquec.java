@@ -1,7 +1,9 @@
 package edu.uoc.geopocket.liquec.entities;
 
 import edu.uoc.geopocket.common.Status;
-import edu.uoc.geopocket.common.entities.*;
+import edu.uoc.geopocket.common.entities.Audit;
+import edu.uoc.geopocket.common.entities.CalculationInfo;
+import edu.uoc.geopocket.common.entities.GeoPocketToolEntity;
 import edu.uoc.geopocket.common.jpa.converters.StatusJpaConverter;
 import edu.uoc.geopocket.liquec.common.LiquecCode;
 import edu.uoc.geopocket.liquec.jpa.converters.CodeJpaConverter;

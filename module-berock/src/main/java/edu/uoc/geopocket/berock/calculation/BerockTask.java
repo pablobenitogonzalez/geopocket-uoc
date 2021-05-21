@@ -10,7 +10,7 @@ public enum BerockTask implements Describable {
     CALCULATE_FINAL_ALPHA_3("Final Alpha 3"),
     CALCULATE_ALLOWABLE_BEARING_PRESSURE("Allowable Bearing Pressure");
 
-    private String description;
+    private final String description;
 
     BerockTask(final String description) {
         this.description = description;

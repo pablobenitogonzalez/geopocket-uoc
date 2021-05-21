@@ -13,6 +13,8 @@
                         color="primary"
                         shape="pill"
                         size="sm"
+                        :class="'btn-actions'"
+                        :disabled="cloneButton"
                         @click="cloneBerock"
                         v-c-tooltip.hover="{ content: 'Clone Berock' }"
                 >
@@ -115,7 +117,7 @@
 </template>
 
 <script>
-  import {RepositoryFactory} from './../../repositories/RepositoryFactory'
+  import {RepositoryFactory} from '../../repositories/RepositoryFactory'
   import moment from 'moment'
   import router from "../../router";
   import Functions from "../../assets/constants/Functions";
@@ -133,6 +135,7 @@
     data () {
       return {
         loading: true,
+        cloneButton: null,
         id: null,
         berock: {
           id: null,
@@ -195,6 +198,7 @@
         return Functions.getLiteralName(constant, key);
       },
       async cloneBerock() {
+        this.cloneButton = "disabled";
         const {data} = await BerockRepository.clone(this.berock.id);
         await router.push(`/berock/create/draft/${data.id}`);
       },

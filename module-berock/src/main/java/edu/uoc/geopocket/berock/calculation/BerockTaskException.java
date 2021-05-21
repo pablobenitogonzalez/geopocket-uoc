@@ -13,10 +13,10 @@ import java.util.Map;
 @Setter
 @AllArgsConstructor
 public class BerockTaskException extends RuntimeException implements TaskException<BerockTask, BerockReason> {
-    private BerockTask task;
-    private Result result;
-    private BerockReason reason;
-    private Map<String, String> params;
+    private final BerockTask task;
+    private final Result result;
+    private final BerockReason reason;
+    private final Map<String, String> params;
 
     public BerockTaskException(final BerockTask task, final Result result, final BerockReason reason) {
         this.task = task;

@@ -30,9 +30,9 @@ import java.util.Optional;
 public class BerockServiceImpl extends AbstractToolService<Berock, BerockSearch>
         implements ToolService<Berock, BerockSearch>, StatisticsService, BerockService {
 
-    private ProjectService projectService;
+    private final ProjectService projectService;
 
-    private BerockExecutor executor;
+    private final BerockExecutor executor;
 
     @Autowired
     public BerockServiceImpl(final BuildProperties buildProperties, final Environment environment,

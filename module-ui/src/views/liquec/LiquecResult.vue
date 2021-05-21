@@ -13,6 +13,8 @@
                         color="primary"
                         shape="pill"
                         size="sm"
+                        :class="'btn-actions'"
+                        :disabled="cloneButton"
                         @click="cloneLiquec"
                         v-c-tooltip.hover="{ content: 'Clone Liquec' }"
                 >
@@ -135,7 +137,7 @@
   import Code from '../../assets/constants/Code';
   import Result from '../../assets/constants/Result';
   import Functions from '../../assets/constants/Functions';
-  import {RepositoryFactory} from './../../repositories/RepositoryFactory'
+  import {RepositoryFactory} from '../../repositories/RepositoryFactory'
   import CResultTableWrapper from './ResultTable.vue'
   import CSoilTableWrapper from './SoilTable.vue'
   import CSptTableWrapper from './SptTable.vue'
@@ -161,6 +163,7 @@
         literal_eurocode: Functions.getLiteralName('code', Code.EUROCODE),
         literal_ncse_02: Functions.getLiteralName('code', Code.NCSE_02),
         id: null,
+        cloneButton: null,
         liquec: {
           id: null,
           project: {
@@ -194,6 +197,9 @@
         },
         mainIconHeight: 20,
         sptCorrectedChartOptions: {
+          credits: {
+            enabled: false
+          },
           chart: {
             type: 'spline',
             inverted: true
@@ -274,6 +280,9 @@
           }]
         },
         cycleStressRatioChartOptions: {
+          credits: {
+            enabled: false
+          },
           chart: {
             type: 'spline',
             inverted: true
@@ -354,6 +363,9 @@
           }]
         },
         cycleResistRatioChartOptions: {
+          credits: {
+            enabled: false
+          },
           chart: {
             type: 'spline',
             inverted: true
@@ -433,6 +445,9 @@
           }]
         },
         safetyFactorChartOptions: {
+          credits: {
+            enabled: false
+          },
           chart: {
             type: 'spline',
             inverted: true
@@ -578,6 +593,7 @@
         return moment(date).format('DD-MM-YYYY HH:mm:ss')
       },
       async cloneLiquec() {
+        this.cloneButton = "disabled";
         const {data} = await LiquecRepository.clone(this.liquec.id);
         await router.push(`/liquec/create/draft/${data.id}`);
       },

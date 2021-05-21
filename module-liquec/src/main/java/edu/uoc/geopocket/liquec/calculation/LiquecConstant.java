@@ -5,9 +5,9 @@ import edu.uoc.geopocket.liquec.common.LiquecCode;
 public enum LiquecConstant {
    NO_CHECK_DEPTH("No check depth", 20.0, 0.0),;
 
-   private String description;
-   private Double eurocode;
-   private Double ncse02;
+   private final String description;
+   private final Double eurocode;
+   private final Double ncse02;
 
    LiquecConstant(final String description, final Double eurocode, final Double ncse02) {
         this.description = description;

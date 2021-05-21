@@ -24,11 +24,11 @@ import java.util.stream.Collectors;
 @RequestMapping("/project")
 public class ProjectController {
 
-    private ProjectService service;
+    private final ProjectService service;
 
-    private ProjectMapper mapper;
+    private final ProjectMapper mapper;
 
-    private ProjectInputMapper inputMapper;
+    private final ProjectInputMapper inputMapper;
 
     @Autowired
     public ProjectController(final ProjectService service, final ProjectMapper mapper,
@@ -43,7 +43,7 @@ public class ProjectController {
     public Page<ProjectDTO> findAll(final Pageable pageable) {
         final Page<Project> pageProject = service.findAll(pageable);
         return new PageImpl<>(Optional.of(pageProject.getContent())
-            .orElse(Collections.emptyList()).stream().map(e -> mapper.toDTO(e))
+            .orElse(Collections.emptyList()).stream().map(mapper::toDTO)
             .collect(Collectors.toList()), pageProject.getPageable(),
             pageProject.getTotalElements());
     }
@@ -53,7 +53,7 @@ public class ProjectController {
     public List<ProjectDTO> autocomplete(final @Param("name") String name) {
         final List<Project> projects = service.autocomplete(name);
         return Optional.of(projects)
-                .orElse(Collections.emptyList()).stream().map(e -> mapper.toDTO(e))
+                .orElse(Collections.emptyList()).stream().map(mapper::toDTO)
                 .collect(Collectors.toList());
     }
 

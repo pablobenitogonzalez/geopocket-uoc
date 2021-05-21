@@ -16,13 +16,13 @@ import java.util.Optional;
 @Component
 public class ToolFactory {
 
-    private static Map<Tool, Class<? extends StatisticsService>> TOOL_FACTORY = new HashMap<>();
+    private static final Map<Tool, Class<? extends StatisticsService>> TOOL_FACTORY = new HashMap<>();
     static {
         TOOL_FACTORY.put(Tool.BEROCK, BerockServiceImpl.class);
         TOOL_FACTORY.put(Tool.LIQUEC, LiquecServiceImpl.class);
     }
 
-    private ApplicationContext context;
+    private final ApplicationContext context;
 
     @Autowired
     public ToolFactory(ApplicationContext context) {

@@ -5,7 +5,7 @@ public enum LiquecFines {
     BOUND_15(15.0),
     BOUND_35(35.0);
 
-    private double bound;
+    private final double bound;
 
     LiquecFines(final double bound) {
         this.bound = bound;

@@ -1,7 +1,7 @@
 package edu.uoc.geopocket.common.services;
 
-import edu.uoc.geopocket.common.entities.Search;
 import edu.uoc.geopocket.common.entities.GeoPocketToolEntity;
+import edu.uoc.geopocket.common.entities.Search;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 

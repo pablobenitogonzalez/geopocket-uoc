@@ -19,15 +19,15 @@ import java.util.List;
 @RequestMapping("/statistics")
 public class StatisticsController {
 
-    private StatisticsService statisticsService;
+    private final StatisticsService statisticsService;
 
-    private StatisticsMapper statisticsMapper;
+    private final StatisticsMapper statisticsMapper;
 
-    private ToolCountMapper toolCountMapper;
+    private final ToolCountMapper toolCountMapper;
 
-    private ToolUsageMapper toolUsageMapper;
+    private final ToolUsageMapper toolUsageMapper;
 
-    private SummaryMapper summaryMapper;
+    private final SummaryMapper summaryMapper;
 
     @Autowired
     public StatisticsController(final StatisticsService statisticsService, final StatisticsMapper statisticsMapper,

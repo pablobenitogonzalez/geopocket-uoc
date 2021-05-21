@@ -35,6 +35,7 @@
                                 color="secondary-off"
                                 shape="square"
                                 size="sm"
+                                :class="'btn-table-actions'"
                                 @click="toDetail(item.id)"
                                 v-c-tooltip.hover="{ content: 'Detail' }"
                         >

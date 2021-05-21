@@ -86,6 +86,9 @@
                 apps: [],
                 summaries: [],
                 appUsageChartOptions: {
+                    credits: {
+                        enabled: false
+                    },
                     colors: ['#b1b7c1', '#f9b115'],
                     chart: {
                         type: 'column',
@@ -152,6 +155,9 @@
                     ]
                 },
                 appPercentageChartOptions: {
+                    credits: {
+                        enabled: false
+                    },
                     chart: {
                         plotBackgroundColor: null,
                         plotBorderWidth: null,

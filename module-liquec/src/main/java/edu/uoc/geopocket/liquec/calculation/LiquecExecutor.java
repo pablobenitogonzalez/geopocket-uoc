@@ -19,9 +19,9 @@ import java.util.concurrent.TimeUnit;
 @Component
 public class LiquecExecutor {
 
-    private LiquecRoadMapTaskFactory roadMapFactory;
+    private final LiquecRoadMapTaskFactory roadMapFactory;
 
-    private LiquecTaskFactory liquecTaskFactory;
+    private final LiquecTaskFactory liquecTaskFactory;
 
     @Autowired
     public LiquecExecutor(final LiquecRoadMapTaskFactory roadMapFactory, final LiquecTaskFactory liquecTaskFactory) {

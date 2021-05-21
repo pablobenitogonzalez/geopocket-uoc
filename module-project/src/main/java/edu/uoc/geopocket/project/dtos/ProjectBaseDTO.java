@@ -2,9 +2,7 @@ package edu.uoc.geopocket.project.dtos;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.hibernate.validator.constraints.Length;
 
-import javax.validation.constraints.Max;
 import javax.validation.constraints.Size;
 
 @Getter

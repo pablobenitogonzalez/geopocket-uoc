@@ -1,26 +1,26 @@
-import ajax from './Repository'
+import axiosInstance from './Repository'
 
 const resource = '/project';
 export default {
     get(page = 0, size = 10) {
-        return ajax.get(`${resource}?page=${page}&size=${size}&sort=audit.updatedOn,desc`);
+        return axiosInstance.get(`${resource}?page=${page}&size=${size}&sort=audit.updatedOn,desc`);
     },
     autocomplete(name) {
-        return ajax.get(`${resource}/autocomplete?name=${name}`);
+        return axiosInstance.get(`${resource}/autocomplete?name=${name}`);
     },
     getProject(id) {
-        return ajax.get(`${resource}/${id}`);
+        return axiosInstance.get(`${resource}/${id}`);
     },
     createProject(playload) {
-        return ajax.post(`${resource}`, playload);
+        return axiosInstance.post(`${resource}`, playload);
     },
     updateProject(id, playload) {
-        return ajax.put(`${resource}/${id}`, playload);
+        return axiosInstance.put(`${resource}/${id}`, playload);
     },
     deleteProject(id) {
-        return ajax.delete(`${resource}/${id}`);
+        return axiosInstance.delete(`${resource}/${id}`);
     },
     countProjects() {
-        return ajax.get(`${resource}/total`);
+        return axiosInstance.get(`${resource}/total`);
     }
 }

@@ -3,8 +3,6 @@ package edu.uoc.geopocket.common.dtos;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.Column;
-import javax.persistence.Embeddable;
 import java.time.Instant;
 
 @Getter

@@ -11,6 +11,7 @@
                   color="primary"
                   shape="pill"
                   size="sm"
+                  :class="'btn-actions'"
                   :disabled="saveDraftButton"
                   @click="saveDraft"
                   v-c-tooltip.hover="{ content: 'Save draft' }"
@@ -22,6 +23,7 @@
                   color="primary"
                   shape="pill"
                   size="sm"
+                  :class="'btn-actions'"
                   :disabled="calculateButton"
                   @click="calculate"
                   v-c-tooltip.hover="{ content: 'Calculate' }"
@@ -351,7 +353,7 @@
                   <CInput
                           label="SPT Blow Counts (N):"
                           placeholder="Enter SPT blow counts"
-                          description="Range of supported values: {0-50} (N)"
+                          description="Range of supported integer values: {0-50} (N)"
                           horizontal
                           type="text"
                           :lazy=false
@@ -484,6 +486,9 @@
         },
         dirtyLayerChartSeries: true,
         layerChartOptions: {
+          credits: {
+            enabled: false
+          },
           chart: {
             type: 'area'
           },
@@ -502,9 +507,6 @@
             labels: {
               format: '{value} m'
             }
-          },
-          credits: {
-            enabled: false
           },
           plotOptions: {
             series: {
@@ -526,6 +528,9 @@
         },
         dirtySptChartSeries: true,
         sptChartOptions: {
+          credits: {
+            enabled: false
+          },
           chart: {
             type: 'spline',
             inverted: true
@@ -976,7 +981,7 @@
         this.handleAddSptButton();
       },
       onSptBlowCountsInput(value) {
-        this.sptBlowCountsInputValidation = !!value && value >= 0.00 && value <= 50.0;
+        this.sptBlowCountsInputValidation = !!value && value >= 0.00 && value <= 50.0 && value.toString().indexOf('.') === -1;
         this.handleAddSptButton();
       },
       onEnergyRatioInput(value) {
@@ -1036,14 +1041,17 @@
         this.setYSptChartBound();
       },
       async calculate() {
+        this.calculateButton = "disabled";
         const {data} = await LiquecRepository.calculate(this.liquec);
         await router.push(`/liquec/${data.id}`);
       },
       saveDraft() {
         const self = this;
+        this.saveDraftButton = "disabled";
         LiquecRepository.saveDraft(this.liquec).then(response => {
           self.liquec.id = response.id;
           self.saveDraftModal = true;
+          self.saveDraftButton = null;
         });
       }
     }

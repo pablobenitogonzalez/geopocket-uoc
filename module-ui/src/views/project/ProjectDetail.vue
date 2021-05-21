@@ -14,6 +14,7 @@
                         color="primary"
                         shape="pill"
                         size="sm"
+                        :class="'btn-actions'"
                         @click="editProject"
                         v-c-tooltip.hover="{ content: 'Edit project' }"
                 >
@@ -25,6 +26,7 @@
                         color="primary"
                         shape="pill"
                         size="sm"
+                        :class="'btn-actions'"
                         :disabled="deleteButton"
                         @click="deleteProject"
                         v-c-tooltip.hover="{ content: 'Delete project' }"
@@ -204,6 +206,9 @@
         modalOrganization: null,
         toolUsages: [],
         usagesChartOptions: {
+          credits: {
+            enabled: false
+          },
           chart: {
             type: 'bar'
           },
@@ -237,9 +242,6 @@
                 enabled: true
               }
             }
-          },
-          credits: {
-            enabled: false
           },
           series: []
         }

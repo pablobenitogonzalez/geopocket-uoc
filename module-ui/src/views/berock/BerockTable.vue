@@ -55,6 +55,7 @@
                                 color="secondary-off"
                                 shape="square"
                                 size="sm"
+                                :class="'btn-table-actions'"
                                 @click="toResult(item.id)"
                                 v-c-tooltip.hover="{ content: 'Detail' }"
                         >
@@ -66,6 +67,7 @@
                                 color="secondary-off"
                                 shape="square"
                                 size="sm"
+                                :class="'btn-table-actions'"
                                 @click="toCalculate(item.id)"
                                 v-c-tooltip.hover="{ content: 'Calculate' }"
                         >

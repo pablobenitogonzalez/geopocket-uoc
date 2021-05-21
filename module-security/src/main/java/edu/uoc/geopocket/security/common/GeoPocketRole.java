@@ -10,7 +10,7 @@ public enum GeoPocketRole {
     ROLE_STUDENT("ROLE_STUDENT"),
     ROLE_PROFESSOR("ROLE_PROFESSOR");
 
-    private String role;
+    private final String role;
 
     GeoPocketRole(final String role) {
         this.role = role;

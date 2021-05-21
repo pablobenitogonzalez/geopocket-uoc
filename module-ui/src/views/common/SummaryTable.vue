@@ -41,6 +41,7 @@
                         color="secondary-off"
                         shape="square"
                         size="sm"
+                        :class="'btn-table-actions'"
                         @click="goToPath(tools[item.tool].paths, item.status, item.id)"
                         v-c-tooltip.hover="{ content: 'Detail' }"
                 >
@@ -52,6 +53,7 @@
                         color="secondary-off"
                         shape="square"
                         size="sm"
+                        :class="'btn-table-actions'"
                         @click="goToPath(tools[item.tool].paths, item.status, item.id)"
                         v-c-tooltip.hover="{ content: 'Calculate' }"
                 >

@@ -4,8 +4,9 @@ import edu.uoc.geopocket.common.Status;
 import edu.uoc.geopocket.common.Summary;
 import edu.uoc.geopocket.common.Tool;
 import edu.uoc.geopocket.common.Usage;
-import edu.uoc.geopocket.common.entities.AbstractToolCriteria;
+import edu.uoc.geopocket.common.criterias.AbstractToolCriteria;
 import edu.uoc.geopocket.common.entities.CalculationInfo;
+import edu.uoc.geopocket.common.entities.GeoPocketProjectEntity;
 import edu.uoc.geopocket.common.entities.GeoPocketToolEntity;
 import edu.uoc.geopocket.common.entities.Search;
 import edu.uoc.geopocket.common.exceptions.GeoPocketException;
@@ -58,10 +59,13 @@ public abstract class AbstractToolService<T extends GeoPocketToolEntity, S exten
     }
 
     public T get(final long id) {
-        return this.repository.findById(id).orElseThrow(() -> new GeoPocketException(String.format("Entity %s not found", id)));
+        T element = this.repository.findById(id).orElseThrow(() -> new GeoPocketException(String.format("Entity %s not found", id)));
+        checkPermissions(element.getProject());
+        return element;
     }
 
     public void delete(final T element) {
+        checkPermissions(element.getProject());
         this.repository.delete(element);
     }
 
@@ -140,6 +144,13 @@ public abstract class AbstractToolService<T extends GeoPocketToolEntity, S exten
                 Summary.builder().tool(tool).id(entity.getId()).audit(entity.getAudit())
                         .projectId(entity.getProject().getId()).status(entity.getStatus()).build())
                 .collect(Collectors.toList());
+    }
+
+    private void checkPermissions(GeoPocketProjectEntity project) {
+        if (!securityContextHelper.hasRole(GeoPocketRole.ROLE_PROFESSOR)
+                && !project.getUser().equals(securityContextHelper.getUserName())) {
+            throw new GeoPocketException("Different project owner");
+        }
     }
 
 }

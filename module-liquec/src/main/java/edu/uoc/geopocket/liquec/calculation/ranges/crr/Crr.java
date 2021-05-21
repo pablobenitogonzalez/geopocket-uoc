@@ -11,8 +11,8 @@ public enum Crr implements Describable {
     BETWEEN_SECOND_SECTION("CRR <Between second section>", new LiquecFines[] {LiquecFines.BOUND_15, LiquecFines.BOUND_35}),
     GREATER_OR_EQUAL("CRR <Greater or equals>", new LiquecFines[] {LiquecFines.BOUND_35});
 
-    private String description;
-    private LiquecFines[] fines;
+    private final String description;
+    private final LiquecFines[] fines;
 
     Crr(final String description, final LiquecFines[] fines) {
         this.description = description;

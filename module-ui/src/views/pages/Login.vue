@@ -10,7 +10,7 @@
                  body-wrapper
           >
             <h2>GeoPocket</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+            <p>Platform for academic calculations of the Ground Engineering Area of the Civil Engineering Department (University of Alicante)</p>
             <p>
               <i>student1@uoc.edu</i> - <i>123456</i><br>
               <i>student2@uoc.edu</i> - <i>123456</i><br>

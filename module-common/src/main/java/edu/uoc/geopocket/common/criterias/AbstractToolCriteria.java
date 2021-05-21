@@ -1,5 +1,9 @@
-package edu.uoc.geopocket.common.entities;
+package edu.uoc.geopocket.common.criterias;
 
+import edu.uoc.geopocket.common.entities.Audit;
+import edu.uoc.geopocket.common.entities.GeoPocketProjectEntity;
+import edu.uoc.geopocket.common.entities.GeoPocketToolEntity;
+import edu.uoc.geopocket.common.entities.Search;
 import edu.uoc.geopocket.common.repositories.ToolRepository;
 import edu.uoc.geopocket.security.common.GeoPocketRole;
 import edu.uoc.geopocket.security.helper.SecurityContextHelper;

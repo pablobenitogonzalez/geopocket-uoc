@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/security")
 public class SecurityController {
 
-    private SecurityContextHelper securityContextHelper;
+    private final SecurityContextHelper securityContextHelper;
 
     @Autowired
     public SecurityController(final SecurityContextHelper securityContextHelper) {

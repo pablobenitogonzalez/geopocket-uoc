@@ -16,9 +16,9 @@ import java.util.concurrent.TimeUnit;
 @Component
 public class BerockExecutor {
 
-    private BerockRoadMap berockRoadMap;
+    private final BerockRoadMap berockRoadMap;
 
-    private BerockTaskFactory berockTaskFactory;
+    private final BerockTaskFactory berockTaskFactory;
 
     @Autowired
     public BerockExecutor(final BerockRoadMap berockRoadMap, final BerockTaskFactory berockTaskFactory) {

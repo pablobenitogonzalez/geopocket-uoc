@@ -1,9 +1,9 @@
 package edu.uoc.geopocket.common.controllers;
 
-import edu.uoc.geopocket.common.entities.Search;
 import edu.uoc.geopocket.common.dtos.GeoPocketInputToolDTO;
 import edu.uoc.geopocket.common.dtos.GeoPocketToolDTO;
 import edu.uoc.geopocket.common.entities.GeoPocketToolEntity;
+import edu.uoc.geopocket.common.entities.Search;
 import edu.uoc.geopocket.common.mappers.AbstractInputMapper;
 import edu.uoc.geopocket.common.mappers.AbstractToolMapper;
 import edu.uoc.geopocket.common.services.ToolService;

@@ -19,9 +19,9 @@ public class StatisticsServiceImpl implements StatisticsService {
 
     private static final int CURRENT_SUMMARY_AMOUNT = 2;
 
-    private ToolFactory toolFactory;
+    private final ToolFactory toolFactory;
 
-    private ProjectService projectService;
+    private final ProjectService projectService;
 
     @Autowired
     public StatisticsServiceImpl(final ToolFactory toolFactory, final ProjectService projectService) {

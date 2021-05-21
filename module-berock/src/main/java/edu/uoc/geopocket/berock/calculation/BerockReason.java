@@ -5,7 +5,7 @@ import edu.uoc.geopocket.common.calculation.Reason;
 public enum BerockReason implements Reason {
     GENERIC("Generic error");
 
-    private String message;
+    private final String message;
 
     BerockReason(final String message) {
         this.message = message;

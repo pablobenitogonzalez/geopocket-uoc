@@ -1,6 +1,6 @@
 package edu.uoc.geopocket.liquec.criterias;
 
-import edu.uoc.geopocket.common.entities.AbstractToolCriteria;
+import edu.uoc.geopocket.common.criterias.AbstractToolCriteria;
 import edu.uoc.geopocket.liquec.common.LiquecSearch;
 import edu.uoc.geopocket.liquec.entities.Liquec;
 import edu.uoc.geopocket.liquec.repositories.LiquecRepository;

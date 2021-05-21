@@ -11,6 +11,7 @@
                   color="primary"
                   shape="pill"
                   size="sm"
+                  :class="'btn-actions'"
                   :disabled="saveDraftButton"
                   @click="saveDraft"
                   v-c-tooltip.hover="{ content: 'Save draft' }"
@@ -22,6 +23,7 @@
                   color="primary"
                   shape="pill"
                   size="sm"
+                  :class="'btn-actions'"
                   :disabled="calculateButton"
                   @click="calculate"
                   v-c-tooltip.hover="{ content: 'Calculate' }"
@@ -174,7 +176,7 @@
                       @input="onFamilyInput"
               />
               <template #footer>
-                <CButton @click="sptModal = false" color="dark">Cancel</CButton>
+                <CButton @click="jointModal = false" color="dark">Cancel</CButton>
                 <CButton
                         @click="addJoint"
                         color="primary"
@@ -388,14 +390,17 @@
         this.jointModal = false;
       },
       async calculate() {
+        this.calculateButton = "disabled";
         const {data} = await BerockRepository.calculate(this.berock);
         await router.push(`/berock/${data.id}`);
       },
       saveDraft() {
         const self = this;
+        this.saveDraftButton = "disabled";
         BerockRepository.saveDraft(this.berock).then(response => {
           self.berock.id = response.id;
           self.saveDraftModal = true;
+          self.saveDraftButton = null;
         });
       }
     }

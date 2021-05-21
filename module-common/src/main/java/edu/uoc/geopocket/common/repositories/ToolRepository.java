@@ -4,7 +4,6 @@ import edu.uoc.geopocket.common.Status;
 import edu.uoc.geopocket.common.entities.GeoPocketToolEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.NoRepositoryBean;
-import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 import java.util.Set;

@@ -16,9 +16,9 @@ import java.util.Objects;
 @Service
 public class ProjectServiceImpl implements ProjectService {
 
-    private ProjectRepository repository;
+    private final ProjectRepository repository;
 
-    private SecurityContextHelper securityContextHelper;
+    private final SecurityContextHelper securityContextHelper;
 
     @Autowired
     public ProjectServiceImpl(final ProjectRepository repository, final SecurityContextHelper securityContextHelper) {

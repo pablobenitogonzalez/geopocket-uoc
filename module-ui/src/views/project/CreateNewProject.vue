@@ -13,6 +13,7 @@
                       color="primary"
                       shape="pill"
                       size="sm"
+                      :class="'btn-actions'"
                       :disabled="saveButton"
                       @click="save"
                       v-c-tooltip.hover="{ content: 'Create project' }"

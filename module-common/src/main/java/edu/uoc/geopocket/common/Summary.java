@@ -3,8 +3,6 @@ package edu.uoc.geopocket.common;
 import edu.uoc.geopocket.common.entities.Audit;
 import lombok.*;
 
-import java.time.LocalDateTime;
-
 @Getter
 @Setter
 @AllArgsConstructor

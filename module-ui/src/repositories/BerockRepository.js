@@ -1,23 +1,23 @@
-import ajax from './Repository'
+import axiosInstance from './Repository'
 
 const resource = '/berock';
 export default {
     get(status, page = 0, size = 10) {
-        return ajax.get(`${resource}?status=${status}&page=${page}&size=${size}&sort=audit.updatedOn,desc`);
+        return axiosInstance.get(`${resource}?status=${status}&page=${page}&size=${size}&sort=audit.updatedOn,desc`);
     },
     getBerock(id) {
-        return ajax.get(`${resource}/${id}`);
+        return axiosInstance.get(`${resource}/${id}`);
     },
     saveDraft(playload) {
-        return ajax.post(`${resource}/draft`, playload);
+        return axiosInstance.post(`${resource}/draft`, playload);
     },
     calculate(playload) {
-        return ajax.post(`${resource}/calculate`, playload);
+        return axiosInstance.post(`${resource}/calculate`, playload);
     },
     deleteLiquec(id) {
-        return ajax.delete(`${resource}/${id}`);
+        return axiosInstance.delete(`${resource}/${id}`);
     },
     clone(id) {
-        return ajax.post(`${resource}/${id}/clone`);
+        return axiosInstance.post(`${resource}/${id}/clone`);
     }
 }

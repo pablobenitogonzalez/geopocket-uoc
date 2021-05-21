@@ -23,7 +23,7 @@ import javax.validation.Valid;
 @RequestMapping("/liquec")
 public class LiquecController extends AbstractToolController<Liquec, LiquecSearch, LiquecDTO, LiquecInputDTO, LiquecSearchDTO> {
 
-    private ValidationHelper validationHelper;
+    private final ValidationHelper validationHelper;
 
     @Autowired
     public LiquecController(final LiquecServiceImpl service, final ValidationHelper validationHelper,

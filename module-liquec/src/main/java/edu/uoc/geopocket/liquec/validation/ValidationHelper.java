@@ -15,7 +15,7 @@ import java.util.stream.Collectors;
 @Component
 public class ValidationHelper {
 
-    private Validator validator;
+    private final Validator validator;
 
     @Autowired
     public ValidationHelper(Validator validator) {
@@ -60,8 +60,11 @@ public class ValidationHelper {
                 .sorted(Comparator.comparing(SoilLayerInputDTO::getStartDepth)).collect(Collectors.toList());
         final List<SptInputDTO> sortedSpts = Optional.ofNullable(spts).orElse(Collections.emptyList()).stream()
                 .sorted(Comparator.comparing(SptInputDTO::getDepth)).collect(Collectors.toList());
-        if (sortedLayers.isEmpty() && sortedSpts.size() > 0) {
+        if (sortedLayers.isEmpty() && !sortedSpts.isEmpty()) {
             throw new GeoPocketValidationException("There can be no spts without soil layers", Collections.emptySet());
+        }
+        if (sortedLayers.isEmpty()) {
+            return;
         }
         final Float maxDepth = sortedLayers.get(sortedLayers.size()-1).getFinalDepth();
         sortedSpts.forEach(spt -> {

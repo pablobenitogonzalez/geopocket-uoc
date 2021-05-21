@@ -31,9 +31,9 @@ import java.util.Optional;
 public class LiquecServiceImpl extends AbstractToolService<Liquec, LiquecSearch>
         implements ToolService<Liquec, LiquecSearch>, StatisticsService, LiquecService {
 
-    private ProjectService projectService;
+    private final ProjectService projectService;
 
-    private LiquecExecutor executor;
+    private final LiquecExecutor executor;
 
     @Autowired
     public LiquecServiceImpl(final BuildProperties buildProperties, final Environment environment,

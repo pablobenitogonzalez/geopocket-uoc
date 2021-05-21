@@ -5,9 +5,6 @@ import edu.uoc.geopocket.common.Tool;
 import edu.uoc.geopocket.common.dtos.AuditDTO;
 import lombok.*;
 
-import java.time.LocalDateTime;
-import java.util.Date;
-
 @Getter
 @Setter
 @AllArgsConstructor
